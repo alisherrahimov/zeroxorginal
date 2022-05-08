@@ -55,9 +55,12 @@ import HistoryDebt from '../screens/other/HistoryDebt';
 import UserInformationOfDebt from '../screens/other/UserInformationOfDebt';
 import GiveDebtUser from '../screens/other/GiveDebtUser';
 import Test from '../screens/Test';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {style} from '../theme/style';
+import SearchJuridicUser from '../screens/other/SearchJuridicUser';
 
 const Stack = createNativeStackNavigator();
-const BottomTabStack = createBottomTabNavigator();
+const BottomTabStack = createMaterialBottomTabNavigator();
 const DrawerStack = createDrawerNavigator();
 const allowSomeScreen = ['BottomTabNavigator'];
 const DrawerNavigator = () => {
@@ -94,45 +97,43 @@ const DrawerNavigator = () => {
 const BottomTabNavigator = () => {
   return (
     <BottomTabStack.Navigator
-      screenOptions={{headerShown: false}}
-      tabBar={props => <BottomTabBarCustom {...props} />}>
+      activeColor={style.blue}
+      screenOptions={{headerShown: false, tabBarColor: '#fff'}}>
       <BottomTabStack.Screen
-        options={{title: 'Asosiy'}}
+        options={{
+          title: 'Asosiy',
+          tabBarIcon: ({focused}) =>
+            focused ? <HomeIconBlue /> : <HomeIcon />,
+        }}
         name="Home"
         component={Home}
-        initialParams={{
-          HomeIcon: () => <HomeIcon width={25} height={25} />,
-          HomeIconBlue: () => <HomeIconBlue width={25} height={25} />,
-        }}
       />
       <BottomTabStack.Screen
-        options={{title: 'Qarz olish'}}
+        options={{
+          title: 'Qarz olish',
+          tabBarIcon: ({focused}) =>
+            focused ? <GiveDebtIconBlue /> : <GiveIcon />,
+        }}
         name="GiveDebt"
         component={GiveDebt}
-        initialParams={{
-          HomeIcon: () => <GiveIcon width={25} height={25} />,
-          HomeIconBlue: () => <GiveDebtIconBlue width={25} height={25} />,
-        }}
       />
       <BottomTabStack.Screen
         options={{
           title: 'Qarz berish',
-        }}
-        initialParams={{
-          HomeIcon: () => <TakeIcon width={25} height={25} />,
-          HomeIconBlue: () => <TakeDebtIconBlue width={25} height={25} />,
+          tabBarIcon: ({focused}) =>
+            focused ? <TakeDebtIconBlue /> : <TakeIcon />,
         }}
         name="TakeDebt"
         component={TakeDebt}
       />
 
       <BottomTabStack.Screen
-        options={{title: 'Hisobot'}}
-        name="Statistic"
-        initialParams={{
-          HomeIcon: () => <StatisticIcon width={25} height={25} />,
-          HomeIconBlue: () => <StatisticIconBlue width={25} height={25} />,
+        options={{
+          title: 'Hisobot',
+          tabBarIcon: ({focused}) =>
+            focused ? <StatisticIconBlue /> : <StatisticIcon />,
         }}
+        name="Statistic"
         component={Statistic}
       />
     </BottomTabStack.Navigator>
@@ -184,6 +185,8 @@ const StackNavigator = () => {
         name="UserInformationOfDebt"
         component={UserInformationOfDebt}
       />
+      <Stack.Screen name="SearchJuridicUser" component={SearchJuridicUser} />
+
       <Stack.Screen name="Test" component={Test} />
     </Stack.Navigator>
   );

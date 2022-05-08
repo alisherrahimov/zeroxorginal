@@ -14,7 +14,12 @@ const SearchDebitor = () => {
   return (
     <View style={styles.container}>
       <View style={{width: style.width, height: style.height}}>
-        <View style={{flex: 0.4}}>
+        <View
+          style={{
+            position: 'absolute',
+            height: style.height / 3,
+            width: '100%',
+          }}>
           <BackGroundIcon width="100%" height="100%" />
         </View>
         <View style={styles.main}>
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     width: '90%',
     paddingLeft: 35,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
   },

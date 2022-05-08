@@ -18,6 +18,7 @@ const style = {
   fontFamilyLight: 'Montserrat-Light',
   fontSize: {
     xa: wp('2.5%'),
+    small: wp('3%'),
     xx: wp('3.5%'),
     xs: wp('4%'),
     s: wp('5%'),
@@ -33,6 +34,8 @@ const style = {
   MoneyColor: '#48BB78',
   backgroundColor: '#F7FAFC',
   buttonHeight: height / 13,
+  disabledButtonColor: '#8692A6',
+  placeHolderColor: '#A9ABAD',
 };
 const darkSchema = {
   dark: true,

@@ -1,19 +1,10 @@
-import {
-  ScrollView,
-  //   ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {BackGroundIcon, TwoPhoneIcon} from '../../../../helper/homeIcon';
+import {BackGroundIcon} from '../../../../helper/homeIcon';
 import {style} from '../../../../theme/style';
 import BackButton from '../../../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import ShareIcon from '../../../../images/home/share.svg';
-import DownloadIcon from '../../../../images/home/download.svg';
+
 const UseTerm = () => {
   const navigation = useNavigation();
   return (
@@ -104,7 +95,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userName: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.small,
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
     lineHeight: 25,
@@ -146,7 +137,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     alignSelf: 'center',

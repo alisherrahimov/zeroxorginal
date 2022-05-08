@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userName: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
   },
@@ -70,11 +70,12 @@ const styles = StyleSheet.create({
     backgroundColor: style.StatusbarColor,
     padding: 10,
     width: style.width / 3,
+    maxWidth: style.width / 3,
     flexDirection: 'row',
   },
   downloadText: {
     color: '#fff',
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
   },
   main: {
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     alignSelf: 'center',

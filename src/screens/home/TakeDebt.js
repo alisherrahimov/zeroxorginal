@@ -4,56 +4,22 @@ import {AlarmIcon, BackGroundIcon, DrawerIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 import {ShareIcon} from '../../helper/drawerIcon';
+import Header from '../components/Header';
 
 const TakeDebt = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{flex: 0.4}}>
+      <View
+        style={{
+          position: 'absolute',
+          height: style.height / 2.5,
+          width: '100%',
+        }}>
         <BackGroundIcon width="100%" height="70%" />
       </View>
       <View style={styles.header}>
-        <View style={styles.DrawerContainer}>
-          <View style={styles.drawer}>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <View>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.openDrawer();
-                  }}>
-                  <DrawerIcon width={30} height={30} />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <View style={styles.AlarmContainer}>
-                  <View style={{marginRight: 20}}>
-                    <TouchableOpacity>
-                      <AlarmIcon width={25} height={25} />
-                    </TouchableOpacity>
-                  </View>
-                  <View style={{}}>
-                    <TouchableOpacity style={styles.ImageButton}>
-                      <Image
-                        style={{width: 25, height: 25, borderRadius: 50}}
-                        resizeMode="cover"
-                        source={{
-                          uri: 'https://png.pngtree.com/png-clipart/20190924/original/pngtree-user-vector-avatar-png-image_4830521.jpg',
-                        }}
-                      />
-                      <Text style={styles.userNameText}>Name</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
+        <Header />
         <View style={styles.aboutUsContainer}>
           <View>
             <Text style={styles.title}>Qidiruv</Text>
@@ -162,13 +128,13 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xx,
     color: style.textColor,
     padding: 5,
   },
 
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     alignSelf: 'center',

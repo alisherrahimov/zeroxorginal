@@ -46,10 +46,6 @@ const TopTabBar = ({state, descriptors, navigation, position}) => {
         };
 
         const inputRange = state.routes.map((_, i) => i);
-        const opacity = position.interpolate({
-          inputRange,
-          outputRange: inputRange.map(i => (i === index ? 1 : 0)),
-        });
 
         return (
           <TouchableOpacity
@@ -68,7 +64,7 @@ const TopTabBar = ({state, descriptors, navigation, position}) => {
             }}>
             <Animated.Text
               style={{
-                fontSize: style.fontSize.xx,
+                fontSize: style.fontSize.xa + 1,
                 fontFamily: style.fontFamilyMedium,
                 color: isFocused ? style.textColor : '#A9ABAD',
               }}>

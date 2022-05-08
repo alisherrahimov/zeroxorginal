@@ -106,12 +106,12 @@ const styles = StyleSheet.create({
   },
   phoneNumberText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     color: style.textColor,
   },
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   retryPassword: {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
   },
 
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
 
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

@@ -71,15 +71,15 @@ const BottomTabBarCustom = ({state, descriptors, navigation}) => {
                 marginTop: 5,
               }}>
               {isFocused ? (
-                <route.params.HomeIconBlue width={25} height={25} />
+                <route.params.HomeIconBlue />
               ) : (
-                <route.params.HomeIcon width={25} height={25} />
+                <route.params.HomeIcon />
               )}
               <Text
                 style={{
                   color: isFocused ? style.blue : style.textColor,
                   fontFamily: style.fontFamilyMedium,
-                  fontSize: style.fontSize.x,
+                  fontSize: style.fontSize.xa + 2,
                 }}>
                 {label}
               </Text>
@@ -96,9 +96,8 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     alignItems: 'center',
-    // justifyContent: 'center',
-    maxHeight: 60,
-    height: 80,
-    backgroundColor: '#fff',
+    maxHeight: 55,
+    height: style.height / 8,
+    backgroundColor: 'red',
   },
 });

@@ -10,7 +10,8 @@ const DownloadStatistic = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{flex: 0.4}}>
+      <View
+        style={{position: 'absolute', height: style.height / 3, width: '100%'}}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
@@ -24,7 +25,7 @@ const DownloadStatistic = () => {
         <View style={styles.aboutUsContainer}>
           <View style={{marginTop: 20}}>
             <Text style={styles.title}>
-              20/11/2021/000001-sonli qarz shartnomasi va ilova hujjatlar{' '}
+              20/11/2021/000001-sonli qarz shartnomasi va ilova hujjatlar
             </Text>
           </View>
           <View style={styles.pdfView}>
@@ -36,11 +37,11 @@ const DownloadStatistic = () => {
               justifyContent: 'space-evenly',
               marginBottom: 20,
             }}>
-            <TouchableOpacity style={styles.download}>
+            <TouchableOpacity activeOpacity={0.8} style={styles.download}>
               <DownloadIcon width="20%" height="100%" />
               <Text style={styles.downloadText}>Yuklab olish</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.download}>
+            <TouchableOpacity activeOpacity={0.8} style={styles.download}>
               <ShareIcon width="20%" height="100%" />
               <Text style={styles.downloadText}>Ulashish</Text>
             </TouchableOpacity>
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   userName: {
-    fontSize: style.fontSize.x,
+    fontSize: style.fontSize.small,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     padding: 80,
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
   },
   downloadText: {
     color: '#fff',
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
   },
   main: {
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
     alignSelf: 'center',

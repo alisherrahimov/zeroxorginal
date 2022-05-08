@@ -19,33 +19,33 @@ const userdata = [
   {
     name: 'Shavkatov Shahzod Alisherovich',
     id: 1,
-    img: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&r=pg&d=mm',
+    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
   {
     name: 'Shavkatov Shahzod Alisherovich',
     id: 2,
-    img: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&r=pg&d=mm',
+    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
   {
     name: 'Shavkatov Shahzod Alisherovich',
     id: 3,
-    img: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&r=pg&d=mm',
+    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
 
   {
     name: 'Shavkatov Shahzod Alisherovich',
     id: 4,
-    img: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&r=pg&d=mm',
+    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
   {
     name: 'Shavkatov Shahzod Alisherovich',
     id: 5,
-    img: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&r=pg&d=mm',
+    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
   {
     name: 'Shavkatov Shahzod Alisherovich',
     id: 6,
-    img: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200&r=pg&d=mm',
+    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
 ];
 const HistoryDebt = () => {
@@ -75,7 +75,7 @@ const HistoryDebt = () => {
               style={{width: '100%', alignSelf: 'center', marginVertical: 20}}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.title}>
-                  Oldin oldi-berdi qilingan foydalanuvchilar
+                  Oldin oldi-berdi qilingan{'\n'}foydalanuvchilar
                 </Text>
               </View>
               <View style={[styles.max]}>
@@ -85,12 +85,14 @@ const HistoryDebt = () => {
                       position: 'absolute',
                       zIndex: 1,
                       height: style.height / 18,
-                      marginLeft: 10,
+                      width: style.height / 18,
+
                       justifyContent: 'center',
                       borderTopLeftRadius: 10,
                       borderBottomLeftRadius: 10,
+                      alignItems: 'center',
                     }}>
-                    <Icon name="search" color={style.textColor} size={20} />
+                    <Icon name="search" color={style.textColor} size={16} />
                   </View>
                   <View>
                     <TextInput
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   username: {
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
     marginLeft: 10,
@@ -164,8 +166,8 @@ const styles = StyleSheet.create({
     height: style.height / 18,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
-    paddingLeft: 5,
-    fontSize: style.fontSize.xs,
+    paddingLeft: 10,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
     borderRadius: 10,
@@ -175,7 +177,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     fontFamily: style.fontFamilyBold,
     color: style.textColor,
     textAlign: 'center',

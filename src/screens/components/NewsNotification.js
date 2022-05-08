@@ -9,8 +9,7 @@ const NewsNotificationCard = () => {
           <Text style={styles.notificationTitle}>Yangiliklar</Text>
         </View>
         <View style={{marginTop: 5}}>
-          <Text
-            style={[styles.notificationTitle, {fontSize: style.fontSize.xx}]}>
+          <Text style={[styles.notification, {fontSize: style.fontSize.small}]}>
             Endilikda mobil ilovamiz yanada qulay va keng imkoniyatli
           </Text>
         </View>
@@ -53,14 +52,14 @@ const styles = StyleSheet.create({
     width: style.width / 4,
   },
   notification: {
-    fontSize: style.fontSize.x,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
     lineHeight: 25,
   },
   notificationTitle: {
     fontSize: style.fontSize.x,
-    fontFamily: style.fontFamilyMedium,
+    fontFamily: style.fontFamilyBold,
     color: style.textColor,
   },
 });

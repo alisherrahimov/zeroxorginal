@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ishonch: {
-    fontSize: style.fontSize.m,
+    fontSize: style.fontSize.xs + 2,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

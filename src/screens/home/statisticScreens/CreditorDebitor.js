@@ -16,7 +16,8 @@ const CreditorDebitor = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{flex: 0.4}}>
+      <View
+        style={{position: 'absolute', height: style.height / 3, width: '100%'}}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>

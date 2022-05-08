@@ -14,12 +14,11 @@ const NotificationCard = () => {
           }}>
           <Text style={styles.notificationTitle}>Bildirishnomalar</Text>
           <TouchableOpacity activeOpacity={0.5}>
-            <CloseIcon width={20} height={20} />
+            <CloseIcon width={15} height={15} />
           </TouchableOpacity>
         </View>
         <View style={{marginTop: 5}}>
-          <Text
-            style={[styles.notificationTitle, {fontSize: style.fontSize.xx}]}>
+          <Text style={[styles.notification]}>
             Qarz muddati uzaytirilganligi{'\n'}to`g`risida bildirishnoma
           </Text>
         </View>
@@ -68,21 +67,23 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: style.blue,
-    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 5,
+    paddingBottom: 5,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    width: style.width / 4,
   },
   notification: {
-    fontSize: style.fontSize.x,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
     lineHeight: 25,
   },
   notificationTitle: {
     fontSize: style.fontSize.x,
-    fontFamily: style.fontFamilyMedium,
+    fontFamily: style.fontFamilyBold,
     color: style.textColor,
   },
 });

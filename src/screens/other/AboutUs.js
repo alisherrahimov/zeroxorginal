@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   paginationNumber: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xa + 4,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   main: {
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   aboutUsText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
     lineHeight: 25,
     marginTop: 5,
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     alignSelf: 'center',

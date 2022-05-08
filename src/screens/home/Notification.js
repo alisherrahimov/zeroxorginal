@@ -25,7 +25,7 @@ const Notification = () => {
           style={{
             position: 'absolute',
             height: style.height / 2.5,
-            width: style.width,
+            width: '100%',
           }}>
           <BackGroundIcon width="100%" height="100%" />
         </View>

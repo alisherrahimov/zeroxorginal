@@ -4,7 +4,7 @@ import {PurseIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 
-const Card = ({title, type}) => {
+const Card = ({title, type, Icon}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -13,9 +13,14 @@ const Card = ({title, type}) => {
       }}
       activeOpacity={0.9}
       style={styles.container}>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
         <Text style={styles.title}>{title}</Text>
-        <PurseIcon width={30} height={30} />
+        <Icon width={30} height={30} />
       </View>
       <View style={{marginTop: 20}}>
         <Text style={styles.sum}>$53,897</Text>

@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   selectLanguageText: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: '#fff',
   },
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
   },
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   userImage: {
@@ -269,11 +269,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
   },
-  userName: {
-    fontSize: style.fontSize.xs,
-    color: style.textColor,
-    fontFamily: style.fontFamilyMedium,
-  },
+
   download: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -285,7 +281,7 @@ const styles = StyleSheet.create({
   },
   downloadText: {
     color: '#fff',
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
   },
   main: {
@@ -294,7 +290,7 @@ const styles = StyleSheet.create({
   },
   aboutUsContainer: {
     backgroundColor: '#EAF2FB',
-    marginTop: style.height / 10,
+    marginTop: style.height / 8,
     borderRadius: 15,
     flex: 1,
     shadowColor: '#000',
@@ -310,7 +306,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     alignSelf: 'center',

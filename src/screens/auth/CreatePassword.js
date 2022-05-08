@@ -8,19 +8,20 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {style} from '../../theme/style';
 import NewPasspord from '../../images/newpasspord.svg';
 import BackButton from '../components/BackButton';
 import Uzbekistan from '../../images/uzbekistaan.svg';
-import {CreatePasswordSendApi} from '../../store/reducers/CreatePasswordReducer';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Loading from '../components/Loading';
+import {CreatePasswordSendApi} from '../../store/api/auth';
 const CreatePassword = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const route = useRoute();
+  const [disabled, setDisabled] = useState(true);
   const {phone, code} = route.params;
   const {loading, status, error} = useSelector(
     state => state.CreatePasswordReducer,
@@ -39,6 +40,17 @@ const CreatePassword = () => {
       Alert.alert('ERROR', JSON.stringify(error));
     }
   };
+  useEffect(() => {
+    if (
+      password.password == password.confirmPassword &&
+      password.password.length >= 8 &&
+      password.confirmPassword.length >= 8
+    ) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [password]);
   if (loading) {
     return <Loading />;
   }
@@ -80,6 +92,7 @@ const CreatePassword = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    placeholder="00 000 00 00"
                     maxLength={9}
                     keyboardType="number-pad"
                     style={styles.TextInput}
@@ -98,7 +111,7 @@ const CreatePassword = () => {
               style={[
                 styles.enterText,
                 {
-                  fontSize: style.fontSize.xx,
+                  fontSize: style.fontSize.small,
                   textAlign: 'left',
                   maxWidth: '90%',
                   fontFamily: style.fontFamilyMedium,
@@ -117,6 +130,7 @@ const CreatePassword = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    placeholder="Parolni yarating"
                     value={password.password}
                     onChangeText={text => {
                       setPassword({...password, password: text});
@@ -132,6 +146,7 @@ const CreatePassword = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    placeholder="Parolni takrorlang"
                     value={password.confirmPassword}
                     onChangeText={text => {
                       setPassword({...password, confirmPassword: text});
@@ -150,11 +165,19 @@ const CreatePassword = () => {
           )}
           <View style={styles.enterButtonContainer}>
             <TouchableOpacity
+              disabled={disabled}
               onPress={() => {
                 SendCreatePassword();
               }}
               activeOpacity={0.8}
-              style={styles.enterButton}>
+              style={[
+                styles.enterButton,
+                {
+                  backgroundColor: disabled
+                    ? style.disabledButtonColor
+                    : style.blue,
+                },
+              ]}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
                 Tasdiqlash
               </Text>
@@ -175,7 +198,7 @@ const styles = StyleSheet.create({
   },
   phoneNumberText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     color: style.textColor,
   },
   inputTitle: {
@@ -196,7 +219,7 @@ const styles = StyleSheet.create({
   },
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   retryPassword: {
@@ -234,7 +257,7 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
   },
   BackButton: {
@@ -249,7 +272,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     paddingLeft: 10,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

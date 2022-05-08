@@ -32,7 +32,14 @@ const StatisticCard = ({title, type}) => {
               height: 20,
               width: 35,
             }}>
-            <Text style={{color: style.textColor}}>{item}</Text>
+            <Text
+              style={{
+                color: style.textColor,
+                fontFamily: style.fontFamilyMedium,
+                fontSize: style.fontSize.small,
+              }}>
+              {item}
+            </Text>
           </View>
           <View
             style={{
@@ -42,7 +49,7 @@ const StatisticCard = ({title, type}) => {
               flex: 1,
               marginLeft: 10,
             }}>
-            <Text style={[styles.info, {fontSize: style.fontSize.xa + 4}]}>
+            <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
               Abdullayev Abdulla
             </Text>
           </View>
@@ -55,7 +62,7 @@ const StatisticCard = ({title, type}) => {
               height: 20,
               flex: 1,
             }}>
-            <Text style={[styles.info, {fontSize: style.fontSize.xa + 4}]}>
+            <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
               1,0 mln
             </Text>
           </View>
@@ -114,7 +121,7 @@ const StatisticCard = ({title, type}) => {
                   flex: 1,
                   marginLeft: 10,
                 }}>
-                <Text style={[styles.info, {fontSize: style.fontSize.xa + 4}]}>
+                <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
                   Qarzdor nomi
                 </Text>
               </View>
@@ -126,7 +133,7 @@ const StatisticCard = ({title, type}) => {
                   height: 20,
                   flex: 1,
                 }}>
-                <Text style={[styles.info, {fontSize: style.fontSize.xa + 4}]}>
+                <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
                   Qarz summasi
                 </Text>
               </View>
@@ -162,7 +169,7 @@ export const HeaderComponent = () => {
             flex: 1,
             marginLeft: 10,
           }}>
-          <Text style={[styles.info, {fontSize: style.fontSize.xa + 4}]}>
+          <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
             Qarzdor nomi
           </Text>
         </View>
@@ -174,7 +181,7 @@ export const HeaderComponent = () => {
             height: 20,
             flex: 1,
           }}>
-          <Text style={[styles.info, {fontSize: style.fontSize.xa + 4}]}>
+          <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
             Qarz summasi
           </Text>
         </View>
@@ -187,7 +194,7 @@ export default StatisticCard;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
   },
@@ -206,7 +213,7 @@ const styles = StyleSheet.create({
   info: {
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.small,
   },
   header: {
     height: style.height / 16,

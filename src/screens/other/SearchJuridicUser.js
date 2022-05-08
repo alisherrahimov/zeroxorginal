@@ -13,7 +13,7 @@ import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
 
-const SearchUserScreen = () => {
+const SearchJuridicUser = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -43,7 +43,7 @@ const SearchUserScreen = () => {
               <View style={{alignSelf: 'center'}}>
                 <View style={styles.TextInputLabelContainer}>
                   <View style={styles.inputTitle}>
-                    <Text style={styles.phoneText}>ID raqamini kiriting</Text>
+                    <Text style={styles.phoneText}>STIRni kiriting</Text>
                   </View>
                   <View style={{flex: 1}}>
                     <TextInput
@@ -55,13 +55,11 @@ const SearchUserScreen = () => {
                 </View>
                 <View style={styles.TextInputLabelContainer}>
                   <View style={styles.inputTitle}>
-                    <Text style={styles.phoneText}>
-                      Tug`ilgan sanani kiriting
-                    </Text>
+                    <Text style={styles.phoneText}>ID raqamini kiriting</Text>
                   </View>
                   <View style={{flex: 1}}>
                     <TextInput
-                      placeholder="DD-MM-YYYY"
+                      placeholder="AA000000"
                       keyboardType="default"
                       style={[styles.TextInput, {paddingLeft: 15}]}
                     />
@@ -157,7 +155,7 @@ const UserInfo = () => {
   );
 };
 
-export default SearchUserScreen;
+export default SearchJuridicUser;
 
 const styles = StyleSheet.create({
   container: {

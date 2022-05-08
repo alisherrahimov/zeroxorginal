@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   SupportText: {
     fontFamily: style.fontFamilyMedium,
     color: style.blue,
-    fontSize: style.fontSize.x,
+    fontSize: style.fontSize.small,
     textDecorationLine: 'underline',
   },
   enterButton: {
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
   },
 
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     alignSelf: 'center',

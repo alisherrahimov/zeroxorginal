@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userName: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.small,
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
     lineHeight: 25,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     alignSelf: 'center',

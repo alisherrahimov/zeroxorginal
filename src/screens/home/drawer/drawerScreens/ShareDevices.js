@@ -41,9 +41,7 @@ const ShareDevices = () => {
             <Text style={styles.userName}>Xozirgi seans</Text>
             <Text style={styles.userName}>Qayta nomlash</Text>
           </View>
-          <View>
-              
-          </View>
+          <View></View>
         </View>
       </View>
     </View>
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userName: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
   },
@@ -98,7 +96,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
     fontFamily: style.fontFamilyBold,
     alignSelf: 'center',

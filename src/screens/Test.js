@@ -1,4 +1,10 @@
-import {DeviceEventEmitter, StyleSheet, Text, View} from 'react-native';
+import {
+  DeviceEventEmitter,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {OpenFaceIdNativeScreen} from '../nativemodule/android.event';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -8,35 +14,33 @@ const Test = () => {
   const navigation = useNavigation();
 
   const route = useRoute();
-  const {status} = route.params;
+  const {token} = route.params;
   const [code, setCode] = useState({code: '', comp_id: ''});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const Indentificator = () => {
-    DeviceEventEmitter.addListener('code', data => {
+  const Indentificator = async () => {
+    DeviceEventEmitter.addListener('code', async data => {
       setCode({code: data?.code, comp_id: data?.comp_id});
       setLoading(true);
-      axios
-        .post(
+
+      try {
+        const response = await axios.post(
           URL + '/user/isactivate',
           {
             code: data.code,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${status.token}`,
-            },
-          },
-        )
-        .then(res => {
-          setData(res);
+          {headers: {Authorization: `Bearer ${token}`}},
+        );
+        if (response.data.success) {
+          setData(response.data.data);
           setLoading(false);
-        })
-        .catch(err => {
-          setLoading(false);
-          setError(true);
-        });
+        }
+      } catch (error) {
+        setError(true);
+        setData(error);
+        setLoading(false);
+      }
     });
     DeviceEventEmitter.addListener('error', data => {
       setError(true);
@@ -55,23 +59,32 @@ const Test = () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <Text
-        onPress={() => {
-          OpenFaceIdNativeScreen();
-        }}
-        style={{color: 'red'}}>
-        MYID ruyxatdan utish
-      </Text>
-      {error && <Text>ERROR</Text>}
-      <Text style={{color: 'red'}}>
-        code : {code.code}
-        {'\n'}comp_id : {code.comp_id}
-      </Text>
-      {loading ? (
-        <Text style={{color: 'red'}}>Loading...</Text>
-      ) : (
-        <Text style={{color: 'red'}}>{JSON.stringify(data)}</Text>
-      )}
+      <ScrollView>
+        <Text
+          onPress={() => {
+            OpenFaceIdNativeScreen();
+          }}
+          style={{color: 'red'}}>
+          MYID ruyxatdan utish
+        </Text>
+        {error && <Text style={{color: 'red'}}>USER active</Text>}
+        <Text style={{color: 'red'}}>
+          code : {code.code}
+          {'\n'}comp_id : {code.comp_id}
+        </Text>
+        {loading ? (
+          <Text style={{color: 'red'}}>Loading...</Text>
+        ) : (
+          <Text style={{color: 'red'}}>{JSON.stringify(data)}</Text>
+        )}
+        <Text
+          style={{color: '#000'}}
+          onPress={() => {
+            navigation.navigate('BottomTabNavigator');
+          }}>
+          ASOSIY MENUGA O"TISH
+        </Text>
+      </ScrollView>
     </View>
   );
 };

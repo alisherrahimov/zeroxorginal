@@ -1,26 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {createStatus, URL} from '../../screens/constants';
-export const UserDataPostApi = createAsyncThunk(
-  'user/register',
-  async number => {
-    try {
-      const response = await fetch(URL + '/user/register', {
-        body: JSON.stringify({phone: '+998' + number, type: 2, step: 1}),
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-      });
-      if (response.status === createStatus) {
-        const data = await response.json();
-        return data;
-      } else {
-        const error = await response.json();
-        return {error: error};
-      }
-    } catch (error) {
-      return error;
-    }
-  },
-);
+import {UserDataPostApi} from '../api/auth';
 
 const initialState = {
   error: false,
@@ -31,22 +10,33 @@ const initialState = {
 const RegisterWithPeoplePhoneNumberReducer = createSlice({
   initialState,
   name: 'RegisterWithPeoplePhoneNumberReducer',
+  reducers: {
+    setValueNull: (state, action) => {
+      state.error = false;
+      state.loading = false;
+      state.status = null;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(UserDataPostApi.pending, (state, action) => {
+      console.log(action, 'error1');
       state.loading = true;
     });
     builder.addCase(UserDataPostApi.fulfilled, (state, action) => {
+      console.log(action.payload, 'error2');
       if (action.payload.error) {
         state.error = true;
+        state.status = action.payload.data;
       }
       state.status = action.payload;
       state.loading = false;
     });
     builder.addCase(UserDataPostApi.rejected, (state, action) => {
+      console.log(action, 'error3');
       state.loading = false;
       state.error = action.error;
     });
   },
 });
-
+export const {setValueNull} = RegisterWithPeoplePhoneNumberReducer.actions;
 export default RegisterWithPeoplePhoneNumberReducer.reducer;

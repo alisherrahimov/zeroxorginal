@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   textButton: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: '#fff',
   },
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   registerText: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     fontFamily: style.fontFamilyBold,
     color: style.textColor,
   },

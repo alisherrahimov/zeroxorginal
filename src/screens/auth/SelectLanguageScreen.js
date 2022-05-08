@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   languageText: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.small + 2,
     fontFamily: style.fontFamilyRegular,
     color: '#fff',
     marginLeft: 3,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   selectLanguageText: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     fontFamily: style.fontFamilyBold,
     color: style.textColor,
   },

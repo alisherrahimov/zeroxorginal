@@ -7,16 +7,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import BackButton from '../components/BackButton';
 import {style} from '../../theme/style';
 import SmsCheckPassword from '../../images/smscheck.svg';
 import {useDispatch, useSelector} from 'react-redux';
 import Loading from '../components/Loading';
-import {SmsCheckCodeApi} from '../../store/reducers/registerWithPeopleCheckSmsCodeReducer';
+import {SmsCheckCodeApi} from '../../store/api/auth';
 const CheckSmsPassword = () => {
   const route = useRoute();
+  const [disabled, setDisabled] = useState(true);
   const {phone} = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -27,14 +28,23 @@ const CheckSmsPassword = () => {
 
   const SendSmsCode = async () => {
     try {
-      const response = await dispatch(SmsCheckCodeApi(phone, code)).unwrap();
+      const response = await dispatch(
+        SmsCheckCodeApi({phone: phone, code: code}),
+      ).unwrap();
       if ((response.success = true)) {
-        navigation.navigate('CreatePassword', {phone: phone});
+        navigation.navigate('CreatePassword', {phone: phone, code: code});
       }
     } catch (error) {
       console.error(error, 'Errr');
     }
   };
+  useEffect(() => {
+    if (code.length == 4) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [code]);
   if (loading) {
     return <Loading />;
   }
@@ -68,8 +78,9 @@ const CheckSmsPassword = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
-                    maxLength={5}
-                    keyboardType="numeric"
+                    placeholder="0000"
+                    maxLength={4}
+                    keyboardType="decimal-pad"
                     onChangeText={text => {
                       setCode(text);
                     }}
@@ -93,11 +104,19 @@ const CheckSmsPassword = () => {
           )}
           <View style={styles.enterButtonContainer}>
             <TouchableOpacity
+              disabled={disabled}
               activeOpacity={0.8}
               onPress={() => {
                 SendSmsCode();
               }}
-              style={styles.enterButton}>
+              style={[
+                styles.enterButton,
+                {
+                  backgroundColor: disabled
+                    ? style.disabledButtonColor
+                    : style.blue,
+                },
+              ]}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
                 Davom etish
               </Text>
@@ -131,7 +150,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   time: {
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },
@@ -146,7 +165,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   retryPasswordText: {
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: '#fff',
     fontFamily: style.fontFamilyMedium,
     textAlign: 'center',
@@ -177,12 +196,12 @@ const styles = StyleSheet.create({
   },
   phoneNumberText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   retryPassword: {
@@ -224,7 +243,7 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
   },
 
@@ -234,7 +253,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     paddingLeft: 15,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

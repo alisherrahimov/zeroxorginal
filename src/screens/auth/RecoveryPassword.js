@@ -54,7 +54,7 @@ const RecoveryPassword = () => {
                 style={[
                   styles.enterText,
                   {
-                    fontSize: style.fontSize.xx,
+                    fontSize: style.fontSize.small,
                     marginBottom: 20,
                     marginTop: 40,
                     fontFamily: style.fontFamilyMedium,
@@ -154,18 +154,18 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
   },
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   phoneNumberText: {
     marginLeft: 5,
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   TextInput: {
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     paddingLeft: 15,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

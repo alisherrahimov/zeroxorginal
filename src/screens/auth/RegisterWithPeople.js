@@ -13,20 +13,20 @@ import BackButton from '../components/BackButton';
 import {style} from '../../theme/style';
 import RegisterWithPeopleIcon from '../../images/auth/illustrationregisterwithpeople.svg';
 import Uzbekistan from '../../images/uzbekistaan.svg';
-import axios from 'axios';
-import {URL} from '../constants';
+
 import Loading from '../components/Loading';
 import {useDispatch, useSelector} from 'react-redux';
-import {UserDataPostApi} from '../../store/reducers/registerWithPeoplePhoneNumberReducer';
+import {UserDataPostApi} from '../../store/api/auth';
 const RegisterWithPeople = () => {
   const dispatch = useDispatch();
+  const [disabled, setDisabled] = useState(true);
   const {loading, error, status} = useSelector(
     state => state.RegisterWithPeoplePhoneNumberReducer,
   );
   const route = useRoute();
   const {type} = route.params;
   const navigation = useNavigation();
-  console.log(status);
+
   const [phone, setPhone] = useState('');
   const PostData = async () => {
     try {
@@ -34,12 +34,20 @@ const RegisterWithPeople = () => {
       if (response.success == true) {
         navigation.navigate(
           type == 1 ? 'CheckSmsPassword' : 'ChangePhoneNumber',
+          {phone},
         );
       }
     } catch (error) {
       Alert.alert('ERROR', JSON.stringify(error));
     }
   };
+  useEffect(() => {
+    if (phone.length == 9) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [phone]);
   if (loading) {
     return <Loading />;
   }
@@ -92,6 +100,8 @@ const RegisterWithPeople = () => {
               </View>
               <View style={{flex: 1}}>
                 <TextInput
+                  placeholder="00 000 00 00"
+                  value={phone}
                   onChangeText={text => {
                     setPhone(text);
                   }}
@@ -104,31 +114,38 @@ const RegisterWithPeople = () => {
           </View>
         </View>
         {error && (
-          <View style={{alignSelf: 'center', width: '90%'}}>
+          <View
+            style={{
+              alignSelf: 'center',
+              alignItems: 'center',
+              marginTop: 20,
+              width: '90%',
+            }}>
             <Text
               style={{
                 color: 'red',
                 fontSize: style.fontSize.xx,
                 fontFamily: style.fontFamilyMedium,
               }}>
-              {status?.error?.e?.code == 11000
-                ? 'BU telefon raqam ruyxatdan utgan'
+              {status.error.data.e.code == 11000
+                ? 'bu Telefon raqam ruyxatdan utgan'
                 : ''}
             </Text>
           </View>
         )}
         <View style={styles.enterButtonContainer}>
           <TouchableOpacity
-            // disabled={phone.disabled}
+            disabled={disabled}
             onPress={() => {
               PostData();
-              // navigation.navigate(
-              //   type == 1 ? 'CheckSmsPassword' : 'ChangePhoneNumber',
-              // );
             }}
             style={[
               styles.enterButton,
-              // {backgroundColor: phone.disabled ? style.textColor : style.blue},
+              {
+                backgroundColor: disabled
+                  ? style.disabledButtonColor
+                  : style.blue,
+              },
             ]}>
             <Text style={[styles.enterText, {color: '#fff'}]}>Davom etish</Text>
           </TouchableOpacity>
@@ -150,12 +167,12 @@ const styles = StyleSheet.create({
   },
   phoneNumberText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     color: style.textColor,
   },
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   retryPassword: {
@@ -199,7 +216,7 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
   },
 
@@ -208,8 +225,7 @@ const styles = StyleSheet.create({
     height: style.textInputHeight,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
-
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },
