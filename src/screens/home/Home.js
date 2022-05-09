@@ -67,10 +67,20 @@ const Home = () => {
         <View style={{flex: 1, marginTop: 20}}>
           <View style={[styles.cardViewContainer, {marginTop: 0}]}>
             <View>
-              <Card title={'Berilgan qarz'} Icon={OlinganQarz} type={1} />
+              <Card
+                title={'Berilgan qarz'}
+                Icon={OlinganQarz}
+                type={1}
+                color={style.blue}
+              />
             </View>
             <View>
-              <Card title={'Olingan qarz'} Icon={BerilganQarzIcon} type={1} />
+              <Card
+                title={'Olingan qarz'}
+                Icon={BerilganQarzIcon}
+                type={1}
+                color={'red'}
+              />
             </View>
           </View>
           <View
@@ -84,10 +94,20 @@ const Home = () => {
           </View>
           <View style={styles.cardViewContainer}>
             <View>
-              <Card title={'Muddati o’tgan'} Icon={MuddatUtganPlus} type={2} />
+              <Card
+                title={'Muddati o’tgan'}
+                Icon={MuddatUtganPlus}
+                type={2}
+                color={style.blue}
+              />
             </View>
             <View>
-              <Card title={'Muddati o’tgan'} Icon={MuddatUtganMinus} type={2} />
+              <Card
+                title={'Muddati o’tgan'}
+                Icon={MuddatUtganMinus}
+                type={2}
+                color={'red'}
+              />
             </View>
           </View>
           {/* <View style={styles.cardViewContainer}>

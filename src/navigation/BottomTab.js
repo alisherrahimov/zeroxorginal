@@ -11,7 +11,7 @@ import {getHeaderTitle} from '@react-navigation/elements';
 
 const BottomTabBarCustom = ({state, descriptors, navigation}) => {
   return (
-    <View style={{flexDirection: 'row'}}>
+    <View style={{flexDirection: 'row', backgroundColor: '#fff'}}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
         const label =
@@ -70,11 +70,7 @@ const BottomTabBarCustom = ({state, descriptors, navigation}) => {
                 justifyContent: 'center',
                 marginTop: 5,
               }}>
-              {isFocused ? (
-                <route.params.HomeIconBlue />
-              ) : (
-                <route.params.HomeIcon />
-              )}
+              {isFocused ? <route.params.HomeBlue /> : <route.params.Home />}
               <Text
                 style={{
                   color: isFocused ? style.blue : style.textColor,
@@ -98,6 +94,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     maxHeight: 55,
     height: style.height / 8,
-    backgroundColor: 'red',
   },
 });

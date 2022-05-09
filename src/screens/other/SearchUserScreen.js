@@ -1,20 +1,20 @@
 import {
   ScrollView,
-  //   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-
 const SearchUserScreen = () => {
   const navigation = useNavigation();
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -60,11 +60,13 @@ const SearchUserScreen = () => {
                     </Text>
                   </View>
                   <View style={{flex: 1}}>
-                    <TextInput
-                      placeholder="DD-MM-YYYY"
-                      keyboardType="default"
-                      style={[styles.TextInput, {paddingLeft: 15}]}
-                    />
+                    <TouchableOpacity
+                      onPress={() => {
+                        setOpen(!open);
+                      }}
+                      style={[styles.TextInput, {paddingLeft: 15}]}>
+                      <Text>DD-MM-YYYY</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
@@ -185,9 +187,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     paddingLeft: 5,
-    fontSize: style.fontSize.xx,
-    fontFamily: style.fontFamilyMedium,
-    color: style.textColor,
+    justifyContent: 'center',
+    // fontSize: style.fontSize.xx,
+    // fontFamily: style.fontFamilyMedium,
+    // color: style.textColor,
   },
   inputTitle: {
     position: 'absolute',

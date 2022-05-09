@@ -55,12 +55,18 @@ import HistoryDebt from '../screens/other/HistoryDebt';
 import UserInformationOfDebt from '../screens/other/UserInformationOfDebt';
 import GiveDebtUser from '../screens/other/GiveDebtUser';
 import Test from '../screens/Test';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {style} from '../theme/style';
 import SearchJuridicUser from '../screens/other/SearchJuridicUser';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import SendMoney from '../screens/other/SendMoney';
+import DebtDateLength from '../screens/other/DebtDateLength';
+import DebtDateLengthAsk from '../screens/other/DebtDateLengthAsk';
+import FullDebtSelect from '../screens/other/FullDebtSelect';
+import FullDebtBack from '../screens/other/FullDebtBack';
+import PartDebtBack from '../screens/other/PartDebtBack';
 
 const Stack = createNativeStackNavigator();
-const BottomTabStack = createMaterialBottomTabNavigator();
+const BottomTabStack = createMaterialTopTabNavigator();
 const DrawerStack = createDrawerNavigator();
 const allowSomeScreen = ['BottomTabNavigator'];
 const DrawerNavigator = () => {
@@ -71,7 +77,7 @@ const DrawerNavigator = () => {
         swipeEnabled: false,
         headerShown: false,
         drawerType: 'front',
-        swipeEdgeWidth: 100,
+        swipeEdgeWidth: 30,
         drawerStyle: {
           borderRadius: 20,
         },
@@ -97,44 +103,53 @@ const DrawerNavigator = () => {
 const BottomTabNavigator = () => {
   return (
     <BottomTabStack.Navigator
-      activeColor={style.blue}
+      tabBarPosition="bottom"
+      tabBar={props => <BottomTabBarCustom {...props} />}
       screenOptions={{headerShown: false, tabBarColor: '#fff'}}>
       <BottomTabStack.Screen
         options={{
           title: 'Asosiy',
-          tabBarIcon: ({focused}) =>
-            focused ? <HomeIconBlue /> : <HomeIcon />,
         }}
         name="Home"
         component={Home}
+        initialParams={{
+          Home: () => <HomeIcon />,
+          HomeBlue: () => <HomeIconBlue />,
+        }}
       />
       <BottomTabStack.Screen
         options={{
           title: 'Qarz olish',
-          tabBarIcon: ({focused}) =>
-            focused ? <GiveDebtIconBlue /> : <GiveIcon />,
         }}
         name="GiveDebt"
         component={GiveDebt}
+        initialParams={{
+          Home: () => <GiveIcon />,
+          HomeBlue: () => <GiveDebtIconBlue />,
+        }}
       />
       <BottomTabStack.Screen
         options={{
           title: 'Qarz berish',
-          tabBarIcon: ({focused}) =>
-            focused ? <TakeDebtIconBlue /> : <TakeIcon />,
         }}
         name="TakeDebt"
         component={TakeDebt}
+        initialParams={{
+          Home: () => <TakeIcon />,
+          HomeBlue: () => <TakeDebtIconBlue />,
+        }}
       />
 
       <BottomTabStack.Screen
         options={{
           title: 'Hisobot',
-          tabBarIcon: ({focused}) =>
-            focused ? <StatisticIconBlue /> : <StatisticIcon />,
         }}
         name="Statistic"
         component={Statistic}
+        initialParams={{
+          Home: () => <StatisticIcon />,
+          HomeBlue: () => <StatisticIconBlue />,
+        }}
       />
     </BottomTabStack.Navigator>
   );
@@ -143,7 +158,7 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
-      initialRouteName="EnterScreen">
+      initialRouteName="BottomTabNavigator">
       <Stack.Screen name="EnterScreen" component={EnterScreen} />
       <Stack.Screen
         name="SelectLanguageScreen"
@@ -186,6 +201,12 @@ const StackNavigator = () => {
         component={UserInformationOfDebt}
       />
       <Stack.Screen name="SearchJuridicUser" component={SearchJuridicUser} />
+      <Stack.Screen name="SendMoney" component={SendMoney} />
+      <Stack.Screen name="DebtDateLength" component={DebtDateLength} />
+      <Stack.Screen name="DebtDateLengthAsk" component={DebtDateLengthAsk} />
+      <Stack.Screen name="FullDebtSelect" component={FullDebtSelect} />
+      <Stack.Screen name="FullDebtBack" component={FullDebtBack} />
+      <Stack.Screen name="PartDebtBack" component={PartDebtBack} />
 
       <Stack.Screen name="Test" component={Test} />
     </Stack.Navigator>

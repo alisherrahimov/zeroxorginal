@@ -4,7 +4,7 @@ import {PurseIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 
-const Card = ({title, type, Icon}) => {
+const Card = ({title, type, Icon, color}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -12,14 +12,25 @@ const Card = ({title, type, Icon}) => {
         navigation.navigate('SearchDebitor', {title: title, type: type});
       }}
       activeOpacity={0.9}
-      style={styles.container}>
+      style={[
+        styles.container,
+        {backgroundColor: type == 1 ? '#f0f3f7' : '#fff'},
+      ]}>
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
-        <Text style={styles.title}>{title}</Text>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: color,
+            },
+          ]}>
+          {title}
+        </Text>
         <Icon width={30} height={30} />
       </View>
       <View style={{marginTop: 20}}>
@@ -36,7 +47,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: style.width / 2.3,
-    backgroundColor: '#fff',
     borderRadius: 8,
     shadowColor: '#000',
     shadowOffset: {

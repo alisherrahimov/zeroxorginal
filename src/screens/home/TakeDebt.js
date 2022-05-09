@@ -27,7 +27,7 @@ const TakeDebt = () => {
           <View style={{marginTop: 20, marginBottom: 20}}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('CheckSmsPassword');
+                navigation.navigate('SearchUserScreen');
               }}
               style={styles.enterButton}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
@@ -36,7 +36,7 @@ const TakeDebt = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('CheckSmsPassword');
+                navigation.navigate('SearchJuridicUser');
               }}
               style={[styles.enterButton, {marginTop: 20}]}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
@@ -45,7 +45,7 @@ const TakeDebt = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('CheckSmsPassword');
+                navigation.navigate('HistoryDebt');
               }}
               style={[styles.enterButton, {marginTop: 20}]}>
               <Text
