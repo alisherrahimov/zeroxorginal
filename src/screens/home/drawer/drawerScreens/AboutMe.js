@@ -1,4 +1,5 @@
 import {
+  Platform,
   ScrollView,
   //   ScrollView,
   StyleSheet,
@@ -18,11 +19,19 @@ const AboutMe = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{flex: 0.4}}>
+      <View
+        style={{
+          position: 'absolute',
+          height: style.height / 2.5,
+          width: '100%',
+        }}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
-        <View style={{marginTop: 15}}>
+        <View
+          style={{
+            marginTop: Platform.OS === 'android' ? 40 : null,
+          }}>
           <BackButton
             navigation={navigation}
             backgroundColor={'#fff'}
@@ -31,12 +40,13 @@ const AboutMe = () => {
         </View>
         <View style={styles.aboutUsContainer}>
           <ScrollView>
-            <View>
+            <View style={{marginTop: 10}}>
               <Text style={styles.title}>Biz haqimizda</Text>
             </View>
             <View
               style={{
                 marginTop: 20,
+                marginBottom: 5,
               }}>
               <Text style={styles.userName}>
                 Barcha xizmatlarni saytdan, mobil ilovasidan, yoki shunchaki
@@ -142,7 +152,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-    padding: 10,
+    paddingHorizontal: 10,
   },
 
   title: {

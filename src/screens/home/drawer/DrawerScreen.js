@@ -22,9 +22,9 @@ const DrawerScreen = () => {
           style={{
             alignItems: 'center',
             justifyContent: 'flex-end',
-            flex: 0.4,
+            marginTop: 20,
           }}>
-          <Logo width="50%" height="50%" />
+          <Logo width={100} height={style.height / 14} />
           <Text style={styles.ishonch}>Ishonch kafolati</Text>
           <View
             style={{
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   },
   ishonch: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
     marginTop: 10,
   },

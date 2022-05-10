@@ -9,7 +9,11 @@ const Card = ({title, type, Icon, color}) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('SearchDebitor', {title: title, type: type});
+        navigation.navigate('SearchDebitor', {
+          title: title,
+          type: type,
+          color: color,
+        });
       }}
       activeOpacity={0.9}
       style={[

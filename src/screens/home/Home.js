@@ -20,11 +20,6 @@ const Home = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        backgroundColor={style.StatusbarColor}
-        animated
-        barStyle="light-content"
-      />
       <View
         style={{
           position: 'absolute',
@@ -37,31 +32,29 @@ const Home = () => {
         <Header />
         <View>
           <View style={styles.appInfoMainContainer}>
-            <View style={styles.appInfoContainer}>
-              <View>
-                <WithZeroxIcon width={120} height={30} />
+            <TouchableOpacity
+              style={{flexDirection: 'row'}}
+              activeOpacity={0.8}
+              onPress={() => {
+                navigation.navigate('AboutUs');
+              }}>
+              <View style={styles.appInfoContainer}>
+                <View>
+                  <WithZeroxIcon width={120} height={30} />
+                </View>
+                <View>
+                  <Text style={styles.moneyTitle}>
+                    Ilovaning barcha imkoniyatlari{'\n'}sizning smartfoningizda.
+                  </Text>
+                </View>
               </View>
-              <View>
-                <Text style={styles.moneyTitle}>
-                  Ilovaning barcha imkoniyatlari{'\n'}sizning smartfoningizda.
-                </Text>
+              <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                <TwoPhoneIcon
+                  width={style.width / 2.8}
+                  height={style.width / 2.8}
+                />
               </View>
-              <View style={{marginTop: 10}}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('AboutUs');
-                  }}
-                  style={styles.allInfoButton}>
-                  <Text style={styles.userNameText}>Batafsil ma’lumot</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <TwoPhoneIcon
-                width={style.width / 2.8}
-                height={style.width / 2.8}
-              />
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={{flex: 1, marginTop: 20}}>
@@ -167,11 +160,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   appInfoMainContainer: {
-    height: style.height / 6,
+    height: style.height / 4,
     backgroundColor: '#fff',
     borderRadius: 15,
     flexDirection: 'row',
     marginTop: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   header: {
     flex: 1,

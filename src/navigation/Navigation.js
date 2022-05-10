@@ -5,7 +5,6 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import EnterScreen from '../screens/other/EnterScreen';
 import SelectLanguageScreen from '../screens/auth/SelectLanguageScreen';
 import SelectJuridical from '../screens/auth/SelectJuridical';
 import LoginWithPhone from '../screens/auth/LoginWithPhone';
@@ -17,7 +16,6 @@ import Agree from '../screens/auth/Agree';
 import SetLocalPassword from '../screens/auth/SetLocalPassword';
 import CreateSecretWord from '../screens/auth/CreateSecretWord';
 import Home from '../screens/home/Home';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import BottomTabBarCustom from './BottomTab';
 import TakeDebt from '../screens/home/TakeDebt';
 import GiveDebt from '../screens/home/GiveDebt';
@@ -55,7 +53,6 @@ import HistoryDebt from '../screens/other/HistoryDebt';
 import UserInformationOfDebt from '../screens/other/UserInformationOfDebt';
 import GiveDebtUser from '../screens/other/GiveDebtUser';
 import Test from '../screens/Test';
-import {style} from '../theme/style';
 import SearchJuridicUser from '../screens/other/SearchJuridicUser';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import SendMoney from '../screens/other/SendMoney';
@@ -64,6 +61,8 @@ import DebtDateLengthAsk from '../screens/other/DebtDateLengthAsk';
 import FullDebtSelect from '../screens/other/FullDebtSelect';
 import FullDebtBack from '../screens/other/FullDebtBack';
 import PartDebtBack from '../screens/other/PartDebtBack';
+import ChangePassword from '../screens/auth/ChangePassword';
+import ChangePasswordRetry from '../screens/auth/ChangePasswordRetry';
 
 const Stack = createNativeStackNavigator();
 const BottomTabStack = createMaterialTopTabNavigator();
@@ -158,8 +157,7 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
-      initialRouteName="BottomTabNavigator">
-      <Stack.Screen name="EnterScreen" component={EnterScreen} />
+      initialRouteName="SelectLanguageScreen">
       <Stack.Screen
         name="SelectLanguageScreen"
         component={SelectLanguageScreen}
@@ -207,6 +205,11 @@ const StackNavigator = () => {
       <Stack.Screen name="FullDebtSelect" component={FullDebtSelect} />
       <Stack.Screen name="FullDebtBack" component={FullDebtBack} />
       <Stack.Screen name="PartDebtBack" component={PartDebtBack} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen
+        name="ChangePasswordRetry"
+        component={ChangePasswordRetry}
+      />
 
       <Stack.Screen name="Test" component={Test} />
     </Stack.Navigator>

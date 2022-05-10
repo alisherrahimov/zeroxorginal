@@ -1,5 +1,5 @@
 import {
-  Alert,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -7,50 +7,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import BackButton from '../components/BackButton';
 import {style} from '../../theme/style';
-import RegisterWithPeopleIcon from '../../images/auth/illustrationregisterwithpeople.svg';
-import Uzbekistan from '../../images/uzbekistaan.svg';
-
-import Loading from '../components/Loading';
-import {useDispatch, useSelector} from 'react-redux';
-import {UserDataPostApi} from '../../store/api/auth';
-const RegisterWithPeople = () => {
-  const dispatch = useDispatch();
-  const [disabled, setDisabled] = useState(true);
-  const {loading, error, status} = useSelector(
-    state => state.RegisterWithPeoplePhoneNumberReducer,
-  );
-  const route = useRoute();
-  const {type} = route.params;
+import ChangePasswordIcon from '../../images/auth/illustrationchangepassword.svg';
+const ChangePasswordRetry = () => {
   const navigation = useNavigation();
-
-  const [phone, setPhone] = useState('');
-  const PostData = async () => {
-    try {
-      const response = await dispatch(UserDataPostApi(phone)).unwrap();
-      if (response.success == true) {
-        navigation.navigate(
-          type == 1 ? 'CheckSmsPassword' : 'ChangePhoneNumber',
-          {phone},
-        );
-      }
-    } catch (error) {
-      Alert.alert('ERROR', JSON.stringify(error));
-    }
-  };
-  useEffect(() => {
-    if (phone.length == 9) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [phone]);
-  if (loading) {
-    return <Loading />;
-  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.BackButton}>
@@ -63,11 +26,11 @@ const RegisterWithPeople = () => {
       <View style={{width: style.width, height: style.height}}>
         <View
           style={{alignItems: 'center', flex: 0.5, justifyContent: 'center'}}>
-          <RegisterWithPeopleIcon width="70%" height="70%" />
+          <ChangePasswordIcon width="70%" height="70%" />
         </View>
         <View style={{alignItems: 'center'}}>
           <Text style={[styles.enterText, {fontFamily: style.fontFamilyBold}]}>
-            Avtorizatsiya
+            Parolni o'zgartirish
           </Text>
         </View>
         <View style={styles.main}>
@@ -84,70 +47,52 @@ const RegisterWithPeople = () => {
                   paddingLeft: 5,
                   paddingRight: 5,
                 }}>
-                <Text style={styles.phoneText}>
-                  Telefon raqamingizni kiriting
-                </Text>
+                <Text style={styles.phoneText}>Yangi parolni kiriting</Text>
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  width: '22%',
-                  justifyContent: 'flex-end',
-                }}>
-                <Uzbekistan width="40%" height="40%" />
-                <Text style={styles.phoneNumberText}>+998</Text>
-              </View>
+
               <View style={{flex: 1}}>
                 <TextInput
-                  placeholder="00 000 00 00"
+                  secureTextEntry={true}
+                  placeholder="*******"
                   placeholderTextColor={style.placeHolderColor}
-                  value={phone}
-                  onChangeText={text => {
-                    setPhone(text);
-                  }}
-                  maxLength={9}
-                  keyboardType="number-pad"
+                  keyboardType="default"
+                  style={styles.TextInput}
+                />
+              </View>
+            </View>
+            <View style={[styles.TextInputLabelContainer, {marginTop: 20}]}>
+              <View
+                style={{
+                  position: 'absolute',
+                  marginLeft: 15,
+                  flex: 1,
+                  zIndex: 1,
+                  top: -10,
+                  backgroundColor: '#fff',
+                  paddingLeft: 5,
+                  paddingRight: 5,
+                }}>
+                <Text style={styles.phoneText}>Parolni takrorlang</Text>
+              </View>
+
+              <View style={{flex: 1}}>
+                <TextInput
+                  secureTextEntry={true}
+                  placeholder="*******"
+                  placeholderTextColor={style.placeHolderColor}
+                  keyboardType="default"
                   style={styles.TextInput}
                 />
               </View>
             </View>
           </View>
         </View>
-        {error && (
-          <View
-            style={{
-              alignSelf: 'center',
-              alignItems: 'center',
-              marginTop: 20,
-              width: '90%',
-            }}>
-            <Text
-              style={{
-                color: 'red',
-                fontSize: style.fontSize.xx,
-                fontFamily: style.fontFamilyMedium,
-              }}>
-              {status.error.data.e.code == 11000
-                ? 'bu Telefon raqam ruyxatdan utgan'
-                : ''}
-            </Text>
-          </View>
-        )}
         <View style={styles.enterButtonContainer}>
           <TouchableOpacity
-            disabled={disabled}
             onPress={() => {
-              PostData();
+              navigation.navigate('UserScreen');
             }}
-            style={[
-              styles.enterButton,
-              {
-                backgroundColor: disabled
-                  ? style.disabledButtonColor
-                  : style.blue,
-              },
-            ]}>
+            style={styles.enterButton}>
             <Text style={[styles.enterText, {color: '#fff'}]}>Davom etish</Text>
           </TouchableOpacity>
         </View>
@@ -156,7 +101,7 @@ const RegisterWithPeople = () => {
   );
 };
 
-export default RegisterWithPeople;
+export default ChangePasswordRetry;
 
 const styles = StyleSheet.create({
   container: {
@@ -166,11 +111,7 @@ const styles = StyleSheet.create({
   enterButtonContainer: {
     marginTop: 20,
   },
-  phoneNumberText: {
-    fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
-    color: style.textColor,
-  },
+
   phoneText: {
     fontFamily: style.fontFamilyMedium,
     fontSize: style.fontSize.small,
@@ -191,6 +132,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     zIndex: 1,
+    marginTop: Platform.OS === 'android' ? 40 : null,
   },
   TextInputLabelContainer: {
     borderColor: style.textColor,
@@ -226,6 +168,7 @@ const styles = StyleSheet.create({
     height: style.textInputHeight,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
+    paddingLeft: 15,
     fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,

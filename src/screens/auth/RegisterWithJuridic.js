@@ -1,4 +1,5 @@
 import {
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -40,7 +41,12 @@ const Register = () => {
                 <Text style={styles.phoneText}>STIRni kiriting</Text>
               </View>
               <View style={{flex: 1}}>
-                <TextInput keyboardType="default" style={styles.TextInput} />
+                <TextInput
+                  placeholderTextColor={style.placeHolderColor}
+                  placeholder="AA1215125"
+                  keyboardType="default"
+                  style={styles.TextInput}
+                />
               </View>
             </View>
             <View style={styles.TextInputLabelContainer}>
@@ -71,9 +77,11 @@ const Register = () => {
               </View>
               <View style={{flex: 1}}>
                 <TextInput
+                  placeholder="00 000 00 00"
+                  placeholderTextColor={style.placeHolderColor}
                   maxLength={9}
                   keyboardType="number-pad"
-                  style={styles.TextInput}
+                  style={[styles.TextInput, {paddingLeft: 5}]}
                 />
               </View>
             </View>
@@ -129,6 +137,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     zIndex: 1,
+    marginTop: Platform.OS === 'android' ? 40 : null,
   },
   TextInputLabelContainer: {
     borderColor: style.textColor,
@@ -164,7 +173,7 @@ const styles = StyleSheet.create({
     height: style.textInputHeight,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
-
+    paddingLeft: 15,
     fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,

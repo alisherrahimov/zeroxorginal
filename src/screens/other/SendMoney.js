@@ -1,4 +1,5 @@
 import {
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -20,7 +21,11 @@ const SendMoney = () => {
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
-        <View style={{marginTop: 15, flexDirection: 'row'}}>
+        <View
+          style={{
+            marginTop: Platform.OS === 'android' ? 40 : null,
+            flexDirection: 'row',
+          }}>
           <BackButton
             navigation={navigation}
             backgroundColor={'#fff'}

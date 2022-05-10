@@ -31,7 +31,7 @@ const Notification = () => {
         </View>
 
         <View style={styles.main}>
-          <View style={{marginTop: 15}}>
+          <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
             <BackButton
               navigation={navigation}
               backgroundColor={'#fff'}

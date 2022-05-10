@@ -1,4 +1,5 @@
 import {
+  Platform,
   //   ScrollView,
   StyleSheet,
   Text,
@@ -22,7 +23,7 @@ const PayScreen = () => {
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
-        <View style={{marginTop: 15}}>
+        <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
           <BackButton
             navigation={navigation}
             backgroundColor={'#fff'}

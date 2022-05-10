@@ -71,9 +71,11 @@ const styles = StyleSheet.create({
   },
   DrawerContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
     paddingTop: 10,
     paddingBottom: 10,
+    height: style.height / 8,
   },
 
   money: {

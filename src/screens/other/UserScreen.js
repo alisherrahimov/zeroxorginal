@@ -21,7 +21,7 @@ const UserScreen = () => {
         <View>
           <View
             style={{
-              height: style.height / 3,
+              height: style.height / 2.5,
               position: 'absolute',
               width: style.width,
             }}>
@@ -29,7 +29,7 @@ const UserScreen = () => {
           </View>
           <View
             style={{
-              marginTop: 15,
+              marginTop: Platform.OS === 'android' ? 40 : null,
               zIndex: 1,
               marginLeft: '5%',
               position: 'absolute',
@@ -60,6 +60,7 @@ const UserScreen = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    editable={false}
                     value="Shavkatov Shahzod Alisherovich"
                     keyboardType="default"
                     style={styles.TextInput}
@@ -86,6 +87,7 @@ const UserScreen = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    editable={false}
                     value="Urganch sh. Istiqlol pr4 2-uy"
                     keyboardType="default"
                     style={styles.TextInput}
@@ -113,6 +115,7 @@ const UserScreen = () => {
                     </TouchableOpacity>
                   </View>
                   <TextInput
+                    editable={false}
                     value="+998999642412"
                     keyboardType="default"
                     style={styles.TextInput}
@@ -140,6 +143,7 @@ const UserScreen = () => {
                     </TouchableOpacity>
                   </View>
                   <TextInput
+                    editable={false}
                     value="vostokwohzod@gmail.com"
                     keyboardType="default"
                     style={styles.TextInput}
@@ -152,6 +156,7 @@ const UserScreen = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    editable={false}
                     value="000001AA"
                     keyboardType="default"
                     style={styles.TextInput}
@@ -164,6 +169,7 @@ const UserScreen = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    editable={false}
                     value="97%"
                     keyboardType="default"
                     style={styles.TextInput}
@@ -191,6 +197,18 @@ const UserScreen = () => {
                     style={styles.languageButton}>
                     <Text style={styles.selectLanguageText}>
                       PIN KODni o'zgartirish
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={{marginTop: 20}}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('ChangePassword');
+                    }}
+                    activeOpacity={0.8}
+                    style={styles.languageButton}>
+                    <Text style={styles.selectLanguageText}>
+                      Parolni o'zgartirish
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -222,7 +240,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     width: '100%',
-    height: style.buttonHeight,
   },
   inputTitle: {
     position: 'absolute',
@@ -287,6 +304,7 @@ const styles = StyleSheet.create({
   main: {
     width: '90%',
     alignSelf: 'center',
+    marginTop: 20,
   },
   aboutUsContainer: {
     backgroundColor: '#EAF2FB',

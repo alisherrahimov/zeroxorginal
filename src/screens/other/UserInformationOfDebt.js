@@ -1,5 +1,6 @@
 import {
   Image,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -28,7 +29,7 @@ const UserInformationOfDebt = () => {
         <View style={styles.main}>
           <View
             style={{
-              marginTop: 15,
+              marginTop: Platform.OS === 'android' ? 40 : null,
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',

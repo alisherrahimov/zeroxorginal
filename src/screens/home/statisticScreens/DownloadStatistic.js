@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {BackGroundIcon} from '../../../helper/homeIcon';
 import {style} from '../../../theme/style';
@@ -15,7 +15,7 @@ const DownloadStatistic = () => {
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
-        <View style={{marginTop: 15}}>
+        <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
           <BackButton
             navigation={navigation}
             backgroundColor={'#fff'}

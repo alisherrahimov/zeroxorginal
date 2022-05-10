@@ -1,26 +1,17 @@
 import {
-  BackHandler,
-  DeviceEventEmitter,
-  Image,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {
-  useFocusEffect,
-  useNavigation,
-  useTheme,
-} from '@react-navigation/native';
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import Person from '../../images/boysee.svg';
 import {style} from '../../theme/style';
-import {OpenFaceIdNativeScreen} from '../../nativemodule/android.event';
 import Uzbekistan from '../../images/uzbekistaan.svg';
 import Russia from '../../images/russia.svg';
-import {URL} from '../constants';
-import axios from 'axios';
+
 const SelectLanguageScreen = () => {
   const navigation = useNavigation();
   return (
@@ -73,7 +64,7 @@ const styles = StyleSheet.create({
   },
   languageText: {
     fontSize: style.fontSize.small + 2,
-    fontFamily: style.fontFamilyRegular,
+    fontFamily: style.fontFamilyMedium,
     color: '#fff',
     marginLeft: 3,
   },
@@ -97,7 +88,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     width: style.width / 4,
-    height: style.buttonHeight,
   },
   logoContainer: {
     alignItems: 'center',

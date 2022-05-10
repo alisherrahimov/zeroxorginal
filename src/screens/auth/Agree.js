@@ -1,4 +1,5 @@
 import {
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     zIndex: 1,
+    marginTop: Platform.OS === 'android' ? 40 : null,
   },
   TextInputLabelContainer: {
     borderColor: style.textColor,

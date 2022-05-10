@@ -1,4 +1,5 @@
 import {
+  Platform,
   //   ScrollView,
   StyleSheet,
   Text,
@@ -17,11 +18,16 @@ const ShareDevices = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{flex: 0.4}}>
+      <View
+        style={{
+          position: 'absolute',
+          height: style.height / 2.5,
+          width: '100%',
+        }}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
-        <View style={{marginTop: 15}}>
+        <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
           <BackButton
             navigation={navigation}
             backgroundColor={'#fff'}

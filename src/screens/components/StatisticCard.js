@@ -10,17 +10,17 @@ import React from 'react';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 
-const StatisticCard = ({title, type}) => {
+const StatisticCard = ({title, type, color}) => {
   const navigation = useNavigation();
   const ListRender = ({item, index}) => {
     return (
       <TouchableOpacity
         key={index}
         onPress={() => {
-          if (type == 1) {
-            navigation.navigate('CreditorDebitor');
-          } else {
+          if (color == style.blue) {
             navigation.navigate('Debitor');
+          } else {
+            navigation.navigate('CreditorDebitor');
           }
         }}
         style={styles.listContainer}>
@@ -79,7 +79,9 @@ const StatisticCard = ({title, type}) => {
       <View>
         <FlatList
           style={{
-            height: style.height / 1.5,
+            height: style.height / 1.8,
+            maxHeight: style.height / 1.8,
+            minHeight: style.height / 1.8,
             overflow: 'scroll',
             borderRadius: 10,
           }}

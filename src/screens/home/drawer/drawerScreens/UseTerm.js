@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {BackGroundIcon} from '../../../../helper/homeIcon';
 import {style} from '../../../../theme/style';
@@ -9,11 +9,16 @@ const UseTerm = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{flex: 0.4}}>
+      <View
+        style={{
+          position: 'absolute',
+          height: style.height / 2.5,
+          width: '100%',
+        }}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
-        <View style={{marginTop: 15}}>
+        <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
           <BackButton
             navigation={navigation}
             backgroundColor={'#fff'}
@@ -22,12 +27,13 @@ const UseTerm = () => {
         </View>
         <View style={styles.aboutUsContainer}>
           <ScrollView>
-            <View>
+            <View style={{marginTop: 10}}>
               <Text style={styles.title}>Foydalanish yoriqnomasi</Text>
             </View>
             <View
               style={{
                 marginTop: 20,
+                marginBottom: 5,
               }}>
               <Text style={styles.userName}>
                 Barcha xizmatlarni saytdan, mobil ilovasidan, yoki shunchaki
@@ -129,11 +135,11 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    height: style.height / 1.2,
+    height: style.height / 1.3,
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-    padding: 10,
+    paddingHorizontal: 10,
   },
 
   title: {

@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -136,6 +137,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     zIndex: 1,
+    marginTop: Platform.OS === 'android' ? 40 : null,
   },
   enterButtonContainer: {
     marginTop: 20,

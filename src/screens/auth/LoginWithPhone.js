@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
+  Platform,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -195,6 +196,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     zIndex: 1,
+    marginTop: Platform.OS === 'android' ? 40 : null,
   },
   inputTitle: {
     position: 'absolute',

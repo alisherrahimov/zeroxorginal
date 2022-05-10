@@ -1,4 +1,5 @@
 import {
+  Platform,
   //   ScrollView,
   StyleSheet,
   Text,
@@ -21,7 +22,7 @@ const CreditorDebitor = () => {
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
-        <View style={{marginTop: 15}}>
+        <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
           <BackButton
             navigation={navigation}
             backgroundColor={'#fff'}
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   textButton: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: '#fff',
   },
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
   info: {
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     textAlign: 'left',
   },
   header: {

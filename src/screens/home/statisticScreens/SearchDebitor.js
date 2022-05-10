@@ -1,4 +1,4 @@
-import {StyleSheet, TextInput, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import React from 'react';
 import {BackGroundIcon} from '../../../helper/homeIcon';
 import {style} from '../../../theme/style';
@@ -9,7 +9,7 @@ import StatisticCard from '../../components/StatisticCard';
 
 const SearchDebitor = () => {
   const route = useRoute();
-  const {title, type} = route.params;
+  const {title, type, color} = route.params;
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -17,7 +17,7 @@ const SearchDebitor = () => {
         <View
           style={{
             position: 'absolute',
-            height: style.height / 3,
+            height: style.height / 2.5,
             width: '100%',
           }}>
           <BackGroundIcon width="100%" height="100%" />
@@ -25,7 +25,7 @@ const SearchDebitor = () => {
         <View style={styles.main}>
           <View
             style={{
-              marginTop: 15,
+              marginTop: Platform.OS === 'android' ? 40 : null,
               flex: 1,
               flexDirection: 'row',
               alignItems: 'center',
@@ -62,7 +62,7 @@ const SearchDebitor = () => {
             </View>
           </View>
           <View style={styles.aboutUsContainer}>
-            <StatisticCard title={title} type={type} />
+            <StatisticCard title={title} type={type} color={color} />
           </View>
         </View>
       </View>

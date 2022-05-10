@@ -1,4 +1,5 @@
 import {
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -54,7 +55,9 @@ const ChangeEmail = () => {
 
               <View style={{flex: 1}}>
                 <TextInput
-                  value="vostokwohzod@gmail.com"
+                  placeholder="Misol uchun : zerox@gmail.com"
+                  placeholderTextColor={style.placeHolderColor}
+                  // value="vostokwohzod@gmail.com"
                   maxLength={9}
                   keyboardType="email-address"
                   style={styles.TextInput}
@@ -87,14 +90,10 @@ const styles = StyleSheet.create({
   enterButtonContainer: {
     marginTop: 20,
   },
-  phoneNumberText: {
-    fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xs,
-    color: style.textColor,
-  },
+
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   retryPassword: {
@@ -112,6 +111,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     zIndex: 1,
+    marginTop: Platform.OS === 'android' ? 40 : null,
   },
   TextInputLabelContainer: {
     borderColor: style.textColor,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: style.textColor,
   },
 
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     paddingLeft: 15,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

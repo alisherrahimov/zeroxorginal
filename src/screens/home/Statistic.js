@@ -16,7 +16,7 @@ const Statistic = () => {
           height: style.height / 2.5,
           width: '100%',
         }}>
-        <BackGroundIcon width="100%" height="70%" />
+        <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.header}>
         <Header />
