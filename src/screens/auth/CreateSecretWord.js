@@ -81,7 +81,7 @@ const CreateSecretWord = () => {
           <View style={styles.enterButtonContainer}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('NewPasspordEnter');
+                navigation.navigate('NewPasswordEnter');
               }}
               style={styles.enterButton}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
@@ -100,6 +100,7 @@ export default CreateSecretWord;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   forgotPasswordText: {
     color: '#fff',
@@ -148,27 +149,22 @@ const styles = StyleSheet.create({
   },
   enterText: {
     fontFamily: style.fontFamilyBold,
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xx,
     color: style.textColor,
   },
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
-  phoneNumberText: {
-    marginLeft: 5,
-    fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xs,
-    color: style.textColor,
-  },
+
   TextInput: {
     width: '100%',
     height: style.textInputHeight,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     paddingLeft: 15,
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

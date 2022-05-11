@@ -14,7 +14,7 @@ const SetLocalPassword = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{flex: 0.08, alignItems: 'center'}}>
+      <View style={{alignItems: 'center', marginTop: 40}}>
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.notSetPasswordButton}>
@@ -29,13 +29,13 @@ const SetLocalPassword = () => {
       </View>
       <View
         style={{
-          flex: 0.4,
+          flex: 0.35,
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <SetCode width="100%" height="80%" />
+        <SetCode width="80%" height="80%" />
       </View>
-      <View style={{flex: 0.6}}>
+      <View style={{flex: 0.7}}>
         <View style={styles.setCodeTextContainer}>
           <Text style={styles.text}>PIN KOD o’rnating</Text>
         </View>
@@ -178,13 +178,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   text: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     color: '#fff',
     fontFamily: style.fontFamilyBold,
   },
   notSetText: {
     color: '#fff',
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
   },
 });

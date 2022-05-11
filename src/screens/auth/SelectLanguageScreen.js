@@ -11,20 +11,27 @@ import Person from '../../images/boysee.svg';
 import {style} from '../../theme/style';
 import Uzbekistan from '../../images/uzbekistaan.svg';
 import Russia from '../../images/russia.svg';
+import {t} from 'i18next';
+import {useTranslation} from 'react-i18next';
 
 const SelectLanguageScreen = () => {
+  const {i18n} = useTranslation();
+  const onChangeLang = lang => {
+    i18n.changeLanguage(lang);
+  };
   const navigation = useNavigation();
   return (
     <SafeAreaView style={[styles.container]}>
       <View style={styles.logoContainer}>
         <Person width="50%" height="50%" />
       </View>
-
       <View style={styles.languageContainer}>
-        <Text style={styles.selectLanguageText}>Ilovani tilini tanlang</Text>
+        <Text style={styles.selectLanguageText}>{t('ilovatili')}</Text>
         <View style={styles.languageButtonContainer}>
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={() => {
+              onChangeLang('ru');
+            }}
             activeOpacity={0.8}
             style={styles.languageButton}>
             <View style={styles.Flag}>
@@ -34,6 +41,7 @@ const SelectLanguageScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
+              onChangeLang('kril');
               navigation.navigate('SelectJuridical');
             }}
             activeOpacity={0.8}
@@ -43,7 +51,12 @@ const SelectLanguageScreen = () => {
               <Text style={styles.languageText}>Узб</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.languageButton}>
+          <TouchableOpacity
+            onPress={() => {
+              onChangeLang('uz');
+            }}
+            activeOpacity={0.8}
+            style={styles.languageButton}>
             <View style={styles.Flag}>
               <Uzbekistan width="40%" height="100%" />
               <Text style={styles.languageText}>O’z</Text>

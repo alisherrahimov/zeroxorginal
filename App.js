@@ -1,4 +1,7 @@
+import i18next from 'i18next';
 import React, {useEffect, useState} from 'react';
+import {I18nextProvider} from 'react-i18next';
+import './src/i18n/index';
 import {
   StatusBar,
   ImageBackground,
@@ -13,16 +16,19 @@ import {Logo} from './src/helper/drawerIcon';
 import Navigation from './src/navigation/Navigation';
 import {Store} from './src/store/store/Store';
 import {style} from './src/theme/style';
+
 StatusBar.setBackgroundColor('rgba(0,0,0,0)');
 StatusBar.setBarStyle('dark-content');
 StatusBar.setTranslucent(true);
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 2500);
   }, []);
+
   if (isLoading) {
     return <Enter />;
   }
