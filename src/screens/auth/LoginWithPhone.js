@@ -18,18 +18,20 @@ import BackButton from '../components/BackButton';
 import {useDispatch, useSelector} from 'react-redux';
 import Loading from '../components/Loading';
 import {LoginWithPhoneSendPasswordApi} from '../../store/api/auth';
+import TextInputMask from 'react-native-text-input-mask';
 const LoginWithPhone = () => {
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
   const {loading, status, error} = useSelector(
     state => state.LoginWithPhoneReducer,
   );
-  const [phone, setPhone] = useState({phone: '', password: ''});
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
   const SendLogin = async () => {
     try {
       const response = await dispatch(
-        LoginWithPhoneSendPasswordApi(phone),
+        LoginWithPhoneSendPasswordApi({phone: phone, password: password}),
       ).unwrap();
       if (response.success) {
         navigation.navigate('Test', {token: response.token});
@@ -39,12 +41,12 @@ const LoginWithPhone = () => {
     }
   };
   useEffect(() => {
-    if (phone.phone.length == 9 && phone.password.length > 6) {
+    if (phone.length == 9 && password.length > 8) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [phone.phone, phone.password]);
+  }, [phone, password]);
   if (loading) {
     return <Loading />;
   }
@@ -81,14 +83,14 @@ const LoginWithPhone = () => {
                   <Text style={styles.phoneNumberText}>+998</Text>
                 </View>
                 <View style={{flex: 1}}>
-                  <TextInput
+                  <TextInputMask
                     placeholder="00 000 00 00"
+                    mask="{[00] [000] [00] [00]}"
                     placeholderTextColor={style.placeHolderColor}
-                    value={phone.phone}
-                    onChangeText={text => {
-                      setPhone({...phone, phone: text});
+                    value={phone}
+                    onChangeText={(formated, extracted) => {
+                      setPhone(extracted);
                     }}
-                    maxLength={9}
                     keyboardType="number-pad"
                     style={styles.TextInput}
                   />
@@ -106,9 +108,9 @@ const LoginWithPhone = () => {
                   <TextInput
                     placeholderTextColor={style.placeHolderColor}
                     placeholder="Parolni kiriting"
-                    value={phone.password}
+                    value={password}
                     onChangeText={text => {
-                      setPhone({...phone, password: text});
+                      setPassword(text);
                     }}
                     keyboardType="default"
                     style={[styles.TextInput, {paddingLeft: 15}]}

@@ -1,5 +1,6 @@
 import {
   Alert,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -17,6 +18,7 @@ import Uzbekistan from '../../images/uzbekistaan.svg';
 import Loading from '../components/Loading';
 import {useDispatch, useSelector} from 'react-redux';
 import {UserDataPostApi} from '../../store/api/auth';
+import TextInputMask from 'react-native-text-input-mask';
 const RegisterWithPeople = () => {
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
@@ -51,6 +53,7 @@ const RegisterWithPeople = () => {
   if (loading) {
     return <Loading />;
   }
+  console.log(phone.length);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.BackButton}>
@@ -99,14 +102,14 @@ const RegisterWithPeople = () => {
                 <Text style={styles.phoneNumberText}>+998</Text>
               </View>
               <View style={{flex: 1}}>
-                <TextInput
+                <TextInputMask
                   placeholder="00 000 00 00"
                   placeholderTextColor={style.placeHolderColor}
                   value={phone}
-                  onChangeText={text => {
-                    setPhone(text);
+                  mask={'[00] [000] [00] [00]'}
+                  onChangeText={(formatted, extracted) => {
+                    setPhone(extracted);
                   }}
-                  maxLength={9}
                   keyboardType="number-pad"
                   style={styles.TextInput}
                 />
@@ -189,7 +192,7 @@ const styles = StyleSheet.create({
   BackButton: {
     position: 'absolute',
     marginLeft: 15,
-    marginTop: 15,
+    marginTop: Platform.OS === 'android' ? 40 : null,
     zIndex: 1,
   },
   TextInputLabelContainer: {

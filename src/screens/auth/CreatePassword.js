@@ -18,6 +18,7 @@ import Uzbekistan from '../../images/uzbekistaan.svg';
 import {useDispatch, useSelector} from 'react-redux';
 import Loading from '../components/Loading';
 import {CreatePasswordSendApi} from '../../store/api/auth';
+import TextInputMask from 'react-native-text-input-mask';
 const CreatePassword = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -92,9 +93,11 @@ const CreatePassword = () => {
                   <Text style={styles.phoneNumberText}>+998</Text>
                 </View>
                 <View style={{flex: 1}}>
-                  <TextInput
+                  <TextInputMask
+                    value={phone}
+                    editable={false}
+                    mask={'[00] [000] [00] [00]'}
                     placeholder="00 000 00 00"
-                    maxLength={9}
                     keyboardType="number-pad"
                     style={styles.TextInput}
                   />
