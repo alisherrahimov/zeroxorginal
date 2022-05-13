@@ -31,7 +31,7 @@ const SelectLanguageScreen = () => {
           onPress={() => {
             navigation.navigate('BottomTabNavigator');
           }}>
-          <Text>BOSH SCREEN</Text>
+          <Text style={{color: 'red'}}>BOSH SCREEN</Text>
         </TouchableOpacity>
         <View style={styles.languageButtonContainer}>
           <TouchableOpacity
