@@ -27,6 +27,12 @@ const SelectLanguageScreen = () => {
       </View>
       <View style={styles.languageContainer}>
         <Text style={styles.selectLanguageText}>{t('ilovatili')}</Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('BottomTabNavigator');
+          }}>
+          <Text>BOSH SCREEN</Text>
+        </TouchableOpacity>
         <View style={styles.languageButtonContainer}>
           <TouchableOpacity
             onPress={() => {
