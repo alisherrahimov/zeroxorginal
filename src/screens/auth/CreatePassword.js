@@ -136,6 +136,7 @@ const CreatePassword = () => {
                   <TextInput
                     placeholder="Parolni yarating"
                     value={password.password}
+                    placeholderTextColor={style.placeHolderColor}
                     onChangeText={text => {
                       setPassword({...password, password: text});
                     }}
@@ -151,6 +152,7 @@ const CreatePassword = () => {
                 <View style={{flex: 1}}>
                   <TextInput
                     placeholder="Parolni takrorlang"
+                    placeholderTextColor={style.placeHolderColor}
                     value={password.confirmPassword}
                     onChangeText={text => {
                       setPassword({...password, confirmPassword: text});

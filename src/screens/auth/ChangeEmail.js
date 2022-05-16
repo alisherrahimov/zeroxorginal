@@ -58,7 +58,6 @@ const ChangeEmail = () => {
                   placeholder="Misol uchun : zerox@gmail.com"
                   placeholderTextColor={style.placeHolderColor}
                   // value="vostokwohzod@gmail.com"
-                  maxLength={9}
                   keyboardType="email-address"
                   style={styles.TextInput}
                 />

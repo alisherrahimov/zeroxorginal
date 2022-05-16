@@ -18,71 +18,83 @@ const SearchJuridicUser = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View
-          style={{
-            width: style.width,
-            position: 'absolute',
-            height: style.height / 3,
-          }}>
-          <BackGroundIcon width="100%" height="100%" />
-        </View>
-        <View style={styles.main}>
-          <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
-            <BackButton
-              navigation={navigation}
-              backgroundColor={'#fff'}
-              IconColor={style.blue}
-            />
-          </View>
-          <View style={styles.aboutUsContainer}>
-            <View
-              style={{width: '100%', alignSelf: 'center', marginVertical: 20}}>
-              <View style={{alignSelf: 'center'}}>
-                <Text style={styles.title}>Qidiruv</Text>
-              </View>
-              <View style={{alignSelf: 'center'}}>
-                <View style={styles.TextInputLabelContainer}>
-                  <View style={styles.inputTitle}>
-                    <Text style={styles.phoneText}>STIRni kiriting</Text>
-                  </View>
-                  <View style={{flex: 1}}>
-                    <TextInput
-                      placeholder="AA000000"
-                      keyboardType="default"
-                      style={[styles.TextInput, {paddingLeft: 15}]}
-                    />
-                  </View>
-                </View>
-                <View style={styles.TextInputLabelContainer}>
-                  <View style={styles.inputTitle}>
-                    <Text style={styles.phoneText}>ID raqamini kiriting</Text>
-                  </View>
-                  <View style={{flex: 1}}>
-                    <TextInput
-                      placeholder="AA000000"
-                      keyboardType="default"
-                      style={[styles.TextInput, {paddingLeft: 15}]}
-                    />
-                  </View>
-                </View>
-              </View>
+      <View
+        style={{
+          width: style.width,
+          position: 'absolute',
+          height: style.height / 3,
+        }}>
+        <BackGroundIcon width="100%" height="100%" />
+      </View>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' ? 40 : null,
+          position: 'absolute',
+          marginLeft: 15,
+          zIndex: 1,
+        }}>
+        <BackButton
+          navigation={navigation}
+          backgroundColor={'#fff'}
+          IconColor={style.blue}
+        />
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{marginTop: style.height / 8}}>
+          <View style={styles.main}>
+            <View style={styles.aboutUsContainer}>
               <View
                 style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: 20,
+                  width: '100%',
+                  alignSelf: 'center',
+                  marginVertical: 20,
                 }}>
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  style={styles.registerButton}>
-                  <Text style={styles.textButton}>Izlash</Text>
-                </TouchableOpacity>
+                <View style={{alignSelf: 'center'}}>
+                  <Text style={styles.title}>Qidiruv</Text>
+                </View>
+                <View style={{alignSelf: 'center'}}>
+                  <View style={styles.TextInputLabelContainer}>
+                    <View style={styles.inputTitle}>
+                      <Text style={styles.phoneText}>STIRni kiriting</Text>
+                    </View>
+                    <View style={{flex: 1}}>
+                      <TextInput
+                        placeholder="AA000000"
+                        keyboardType="default"
+                        style={[styles.TextInput, {paddingLeft: 15}]}
+                      />
+                    </View>
+                  </View>
+                  <View style={styles.TextInputLabelContainer}>
+                    <View style={styles.inputTitle}>
+                      <Text style={styles.phoneText}>ID raqamini kiriting</Text>
+                    </View>
+                    <View style={{flex: 1}}>
+                      <TextInput
+                        placeholder="AA000000"
+                        keyboardType="default"
+                        style={[styles.TextInput, {paddingLeft: 15}]}
+                      />
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 20,
+                  }}>
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={styles.registerButton}>
+                    <Text style={styles.textButton}>Izlash</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
+          <UserInfo />
         </View>
-        <UserInfo />
       </ScrollView>
     </View>
   );

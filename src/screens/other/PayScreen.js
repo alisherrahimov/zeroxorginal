@@ -23,7 +23,7 @@ const PayScreen = () => {
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.main}>
-        <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
+        <View style={{marginTop: Platform.OS === 'android' ? 40 : 40}}>
           <BackButton
             navigation={navigation}
             backgroundColor={'#fff'}

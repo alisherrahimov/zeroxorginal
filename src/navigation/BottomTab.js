@@ -11,7 +11,9 @@ import {getHeaderTitle} from '@react-navigation/elements';
 
 const BottomTabBarCustom = ({state, descriptors, navigation}) => {
   return (
-    <View style={{flexDirection: 'row', backgroundColor: '#fff'}}>
+    <View
+      key={state.index}
+      style={{flexDirection: 'row', backgroundColor: '#fff'}}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
         const label =

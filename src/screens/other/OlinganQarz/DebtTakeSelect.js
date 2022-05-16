@@ -7,13 +7,12 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {BackGroundIcon, PurseIcon} from '../../helper/homeIcon';
-import {style} from '../../theme/style';
-import BackButton from '../components/BackButton';
+import {BackGroundIcon, PurseIcon} from '../../../helper/homeIcon';
+import {style} from '../../../theme/style';
+import BackButton from '../../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import {Checkbox} from 'react-native-paper';
 
-const FullDebtSelect = () => {
+const DebtTakeSelect = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -35,7 +34,7 @@ const FullDebtSelect = () => {
               <View style={styles.insideMoney}>
                 <Text
                   style={[styles.hisob, {fontFamily: style.fontFamilyBold}]}>
-                  Qarzni qaytarishni talab qilish
+                  Qarzni qaytarish
                 </Text>
               </View>
             </View>
@@ -43,21 +42,23 @@ const FullDebtSelect = () => {
             <View>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('FullDebtBack');
+                  navigation.navigate('DebtTakeFull');
                 }}
                 activeOpacity={0.8}
                 style={[styles.registerButton, {marginTop: 20}]}>
-                <Text style={[styles.textButton]}>Qarzni to'liq qaytarish</Text>
+                <Text style={[styles.textButton]}>Qarzni to’liq qaytarish</Text>
               </TouchableOpacity>
             </View>
             <View>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('PartDebtBack');
+                  navigation.navigate('DebtTakePart');
                 }}
                 activeOpacity={0.8}
                 style={[styles.registerButton, {marginTop: 20}]}>
-                <Text style={[styles.textButton]}>Qarzni qisman qaytarish</Text>
+                <Text style={[styles.textButton]}>
+                  Qarzni qisman qaytarish{' '}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -67,7 +68,7 @@ const FullDebtSelect = () => {
   );
 };
 
-export default FullDebtSelect;
+export default DebtTakeSelect;
 
 const styles = StyleSheet.create({
   container: {

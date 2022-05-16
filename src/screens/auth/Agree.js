@@ -18,13 +18,6 @@ const Agree = () => {
   const [checked, setChecked] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.BackButton}>
-        <BackButton
-          navigation={navigation}
-          IconColor="#fff"
-          backgroundColor={style.blue}
-        />
-      </View>
       <View
         style={{
           width: style.width,

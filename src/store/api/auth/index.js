@@ -1,9 +1,10 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {createStatus, successStatus, URL} from '../../../screens/constants';
 import axios from 'axios';
+
 const CreatePasswordSendApi = createAsyncThunk(
-  'user/phone/password',
-  async state => {
+  'user/phone/createPassword',
+  async (state, {fulfillWithValue, rejectWithValue}) => {
     const {phone, password, code} = state;
     try {
       const {data, status} = await axios.post(
@@ -74,7 +75,6 @@ const UserDataPostApi = createAsyncThunk('user/register', async number => {
       type: 2,
       step: 1,
     });
-    console.log(response, 'register');
     if (response.status === createStatus) {
       return response.data;
     } else {

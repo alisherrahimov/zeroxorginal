@@ -62,7 +62,9 @@ const Notification = () => {
 const News = () => {
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={{paddingBottom: 5}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom: 5}}>
         <NewsNotificationCard />
         <NewsNotificationCard />
         <NewsNotificationCard />
@@ -74,7 +76,9 @@ const News = () => {
 const Bildrishnoma = () => {
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={{paddingBottom: 5}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom: 5}}>
         <NotificationCard />
         <NotificationCard />
         <NotificationCard />

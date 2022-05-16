@@ -1,9 +1,8 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {AlarmIcon, BackGroundIcon, DrawerIcon} from '../../helper/homeIcon';
+import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
-import {ShareIcon} from '../../helper/drawerIcon';
 import Header from '../components/Header';
 
 const Statistic = () => {
@@ -26,6 +25,7 @@ const Statistic = () => {
               onPress={() => {
                 navigation.navigate('SearchDebitor', {
                   title: 'Hisobot (debitor)',
+                  type: 1,
                 });
               }}
               style={styles.enterButton}>
@@ -37,6 +37,7 @@ const Statistic = () => {
               onPress={() => {
                 navigation.navigate('SearchDebitor', {
                   title: 'Hisobot (kreditor)',
+                  type: 1,
                 });
               }}
               style={[styles.enterButton, {marginTop: 20}]}>

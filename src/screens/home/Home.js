@@ -16,6 +16,7 @@ import MuddatUtganMinus from '../../images/home/MuddatUtgan-.svg';
 import OlinganQarz from '../../images/home/OlingaQarz.svg';
 import ZeroxIcon from '../../images/ZeroxIcon.svg';
 import Header from '../components/Header';
+import Slider from '../components/Slider';
 const Home = () => {
   const navigation = useNavigation();
   return (
@@ -32,46 +33,26 @@ const Home = () => {
         <Header />
         <View>
           <View style={styles.appInfoMainContainer}>
-            <TouchableOpacity
-              style={{flexDirection: 'row'}}
-              activeOpacity={0.8}
-              onPress={() => {
-                navigation.navigate('AboutUs');
-              }}>
-              <View style={styles.appInfoContainer}>
-                <View>
-                  <WithZeroxIcon width={120} height={30} />
-                </View>
-                <View>
-                  <Text style={styles.moneyTitle}>
-                    Ilovaning barcha imkoniyatlari{'\n'}sizning smartfoningizda.
-                  </Text>
-                </View>
-              </View>
-              <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                <TwoPhoneIcon
-                  width={style.width / 2.8}
-                  height={style.width / 2.8}
-                />
-              </View>
-            </TouchableOpacity>
+            <Slider />
           </View>
         </View>
         <View style={{flex: 1, marginTop: 20}}>
           <View style={[styles.cardViewContainer, {marginTop: 0}]}>
             <View>
               <Card
+                width={style.width / 2.3}
                 title={'Berilgan qarz'}
                 Icon={OlinganQarz}
-                type={1}
+                type={0}
                 color={style.blue}
               />
             </View>
             <View>
               <Card
+                width={style.width / 2.3}
                 title={'Olingan qarz'}
                 Icon={BerilganQarzIcon}
-                type={1}
+                type={0}
                 color={'red'}
               />
             </View>
@@ -88,6 +69,7 @@ const Home = () => {
           <View style={styles.cardViewContainer}>
             <View>
               <Card
+                width={style.width / 2.3}
                 title={'Muddati o’tgan'}
                 Icon={MuddatUtganPlus}
                 type={2}
@@ -96,6 +78,7 @@ const Home = () => {
             </View>
             <View>
               <Card
+                width={style.width / 2.3}
                 title={'Muddati o’tgan'}
                 Icon={MuddatUtganMinus}
                 type={2}

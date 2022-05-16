@@ -63,6 +63,12 @@ import FullDebtBack from '../screens/other/FullDebtBack';
 import PartDebtBack from '../screens/other/PartDebtBack';
 import ChangePassword from '../screens/auth/ChangePassword';
 import ChangePasswordRetry from '../screens/auth/ChangePasswordRetry';
+import CharityDebt from '../screens/other/BerilganQarz/CharityDebt';
+import CharityDebtPart from '../screens/other/BerilganQarz/CharityDebtPart';
+import DebtTakeSelect from '../screens/other/OlinganQarz/DebtTakeSelect';
+import DebtTakeFull from '../screens/other/OlinganQarz/DebtTakeFull';
+import DebtTakePart from '../screens/other/OlinganQarz/DebtTakePart';
+import CharityDebtTasdiqlash from '../screens/other/BerilganQarz/CharityDebtTasdiqlash';
 
 const Stack = createNativeStackNavigator();
 const BottomTabStack = createMaterialTopTabNavigator();
@@ -106,6 +112,7 @@ const BottomTabNavigator = () => {
       tabBar={props => <BottomTabBarCustom {...props} />}
       screenOptions={{headerShown: false, tabBarColor: '#fff'}}>
       <BottomTabStack.Screen
+        key={'Home'}
         options={{
           title: 'Asosiy',
         }}
@@ -117,6 +124,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTabStack.Screen
+        key={'GiveDebt'}
         options={{
           title: 'Qarz olish',
         }}
@@ -128,6 +136,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTabStack.Screen
+        key={'TakeDebt'}
         options={{
           title: 'Qarz berish',
         }}
@@ -140,6 +149,7 @@ const BottomTabNavigator = () => {
       />
 
       <BottomTabStack.Screen
+        key={'Statistic'}
         options={{
           title: 'Hisobot',
         }}
@@ -206,6 +216,17 @@ const StackNavigator = () => {
       <Stack.Screen name="FullDebtBack" component={FullDebtBack} />
       <Stack.Screen name="PartDebtBack" component={PartDebtBack} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name="CharityDebt" component={CharityDebt} />
+      <Stack.Screen name="CharityDebtPart" component={CharityDebtPart} />
+      <Stack.Screen name="DebtTakeSelect" component={DebtTakeSelect} />
+      <Stack.Screen name="DebtTakeFull" component={DebtTakeFull} />
+      <Stack.Screen name="DebtTakePart" component={DebtTakePart} />
+
+      <Stack.Screen
+        name="CharityDebtTasdiqlash"
+        component={CharityDebtTasdiqlash}
+      />
+
       <Stack.Screen
         name="ChangePasswordRetry"
         component={ChangePasswordRetry}

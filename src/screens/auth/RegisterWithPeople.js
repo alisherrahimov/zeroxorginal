@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -14,7 +13,6 @@ import BackButton from '../components/BackButton';
 import {style} from '../../theme/style';
 import RegisterWithPeopleIcon from '../../images/auth/illustrationregisterwithpeople.svg';
 import Uzbekistan from '../../images/uzbekistaan.svg';
-
 import Loading from '../components/Loading';
 import {useDispatch, useSelector} from 'react-redux';
 import {UserDataPostApi} from '../../store/api/auth';
@@ -53,7 +51,6 @@ const RegisterWithPeople = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log(phone.length);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.BackButton}>
@@ -131,9 +128,7 @@ const RegisterWithPeople = () => {
                 fontSize: style.fontSize.xx,
                 fontFamily: style.fontFamilyMedium,
               }}>
-              {status.error.data.e.code == 11000
-                ? 'bu Telefon raqam ruyxatdan utgan'
-                : ''}
+              {JSON.stringify(status?.error?.data?.message)}
             </Text>
           </View>
         )}

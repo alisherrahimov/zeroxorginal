@@ -104,7 +104,9 @@ const SendMoney = () => {
             <View>
               <View style={styles.TextInputLabelContainer}>
                 <View style={styles.inputTitle}>
-                  <Text style={styles.phoneText}>Status</Text>
+                  <Text style={styles.phoneText}>
+                    Mobil hisob raqamini kiriting
+                  </Text>
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput

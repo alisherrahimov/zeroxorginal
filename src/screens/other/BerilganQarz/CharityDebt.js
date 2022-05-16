@@ -7,13 +7,12 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {BackGroundIcon, PurseIcon} from '../../helper/homeIcon';
-import {style} from '../../theme/style';
-import BackButton from '../components/BackButton';
+import {BackGroundIcon} from '../../../helper/homeIcon';
+import {style} from '../../../theme/style';
+import BackButton from '../../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import {Checkbox} from 'react-native-paper';
 
-const FullDebtSelect = () => {
+const CharityDebt = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -35,7 +34,7 @@ const FullDebtSelect = () => {
               <View style={styles.insideMoney}>
                 <Text
                   style={[styles.hisob, {fontFamily: style.fontFamilyBold}]}>
-                  Qarzni qaytarishni talab qilish
+                  Qarzdan voz kechish
                 </Text>
               </View>
             </View>
@@ -43,7 +42,7 @@ const FullDebtSelect = () => {
             <View>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('FullDebtBack');
+                  navigation.navigate('CharityDebtTasdiqlash');
                 }}
                 activeOpacity={0.8}
                 style={[styles.registerButton, {marginTop: 20}]}>
@@ -53,7 +52,7 @@ const FullDebtSelect = () => {
             <View>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('PartDebtBack');
+                  navigation.navigate('CharityDebtPart');
                 }}
                 activeOpacity={0.8}
                 style={[styles.registerButton, {marginTop: 20}]}>
@@ -67,7 +66,7 @@ const FullDebtSelect = () => {
   );
 };
 
-export default FullDebtSelect;
+export default CharityDebt;
 
 const styles = StyleSheet.create({
   container: {

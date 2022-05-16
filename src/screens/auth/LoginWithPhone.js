@@ -41,7 +41,7 @@ const LoginWithPhone = () => {
     }
   };
   useEffect(() => {
-    if (phone.length == 9 && password.length > 8) {
+    if (phone.length == 9 && password.length >= 8) {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -50,7 +50,6 @@ const LoginWithPhone = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log(status, 'Status');
 
   return (
     <SafeAreaView style={[styles.container]}>
@@ -64,7 +63,7 @@ const LoginWithPhone = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{width: style.width, height: style.height}}>
           <View
-            style={{alignItems: 'center', flex: 0.5, justifyContent: 'center'}}>
+            style={{alignItems: 'center', flex: 0.6, justifyContent: 'center'}}>
             <PhoneLoginImage width="70%" height="70%" />
           </View>
           <View style={{alignItems: 'center'}}>

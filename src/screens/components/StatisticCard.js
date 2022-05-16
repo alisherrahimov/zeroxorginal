@@ -18,9 +18,9 @@ const StatisticCard = ({title, type, color}) => {
         key={index}
         onPress={() => {
           if (color == style.blue) {
-            navigation.navigate('Debitor');
+            navigation.navigate('Debitor', {type: type});
           } else {
-            navigation.navigate('CreditorDebitor');
+            navigation.navigate('CreditorDebitor', {type: type});
           }
         }}
         style={styles.listContainer}>

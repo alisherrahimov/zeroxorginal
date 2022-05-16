@@ -1,6 +1,4 @@
-import i18next from 'i18next';
 import React, {useEffect, useState} from 'react';
-import {I18nextProvider} from 'react-i18next';
 import './src/i18n/index';
 import {
   StatusBar,

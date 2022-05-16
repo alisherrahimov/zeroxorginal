@@ -16,6 +16,7 @@ import SmsCheckPassword from '../../images/smscheck.svg';
 import {useDispatch, useSelector} from 'react-redux';
 import Loading from '../components/Loading';
 import {SmsCheckCodeApi} from '../../store/api/auth';
+
 const CheckSmsPassword = () => {
   const route = useRoute();
   const [disabled, setDisabled] = useState(true);
@@ -40,7 +41,7 @@ const CheckSmsPassword = () => {
     }
   };
   useEffect(() => {
-    if (code.length == 4) {
+    if (code.length == 5) {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -79,8 +80,9 @@ const CheckSmsPassword = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
-                    placeholder="0000"
-                    maxLength={4}
+                    placeholder="00000"
+                    placeholderTextColor={style.placeHolderColor}
+                    maxLength={5}
                     keyboardType="decimal-pad"
                     onChangeText={text => {
                       setCode(text);
@@ -218,7 +220,6 @@ const styles = StyleSheet.create({
   BackButton: {
     position: 'absolute',
     marginLeft: 15,
-    marginTop: 15,
     zIndex: 1,
     marginTop: Platform.OS === 'android' ? 40 : null,
   },

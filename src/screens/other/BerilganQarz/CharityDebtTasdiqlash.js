@@ -7,13 +7,13 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {BackGroundIcon, PurseIcon} from '../../helper/homeIcon';
-import {style} from '../../theme/style';
-import BackButton from '../components/BackButton';
+import {BackGroundIcon, PurseIcon} from '../../../helper/homeIcon';
+import {style} from '../../../theme/style';
+import BackButton from '../../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
 import {Checkbox} from 'react-native-paper';
 
-const FullDebtSelect = () => {
+const CharityDebtTasdiqlash = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -35,29 +35,38 @@ const FullDebtSelect = () => {
               <View style={styles.insideMoney}>
                 <Text
                   style={[styles.hisob, {fontFamily: style.fontFamilyBold}]}>
-                  Qarzni qaytarishni talab qilish
+                  Qarzdan to’liq voz kechish
+                </Text>
+              </View>
+              <View style={[styles.card, {marginTop: 20}]}>
+                <View style={styles.insideMoney}>
+                  <Text
+                    style={[styles.hisob, {fontSize: style.fontSize.small}]}>
+                    Siz 01.01.2021 yildagi 01/01/2021/000001-sonli qarz
+                    shartnomasi bo’yicha berilgan qarzdan voz kechmoqdasiz.
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: 20,
+                }}>
+                <Checkbox color={style.blue} status="checked" />
+                <Text style={styles.phoneText}>
+                  Ushbu jarayon yuzasidan rasmiylashtirilgan dalolatnoma bilan
+                  tanishdim
                 </Text>
               </View>
             </View>
-
             <View>
               <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('FullDebtBack');
-                }}
                 activeOpacity={0.8}
                 style={[styles.registerButton, {marginTop: 20}]}>
-                <Text style={[styles.textButton]}>Qarzni to'liq qaytarish</Text>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('PartDebtBack');
-                }}
-                activeOpacity={0.8}
-                style={[styles.registerButton, {marginTop: 20}]}>
-                <Text style={[styles.textButton]}>Qarzni qisman qaytarish</Text>
+                <Text style={[styles.textButton]}>Jo'natish</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -67,7 +76,7 @@ const FullDebtSelect = () => {
   );
 };
 
-export default FullDebtSelect;
+export default CharityDebtTasdiqlash;
 
 const styles = StyleSheet.create({
   container: {

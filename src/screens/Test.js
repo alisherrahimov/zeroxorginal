@@ -33,7 +33,7 @@ const Test = () => {
           {headers: {Authorization: `Bearer ${token}`}},
         );
         if (response.data.success) {
-          setData(response.data.data);
+          setData(response.data);
           setLoading(false);
         }
       } catch (error) {
@@ -64,7 +64,7 @@ const Test = () => {
           onPress={() => {
             OpenFaceIdNativeScreen();
           }}
-          style={{color: 'red'}}>
+          style={{color: 'red', marginTop: 60}}>
           MYID ruyxatdan utish
         </Text>
         {error && <Text style={{color: 'red'}}>USER active</Text>}

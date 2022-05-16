@@ -10,11 +10,13 @@ import React from 'react';
 import {BackGroundIcon} from '../../../helper/homeIcon';
 import {style} from '../../../theme/style';
 import BackButton from '../../components/BackButton';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const CreditorDebitor = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const {type} = route.params;
   return (
     <View style={styles.container}>
       <View
@@ -123,20 +125,32 @@ const CreditorDebitor = () => {
             </View>
           </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <View style={styles.buttonInsideContainer}>
-            <TouchableOpacity activeOpacity={0.8} style={styles.registerButton}>
-              <Text style={styles.textButton}>
-                Qarz muddatini uzaytirishni so’rash
-              </Text>
-            </TouchableOpacity>
+        {type == 1 ? null : (
+          <View style={styles.buttonContainer}>
+            <View style={styles.buttonInsideContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('DebtDateLengthAsk');
+                }}
+                activeOpacity={0.8}
+                style={styles.registerButton}>
+                <Text style={styles.textButton}>
+                  Qarz muddatini uzaytirishni so’rash
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.buttonInsideContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('DebtTakeSelect');
+                }}
+                activeOpacity={0.8}
+                style={styles.registerButton}>
+                <Text style={styles.textButton}>Qarzni qaytarish</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.buttonInsideContainer}>
-            <TouchableOpacity activeOpacity={0.8} style={styles.registerButton}>
-              <Text style={styles.textButton}>Qarzni qaytarish</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        )}
       </View>
     </View>
   );

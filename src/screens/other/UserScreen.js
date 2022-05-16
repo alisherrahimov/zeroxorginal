@@ -17,29 +17,29 @@ const UserScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          height: style.height / 2.5,
+          position: 'absolute',
+          width: style.width,
+        }}>
+        <BackGroundIcon width="100%" height="100%" />
+      </View>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' ? 40 : null,
+          zIndex: 1,
+          marginLeft: '5%',
+          position: 'absolute',
+        }}>
+        <BackButton
+          navigation={navigation}
+          backgroundColor={'#FFF'}
+          IconColor={style.blue}
+        />
+      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
-          <View
-            style={{
-              height: style.height / 2.5,
-              position: 'absolute',
-              width: style.width,
-            }}>
-            <BackGroundIcon width="100%" height="100%" />
-          </View>
-          <View
-            style={{
-              marginTop: Platform.OS === 'android' ? 40 : null,
-              zIndex: 1,
-              marginLeft: '5%',
-              position: 'absolute',
-            }}>
-            <BackButton
-              navigation={navigation}
-              backgroundColor={'#FFF'}
-              IconColor={style.blue}
-            />
-          </View>
           <View style={styles.main}>
             <View style={styles.aboutUsContainer}>
               <View>
@@ -191,15 +191,7 @@ const UserScreen = () => {
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <View style={{marginTop: 20}}>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.languageButton}>
-                    <Text style={styles.selectLanguageText}>
-                      PIN KODni o'zgartirish
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+
                 <View style={{marginTop: 20}}>
                   <TouchableOpacity
                     onPress={() => {

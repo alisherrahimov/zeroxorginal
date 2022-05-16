@@ -1,11 +1,9 @@
 import {
-  FlatList,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  VirtualizedList,
   View,
   Image,
   Platform,
@@ -32,45 +30,35 @@ const userdata = [
     id: 3,
     img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
-
-  {
-    name: 'Shavkatov Shahzod Alisherovich',
-    id: 4,
-    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
-  },
-  {
-    name: 'Shavkatov Shahzod Alisherovich',
-    id: 5,
-    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
-  },
-  {
-    name: 'Shavkatov Shahzod Alisherovich',
-    id: 6,
-    img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
-  },
 ];
 const HistoryDebt = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' ? 40 : null,
+          position: 'absolute',
+          zIndex: 1,
+          marginLeft: 15,
+        }}>
+        <BackButton
+          navigation={navigation}
+          backgroundColor={'#fff'}
+          IconColor={style.blue}
+        />
+      </View>
+      <View
+        style={{
+          width: style.width,
+          position: 'absolute',
+          height: style.height / 3,
+        }}>
+        <BackGroundIcon width="100%" height="100%" />
+      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-          style={{
-            width: style.width,
-            position: 'absolute',
-            height: style.height / 3,
-          }}>
-          <BackGroundIcon width="100%" height="100%" />
-        </View>
         <View style={styles.main}>
-          <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
-            <BackButton
-              navigation={navigation}
-              backgroundColor={'#fff'}
-              IconColor={style.blue}
-            />
-          </View>
           <View style={styles.aboutUsContainer}>
             <View
               style={{width: '100%', alignSelf: 'center', marginVertical: 20}}>
@@ -109,6 +97,9 @@ const HistoryDebt = () => {
                 {userdata.map((item, index) => (
                   <View key={item.id} style={styles.listButtonContainer}>
                     <TouchableOpacity
+                      onPress={() => {
+                        navigation.navigate('UserInformationOfDebt');
+                      }}
                       style={styles.TouchableOpacity}
                       activeOpacity={0.8}>
                       <Image
@@ -188,6 +179,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '90%',
     alignSelf: 'center',
+    marginTop: style.height / 8,
   },
   aboutUsContainer: {
     backgroundColor: '#EAF2FB',
