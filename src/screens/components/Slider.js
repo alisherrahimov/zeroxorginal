@@ -2,9 +2,9 @@ import {
   Animated,
   FlatList,
   Image,
+  Pressable,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
@@ -36,7 +36,7 @@ const Slider = () => {
   let position = Animated.divide(scrollX, 200);
   const RenderList = ({item, index}) => {
     return (
-      <TouchableOpacity
+      <Pressable
         onPress={() => {
           navigation.navigate('AboutUs');
         }}
@@ -54,13 +54,13 @@ const Slider = () => {
             />
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   };
   return (
     <View style={styles.container}>
       <FlatList
-        contentContainerStyle={{padding: 10}}
+        contentContainerStyle={{padding: 10, borderRadius: 10}}
         data={data}
         keyExtractor={({id}) => id}
         showsVerticalScrollIndicator={false}
@@ -114,6 +114,7 @@ export default Slider;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    borderRadius: 10,
   },
   image: {
     width: 80,

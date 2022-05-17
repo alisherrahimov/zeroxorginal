@@ -39,12 +39,19 @@ const UserMoneyResult = () => {
             </View>
             <View>
               <View style={styles.card}>
-                <View style={styles.insideMoney}>
-                  <Text style={styles.hisob}>Mobil hisob</Text>
-                  <PurseIcon width={35} height={35} />
-                </View>
-                <View>
-                  <Text style={styles.money}>$53,897</Text>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}>
+                  <View style={styles.insideMoney}>
+                    <Text style={styles.hisob}>Mobil hisob</Text>
+                    <Text style={styles.money}>$53,897</Text>
+                  </View>
+                  <View>
+                    <PurseIcon width={35} height={35} />
+                  </View>
                 </View>
               </View>
             </View>
@@ -56,6 +63,9 @@ const UserMoneyResult = () => {
                 <Text style={styles.textButton}>Mobil hisobni to’ldirish </Text>
               </TouchableOpacity>
               <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('SendMoney');
+                }}
                 activeOpacity={0.8}
                 style={[styles.registerButton, {marginTop: 20}]}>
                 <Text style={styles.textButton}>
@@ -78,17 +88,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   money: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     fontFamily: style.fontFamilyMedium,
     color: style.MoneyColor,
+    marginTop: 5,
   },
   hisob: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },
   textButton: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: '#fff',
   },
@@ -100,12 +111,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  insideMoney: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-
-    alignItems: 'center',
-  },
+  insideMoney: {},
   card: {
     shadowColor: '#000',
     shadowOffset: {
@@ -121,23 +127,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     marginTop: 20,
+    justifyContent: 'center',
   },
   item: {
     flex: 1,
   },
-  info: {
-    color: style.textColor,
-    fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
-    textAlign: 'left',
-  },
-  header: {
-    backgroundColor: '#fff',
-    height: style.height / 15,
-    justifyContent: 'space-evenly',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+
   main: {
     position: 'absolute',
     width: '90%',

@@ -22,7 +22,7 @@ const DrawerScreen = () => {
           style={{
             alignItems: 'center',
             justifyContent: 'flex-end',
-            marginTop: 20,
+            marginTop: 40,
           }}>
           <Logo width={100} height={style.height / 14} />
           <Text style={styles.ishonch}>Ishonch kafolati</Text>
@@ -39,7 +39,11 @@ const DrawerScreen = () => {
           />
         </View>
         <View style={{marginTop: 10}}>
-          <TouchableOpacity activeOpacity={0.8}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('UserMoneyResult');
+            }}
+            activeOpacity={0.8}>
             <View style={styles.MobileInfoContainer}>
               <View
                 style={{

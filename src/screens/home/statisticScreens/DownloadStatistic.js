@@ -1,4 +1,11 @@
-import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Platform,
+  Share,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {BackGroundIcon} from '../../../helper/homeIcon';
 import {style} from '../../../theme/style';
@@ -6,8 +13,64 @@ import BackButton from '../../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
 import ShareIcon from '../../../images/home/share.svg';
 import DownloadIcon from '../../../images/home/download.svg';
+import RNFetchBlob from 'rn-fetch-blob';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../../components/ToastConfig';
 const DownloadStatistic = () => {
   const navigation = useNavigation();
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        title: 'Ishonch kafolati',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+          console.log('sharedactiveityType', result.activityType);
+        } else {
+          // shared
+          console.log('shared');
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+        console.log('dis');
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const onDownload = async () => {
+    const random = Math.floor(Math.random() * 100000);
+    Toast.show({
+      autoHide: true,
+      visibilityTime: 3000,
+      position: 'bottom',
+      type: 'success',
+      text1: 'Yuklash boshlandi...',
+    });
+    RNFetchBlob.config({
+      fileCache: true,
+      addAndroidDownloads: {
+        notification: true,
+        title: 'PDF',
+        mime: 'application/pdf',
+        path: RNFetchBlob.fs.dirs.DownloadDir + `/${random}.pdf`,
+        useDownloadManager: true,
+      },
+    })
+      .fetch('GET', 'http://www.africau.edu/images/default/sample.pdf')
+      .then(res => {
+        console.log(res.path());
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <View
@@ -37,17 +100,24 @@ const DownloadStatistic = () => {
               justifyContent: 'space-evenly',
               marginBottom: 20,
             }}>
-            <TouchableOpacity activeOpacity={0.8} style={styles.download}>
+            <TouchableOpacity
+              onPress={onDownload}
+              activeOpacity={0.8}
+              style={styles.download}>
               <DownloadIcon width="20%" height="100%" />
               <Text style={styles.downloadText}>Yuklab olish</Text>
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.8} style={styles.download}>
+            <TouchableOpacity
+              onPress={onShare}
+              activeOpacity={0.8}
+              style={styles.download}>
               <ShareIcon width="20%" height="100%" />
               <Text style={styles.downloadText}>Ulashish</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
+      <Toast config={toastConfig} />
     </View>
   );
 };

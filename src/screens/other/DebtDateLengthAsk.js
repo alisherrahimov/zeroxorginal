@@ -54,11 +54,16 @@ const DebtDateLengthAsk = () => {
                   <Text style={styles.phoneText}>Yangi muddatni kiriting</Text>
                 </View>
                 <View style={{flex: 1}}>
-                  <TextInput
-                    value="000001AA"
-                    keyboardType="default"
-                    style={styles.TextInput}
-                  />
+                  <TouchableOpacity style={styles.buttontime}>
+                    <Text
+                      style={{
+                        fontFamily: style.fontFamilyMedium,
+                        color: style.textColor,
+                        fontSize: style.fontSize.xx,
+                      }}>
+                      22/11/1997
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               </View>
               <View
@@ -104,6 +109,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingLeft: 5,
     paddingRight: 5,
+  },
+  buttontime: {
+    width: '100%',
+    height: style.textInputHeight,
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 15,
+    paddingLeft: 10,
+    justifyContent: 'center',
   },
   TextInput: {
     width: '100%',

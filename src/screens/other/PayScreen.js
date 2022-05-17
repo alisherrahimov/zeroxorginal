@@ -70,21 +70,13 @@ const styles = StyleSheet.create({
     backgroundColor: style.backgroundColor,
     flex: 1,
   },
-  money: {
-    fontSize: style.fontSize.s,
-    fontFamily: style.fontFamilyMedium,
-    color: style.MoneyColor,
-  },
+
   hisob: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },
-  textButton: {
-    fontSize: style.fontSize.xs,
-    fontFamily: style.fontFamilyMedium,
-    color: '#fff',
-  },
+
   registerButton: {
     width: '100%',
     height: style.buttonHeight,
@@ -114,22 +106,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     height: style.buttonHeight,
   },
-  item: {
-    flex: 1,
-  },
-  info: {
-    color: style.textColor,
-    fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
-    textAlign: 'left',
-  },
-  header: {
-    backgroundColor: '#fff',
-    height: style.height / 15,
-    justifyContent: 'space-evenly',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+
   main: {
     position: 'absolute',
     width: '90%',

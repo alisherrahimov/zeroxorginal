@@ -69,6 +69,8 @@ import DebtTakeSelect from '../screens/other/OlinganQarz/DebtTakeSelect';
 import DebtTakeFull from '../screens/other/OlinganQarz/DebtTakeFull';
 import DebtTakePart from '../screens/other/OlinganQarz/DebtTakePart';
 import CharityDebtTasdiqlash from '../screens/other/BerilganQarz/CharityDebtTasdiqlash';
+import Indentifikatsiya from '../screens/auth/Indentifikatsiya';
+import FingerScanner from '../screens/FingerScanner';
 
 const Stack = createNativeStackNavigator();
 const BottomTabStack = createMaterialTopTabNavigator();
@@ -221,6 +223,8 @@ const StackNavigator = () => {
       <Stack.Screen name="DebtTakeSelect" component={DebtTakeSelect} />
       <Stack.Screen name="DebtTakeFull" component={DebtTakeFull} />
       <Stack.Screen name="DebtTakePart" component={DebtTakePart} />
+      <Stack.Screen name="Indentifikatsiya" component={Indentifikatsiya} />
+      <Stack.Screen name="FingerScanner" component={FingerScanner} />
 
       <Stack.Screen
         name="CharityDebtTasdiqlash"

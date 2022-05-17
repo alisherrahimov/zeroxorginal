@@ -1,5 +1,6 @@
 import {
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -20,6 +21,7 @@ const SendMoney = () => {
         style={{position: 'absolute', height: style.height / 3, width: '100%'}}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
+
       <View style={styles.main}>
         <View
           style={{
@@ -34,7 +36,7 @@ const SendMoney = () => {
           <View
             style={{
               alignSelf: 'center',
-              alignItems: 'center',
+              alignItems: 'flex-end',
               justifyContent: 'center',
               flex: 1,
             }}>
@@ -110,7 +112,8 @@ const SendMoney = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
-                    value="000001AA"
+                    placeholder="000001AA"
+                    placeholderTextColor={style.placeHolderColor}
                     keyboardType="default"
                     style={styles.TextInput}
                   />
@@ -122,7 +125,8 @@ const SendMoney = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
-                    value="000001AA"
+                    placeholderTextColor={style.placeHolderColor}
+                    placeholder="1000000 so’m"
                     keyboardType="default"
                     style={styles.TextInput}
                   />

@@ -60,6 +60,7 @@ const SearchJuridicUser = () => {
                     <View style={{flex: 1}}>
                       <TextInput
                         placeholder="AA000000"
+                        placeholderTextColor={style.placeHolderColor}
                         keyboardType="default"
                         style={[styles.TextInput, {paddingLeft: 15}]}
                       />
@@ -72,6 +73,7 @@ const SearchJuridicUser = () => {
                     <View style={{flex: 1}}>
                       <TextInput
                         placeholder="AA000000"
+                        placeholderTextColor={style.placeHolderColor}
                         keyboardType="default"
                         style={[styles.TextInput, {paddingLeft: 15}]}
                       />
