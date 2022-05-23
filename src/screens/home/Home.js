@@ -1,12 +1,7 @@
-import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
 import {style} from '../../theme/style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {
-  WithZeroxIcon,
-  TwoPhoneIcon,
-  BackGroundIcon,
-} from '../../helper/homeIcon';
+import {BackGroundIcon} from '../../helper/homeIcon';
 import {useNavigation} from '@react-navigation/native';
 import Card from '../components/Card';
 import ListCard from '../components/ListCard';
@@ -14,11 +9,37 @@ import BerilganQarzIcon from '../../images/home/QarzOlganIcon.svg';
 import MuddatUtganPlus from '../../images/home/MuddatUtgan+.svg';
 import MuddatUtganMinus from '../../images/home/MuddatUtgan-.svg';
 import OlinganQarz from '../../images/home/OlingaQarz.svg';
-import ZeroxIcon from '../../images/ZeroxIcon.svg';
+
 import Header from '../components/Header';
 import Slider from '../components/Slider';
+import {useDispatch, useSelector} from 'react-redux';
+import {HomeApi} from '../../store/api/home';
+import Loading from '../components/Loading';
 const Home = () => {
   const navigation = useNavigation();
+  const {loading, error, home, user} = useSelector(state => state.HomeReducer);
+  const dispatch = useDispatch();
+  console.log(loading, error);
+  useEffect(() => {
+    dispatch(HomeApi());
+  }, []);
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return (
+      <View
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 1,
+          backgroundColor: '#fff',
+        }}>
+        <Text style={{color: 'red'}}>{error}</Text>
+      </View>
+    );
+  }
+  console.log(home);
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -30,71 +51,78 @@ const Home = () => {
         <BackGroundIcon width="100%" height="100%" />
       </View>
       <View style={styles.header}>
-        <Header />
-        <View>
-          <View style={styles.appInfoMainContainer}>
-            <Slider />
+        <Header user={user.data} />
+        <ScrollView
+          nestedScrollEnabled
+          contentContainerStyle={{paddingBottom: 20}}
+          showsVerticalScrollIndicator={false}>
+          <View>
+            <View>
+              <View style={styles.appInfoMainContainer}>
+                <Slider />
+              </View>
+            </View>
+            <View style={{flex: 1, marginTop: 20}}>
+              <View style={[styles.cardViewContainer, {marginTop: 0}]}>
+                <View>
+                  <Card
+                    width={style.width / 2.3}
+                    title={'Berilgan qarz'}
+                    Icon={OlinganQarz}
+                    type={0}
+                    color={style.blue}
+                  />
+                </View>
+                <View>
+                  <Card
+                    width={style.width / 2.3}
+                    title={'Olingan qarz'}
+                    Icon={BerilganQarzIcon}
+                    type={0}
+                    color={'red'}
+                  />
+                </View>
+              </View>
+
+              <View style={styles.cardViewContainer}>
+                <View>
+                  <Card
+                    width={style.width / 2.3}
+                    title={'Muddati o’tgan'}
+                    Icon={MuddatUtganPlus}
+                    type={2}
+                    color={style.blue}
+                  />
+                </View>
+                <View>
+                  <Card
+                    width={style.width / 2.3}
+                    title={'Muddati o’tgan'}
+                    Icon={MuddatUtganMinus}
+                    type={2}
+                    color={'red'}
+                  />
+                </View>
+              </View>
+              <View style={styles.cardViewContainer}>
+                <View>
+                  <ListCard
+                    uzs={home?.data?.debitorUsz}
+                    usd={home?.data?.debitorUsd}
+                    title={'Muddati oz qolgan\n(debitor)'}
+                  />
+                </View>
+                <View>
+                  <ListCard
+                    uzs={home?.data?.debitorUsz}
+                    usd={home?.data?.debitorUsd}
+                    title={'Muddati oz qolgan\n(kreditor)'}
+                  />
+                </View>
+              </View>
+            </View>
           </View>
-        </View>
-        <View style={{flex: 1, marginTop: 20}}>
-          <View style={[styles.cardViewContainer, {marginTop: 0}]}>
-            <View>
-              <Card
-                width={style.width / 2.3}
-                title={'Berilgan qarz'}
-                Icon={OlinganQarz}
-                type={0}
-                color={style.blue}
-              />
-            </View>
-            <View>
-              <Card
-                width={style.width / 2.3}
-                title={'Olingan qarz'}
-                Icon={BerilganQarzIcon}
-                type={0}
-                color={'red'}
-              />
-            </View>
-          </View>
-          <View
-            style={{
-              alignSelf: 'center',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginTop: 20,
-            }}>
-            <Text style={styles.shundan}>Shundan</Text>
-          </View>
-          <View style={styles.cardViewContainer}>
-            <View>
-              <Card
-                width={style.width / 2.3}
-                title={'Muddati o’tgan'}
-                Icon={MuddatUtganPlus}
-                type={2}
-                color={style.blue}
-              />
-            </View>
-            <View>
-              <Card
-                width={style.width / 2.3}
-                title={'Muddati o’tgan'}
-                Icon={MuddatUtganMinus}
-                type={2}
-                color={'red'}
-              />
-            </View>
-          </View>
-          {/* <View style={styles.cardViewContainer}>
-            <View>
-              <ListCard title={'Muddati o’tgan\n(debitor)'} />
-            </View>
-            <View>
-              <ListCard title={'Muddati o’tgan\n(kreditor)'} />
-            </View>
-          </View> */}
-        </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -160,7 +188,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    position: 'absolute',
+
     width: '90%',
     alignSelf: 'center',
   },

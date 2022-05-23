@@ -11,9 +11,11 @@ import React from 'react';
 import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import EdiUserIcon from '../../images/auth/edituser.svg';
 const UserScreen = () => {
+  const route = useRoute();
+  const {user} = route.params;
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -61,7 +63,15 @@ const UserScreen = () => {
                 <View style={{flex: 1}}>
                   <TextInput
                     editable={false}
-                    value="Shavkatov Shahzod Alisherovich"
+                    value={
+                      user.last_name +
+                      ' ' +
+                      user.first_name +
+                      ' ' +
+                      user.middle_name
+                    }
+                    textAlign="left"
+                    multiline={true}
                     keyboardType="default"
                     style={styles.TextInput}
                   />
@@ -73,7 +83,8 @@ const UserScreen = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
-                    value="08.08.2001"
+                    editable={false}
+                    value={user.birthday}
                     keyboardType="default"
                     style={styles.TextInput}
                   />
@@ -87,6 +98,7 @@ const UserScreen = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    multiline={true}
                     editable={false}
                     value="Urganch sh. Istiqlol pr4 2-uy"
                     keyboardType="default"
@@ -116,7 +128,7 @@ const UserScreen = () => {
                   </View>
                   <TextInput
                     editable={false}
-                    value="+998999642412"
+                    value={user.phone}
                     keyboardType="default"
                     style={styles.TextInput}
                   />
@@ -144,7 +156,7 @@ const UserScreen = () => {
                   </View>
                   <TextInput
                     editable={false}
-                    value="vostokwohzod@gmail.com"
+                    value={user?.email}
                     keyboardType="default"
                     style={styles.TextInput}
                   />
@@ -156,9 +168,9 @@ const UserScreen = () => {
                 </View>
                 <View style={{flex: 1}}>
                   <TextInput
+                    value={`${user.uid}`}
                     editable={false}
-                    value="000001AA"
-                    keyboardType="default"
+                    placeholderTextColor={style.placeHolderColor}
                     style={styles.TextInput}
                   />
                 </View>
@@ -170,8 +182,7 @@ const UserScreen = () => {
                 <View style={{flex: 1}}>
                   <TextInput
                     editable={false}
-                    value="97%"
-                    keyboardType="default"
+                    value={user?.status}
                     style={styles.TextInput}
                   />
                 </View>

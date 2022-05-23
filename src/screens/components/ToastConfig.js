@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text, View} from 'react-native';
 import Toast, {BaseToast, ErrorToast} from 'react-native-toast-message';
 import {style} from '../../theme/style';
 export const toastConfig = {
@@ -19,7 +20,7 @@ export const toastConfig = {
   error: props => (
     <ErrorToast
       {...props}
-      style={{borderLeftColor: 'red'}}
+      style={{borderLeftColor: 'red', borderLeftWidth: 5}}
       text1Style={{
         fontWeight: '200',
         fontSize: style.fontSize.xs,
@@ -27,7 +28,6 @@ export const toastConfig = {
         color: style.textColor,
       }}
       text2Style={{
-        fontSize: 15,
         fontWeight: '200',
         fontSize: style.fontSize.xs,
         fontFamily: style.fontFamilyMedium,

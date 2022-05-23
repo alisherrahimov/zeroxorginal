@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {LoginWithPhoneSendPasswordApi} from '../api/auth';
 
 const initialState = {
@@ -17,17 +17,13 @@ const LoginWithPhoneReducer = createSlice({
     builder.addCase(
       LoginWithPhoneSendPasswordApi.fulfilled,
       (state, action) => {
-        if (action.payload.error) {
-          state.error = true;
-          state.status = action.payload.data;
-        }
         state.status = action.payload;
         state.loading = false;
       },
     );
     builder.addCase(LoginWithPhoneSendPasswordApi.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload;
     });
   },
 });

@@ -15,16 +15,12 @@ const CreatePasswordReducer = createSlice({
       state.loading = true;
     });
     builder.addCase(CreatePasswordSendApi.fulfilled, (state, action) => {
-      if (action.payload.error) {
-        state.error = true;
-        state.status = action.payload.data;
-      }
       state.status = action.payload;
       state.loading = false;
     });
     builder.addCase(CreatePasswordSendApi.rejected, (state, action) => {
+      state.error = action.payload;
       state.loading = false;
-      state.error = action.error;
     });
   },
 });

@@ -19,6 +19,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Loading from '../components/Loading';
 import {LoginWithPhoneSendPasswordApi} from '../../store/api/auth';
 import TextInputMask from 'react-native-text-input-mask';
+import {setItem} from '../../store/api/token/getToken';
 const LoginWithPhone = () => {
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
@@ -34,7 +35,8 @@ const LoginWithPhone = () => {
         LoginWithPhoneSendPasswordApi({phone: phone, password: password}),
       ).unwrap();
       if (response.success) {
-        navigation.navigate('Test', {token: response.token});
+        setItem('token', response.token);
+        navigation.reset({routes: [{name: 'BottomTabNavigator'}], index: 0});
       }
     } catch (error) {
       Alert.alert('ERROR', JSON.stringify(error));

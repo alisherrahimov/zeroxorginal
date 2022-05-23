@@ -14,10 +14,11 @@ import {Logo} from './src/helper/drawerIcon';
 import Navigation from './src/navigation/Navigation';
 import {Store} from './src/store/store/Store';
 import {style} from './src/theme/style';
-
+import './src/store/api/token/getToken';
 StatusBar.setBackgroundColor('rgba(0,0,0,0)');
 StatusBar.setBarStyle('dark-content');
 StatusBar.setTranslucent(true);
+
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,7 +31,6 @@ const App = () => {
   if (isLoading) {
     return <Enter />;
   }
-
   return (
     <Provider store={Store}>
       <Navigation />

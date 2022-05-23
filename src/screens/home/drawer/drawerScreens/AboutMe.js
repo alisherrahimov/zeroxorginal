@@ -39,7 +39,7 @@ const AboutMe = () => {
           />
         </View>
         <View style={styles.aboutUsContainer}>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{marginTop: 10}}>
               <Text style={styles.title}>Biz haqimizda</Text>
             </View>

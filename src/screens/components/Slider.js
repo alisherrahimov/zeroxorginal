@@ -3,6 +3,7 @@ import {
   FlatList,
   Image,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -18,13 +19,13 @@ const data = [
     img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
   {
-    id: 1,
+    id: 2,
     title: 'Zeroxdagi uzgarishlar haqida',
     desc: 'Zeroxdagi uzgarishlar haqida batafsil maqola',
     img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
   },
   {
-    id: 1,
+    id: 3,
     title: 'Zeroxdagi uzgarishlar haqida',
     desc: 'Zeroxdagi uzgarishlar haqida batafsil maqola',
     img: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
@@ -59,21 +60,18 @@ const Slider = () => {
   };
   return (
     <View style={styles.container}>
-      <FlatList
-        contentContainerStyle={{padding: 10, borderRadius: 10}}
-        data={data}
-        keyExtractor={({id}) => id}
-        showsVerticalScrollIndicator={false}
-        pointerEvents={'box-only'}
-        scrollEventThrottle={16}
+      <ScrollView
         pagingEnabled
-        decelerationRate="fast"
+        nestedScrollEnabled
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollX}}}],
           {useNativeDriver: false},
-        )}
-        renderItem={({index, item}) => <RenderList item={item} index={index} />}
-      />
+        )}>
+        {data.map((item, index) => {
+          return <RenderList item={item} index={index} />;
+        })}
+      </ScrollView>
+
       <View
         style={{
           position: 'absolute',

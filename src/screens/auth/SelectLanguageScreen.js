@@ -1,4 +1,7 @@
 import {
+  Alert,
+  AppState,
+  Linking,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -13,7 +16,6 @@ import Uzbekistan from '../../images/uzbekistaan.svg';
 import Russia from '../../images/russia.svg';
 import {t} from 'i18next';
 import {useTranslation} from 'react-i18next';
-
 const SelectLanguageScreen = () => {
   const {i18n} = useTranslation();
   const onChangeLang = lang => {
@@ -32,6 +34,20 @@ const SelectLanguageScreen = () => {
             navigation.navigate('BottomTabNavigator');
           }}>
           <Text style={{color: 'red'}}>BOSH SCREEN</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            Linking.canOpenURL('https://my.soliq.uz/dl')
+              .then(() => {
+                Linking.openURL('https://my.soliq.uz/dl');
+              })
+              .catch(err => {
+                Linking.openURL(
+                  'https://play.google.com/store/apps/details?id=uz.yt.eimzo',
+                );
+              });
+          }}>
+          <Text style={{color: 'red'}}>E imzo</Text>
         </TouchableOpacity>
         <View style={styles.languageButtonContainer}>
           <TouchableOpacity

@@ -4,7 +4,7 @@ import ZeroxIcon from '../../images/ZeroxIcon.svg';
 import {style} from '../../theme/style';
 import {DrawerIcon, AlarmIcon} from '../../helper/homeIcon';
 import {useNavigation} from '@react-navigation/native';
-const Header = () => {
+const Header = ({user}) => {
   const navigation = useNavigation();
   return (
     <View style={styles.DrawerContainer}>
@@ -33,7 +33,7 @@ const Header = () => {
         <View style={{}}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('UserScreen');
+              navigation.navigate('UserScreen', {user});
             }}
             style={styles.ImageButton}>
             <Image

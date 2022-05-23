@@ -26,6 +26,7 @@ const TakeDebt = () => {
           </View>
           <View style={{marginTop: 20, marginBottom: 20}}>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 navigation.navigate('SearchUserScreen');
               }}
@@ -35,6 +36,7 @@ const TakeDebt = () => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 navigation.navigate('SearchJuridicUser');
               }}
@@ -44,6 +46,7 @@ const TakeDebt = () => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 navigation.navigate('HistoryDebt');
               }}

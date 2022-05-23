@@ -19,22 +19,15 @@ const RegisterWithPeoplePhoneNumberReducer = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(UserDataPostApi.pending, (state, action) => {
-      console.log(action, 'error1');
       state.loading = true;
     });
     builder.addCase(UserDataPostApi.fulfilled, (state, action) => {
-      console.log(action.payload, 'error2');
-      if (action.payload.error) {
-        state.error = true;
-        state.status = action.payload.data;
-      }
       state.status = action.payload;
       state.loading = false;
     });
     builder.addCase(UserDataPostApi.rejected, (state, action) => {
-      console.log(action, 'error3');
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload;
     });
   },
 });

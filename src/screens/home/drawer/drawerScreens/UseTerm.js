@@ -26,7 +26,7 @@ const UseTerm = () => {
           />
         </View>
         <View style={styles.aboutUsContainer}>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{marginTop: 10}}>
               <Text style={styles.title}>Foydalanish yoriqnomasi</Text>
             </View>

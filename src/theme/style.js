@@ -29,7 +29,7 @@ const style = {
   width: width,
   height: height,
   textInputHeight: hp('7%'),
-  codeButtonSize: hp('8%'),
+  codeButtonSize: hp('9%'),
   StatusbarColor: '#4F92D1',
   MoneyColor: '#48BB78',
   backgroundColor: '#F7FAFC',

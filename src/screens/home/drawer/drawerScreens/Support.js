@@ -1,4 +1,5 @@
 import {
+  Linking,
   Platform,
   ScrollView,
   //   ScrollView,
@@ -43,46 +44,34 @@ const Support = () => {
             style={{
               marginTop: 20,
             }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('CheckSmsPassword');
-              }}
-              style={styles.enterButton}>
+            <TouchableOpacity onPress={() => {}} style={styles.enterButton}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
                 Ko`p takrorlanadigan savollar
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('CheckSmsPassword');
-              }}
-              style={styles.enterButton}>
+            <TouchableOpacity onPress={() => {}} style={styles.enterButton}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
                 Mutaxassis bilan chat
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('CheckSmsPassword');
-              }}
-              style={styles.enterButton}>
+            <TouchableOpacity onPress={() => {}} style={styles.enterButton}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
                 Telegram orqali yozing
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('CheckSmsPassword');
-              }}
-              style={styles.enterButton}>
+            <TouchableOpacity onPress={() => {}} style={styles.enterButton}>
               <Text style={[styles.enterText, {color: '#fff'}]}>
                 Bizga yozing
               </Text>
             </TouchableOpacity>
           </View>
           <View style={styles.SupportMeContainer}>
-            <Text style={styles.SupportText}>
-              +998 78 999 99 99 Qo`llab-quvvatlash telefon raqami
+            <Text
+              onPress={() => {
+                Linking.openURL('tel:+998937524411');
+              }}
+              style={styles.SupportText}>
+              +998 93 752 44 11 Qo`llab-quvvatlash telefon raqami
             </Text>
           </View>
         </View>

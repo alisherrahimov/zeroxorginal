@@ -22,6 +22,7 @@ const Statistic = () => {
         <View style={styles.aboutUsContainer}>
           <View style={{marginTop: 20, marginBottom: 20}}>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 navigation.navigate('SearchDebitor', {
                   title: 'Hisobot (debitor)',
@@ -34,6 +35,7 @@ const Statistic = () => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 navigation.navigate('SearchDebitor', {
                   title: 'Hisobot (kreditor)',

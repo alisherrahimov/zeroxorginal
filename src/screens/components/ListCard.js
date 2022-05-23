@@ -1,13 +1,53 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {style} from '../../theme/style';
+import PropTypes from 'prop-types';
 
-const ListCard = ({title}) => {
+const ListCard = ({title, uzs = [], usd = []}) => {
+  const [color, setColor] = React.useState(false);
+  const onChangeColor = bool => {
+    setColor(bool);
+  };
+
   return (
-    <TouchableOpacity activeOpacity={0.9} style={styles.container}>
+    <TouchableOpacity activeOpacity={0.9} style={styles.containerrr}>
       <View>
         <View style={{marginHorizontal: 10, marginVertical: 10}}>
           <Text style={styles.title}>{title}</Text>
+        </View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <TouchableOpacity
+            onPress={() => {
+              onChangeColor(true);
+            }}
+            style={[
+              styles.valyut,
+              {backgroundColor: color ? style.blue : '#fff'},
+            ]}>
+            <Text
+              style={[
+                styles.valyutText,
+                {color: color ? '#fff' : style.textColor},
+              ]}>
+              UZS
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              onChangeColor(false);
+            }}
+            style={[
+              styles.valyut,
+              {backgroundColor: color ? '#fff' : style.blue},
+            ]}>
+            <Text
+              style={[
+                styles.valyutText,
+                {color: color ? style.textColor : '#fff'},
+              ]}>
+              USD
+            </Text>
+          </TouchableOpacity>
         </View>
         <View
           style={{
@@ -23,36 +63,57 @@ const ListCard = ({title}) => {
               marginHorizontal: 10,
             }}>
             <Text style={styles.text}>QOLGAN VAQT</Text>
-            <Text style={styles.text}>UMUMIY SUMMA</Text>
+            <Text style={styles.text}>SUMMA</Text>
           </View>
         </View>
         <View style={{marginHorizontal: 10, marginVertical: 10}}>
-          <View style={styles.listContainer}>
-            <Text style={styles.dayText}>1 kun</Text>
-            <Text style={styles.money}>1000000 so’m / $50</Text>
-          </View>
-          <View style={styles.listContainer}>
-            <Text style={styles.dayText}>2 kun</Text>
-            <Text style={styles.money}>1000000 so’m / $50</Text>
-          </View>
-          <View style={styles.listContainer}>
-            <Text style={styles.dayText}>3 kun</Text>
-            <Text style={styles.money}>1000000 so’m / $50</Text>
-          </View>
-          <View style={styles.listContainer}>
-            <Text style={styles.dayText}>4 kun</Text>
-            <Text style={styles.money}>1000000 so’m / $200</Text>
-          </View>
-          <View style={styles.listContainer}>
-            <Text style={styles.dayText}>5 kun</Text>
-            <Text style={styles.money}>1000000 so’m / $50</Text>
-          </View>
+          {color ? (
+            uzs.length == 0 ? (
+              <Text
+                style={[
+                  styles.text,
+                  {fontSize: style.fontSize.small - 2, alignSelf: 'center'},
+                ]}>
+                Mavjud emas
+              </Text>
+            ) : (
+              uzs.map((item, index) => {
+                return (
+                  <View style={styles.listContainer}>
+                    <Text style={styles.dayText}>{index + 1} kun</Text>
+                    <Text style={styles.money}>{item?.amount}</Text>
+                  </View>
+                );
+              })
+            )
+          ) : usd.length == 0 ? (
+            <Text
+              style={[
+                styles.text,
+                {fontSize: style.fontSize.small - 2, alignSelf: 'center'},
+              ]}>
+              Mavjud emas
+            </Text>
+          ) : (
+            usd.map((item, index) => {
+              return (
+                <View style={styles.listContainer}>
+                  <Text style={styles.dayText}>{index + 1} kun</Text>
+                  <Text style={styles.money}>{item?.amount}</Text>
+                </View>
+              );
+            })
+          )}
         </View>
       </View>
     </TouchableOpacity>
   );
 };
-
+ListCard.propTypes = {
+  title: PropTypes.string,
+  uzs: PropTypes.array,
+  usd: PropTypes.array,
+};
 export default ListCard;
 
 const styles = StyleSheet.create({
@@ -70,8 +131,20 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
     elevation: 2,
   },
+  valyutText: {
+    fontFamily: style.fontFamilyMedium,
+    fontSize: style.fontSize.small - 2,
+    color: '#fff',
+  },
+  valyut: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'red',
+    flex: 1,
+    height: 25,
+  },
   text: {
-    fontSize: style.fontSize.xa,
+    fontSize: style.fontSize.small - 3,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

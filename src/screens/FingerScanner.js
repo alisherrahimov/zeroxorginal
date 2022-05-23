@@ -19,17 +19,7 @@ const FingerScanner = () => {
   }, []);
   return (
     <View style={styles.container}>
-      {/* <TouchableOpacity
-        onPress={onFingerScanner}
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: 120,
-          height: 80,
-          backgroundColor: 'red',
-        }}> */}
       <Text>FINGER</Text>
-      {/* </TouchableOpacity> */}
     </View>
   );
 };

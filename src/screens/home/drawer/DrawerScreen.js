@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Share, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
 import {style} from '../../../theme/style';
@@ -15,6 +15,29 @@ import {useNavigation} from '@react-navigation/native';
 import {PurseIcon} from '../../../helper/homeIcon';
 const DrawerScreen = () => {
   const navigation = useNavigation();
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: 'https://play.google.com/store/apps/details?id=uz.yt.eimzo',
+        url: 'https://play.google.com/store/apps/details?id=uz.yt.eimzo',
+        title: 'Ishonch kafolati',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+          console.log('sharedactiveityType', result.activityType);
+        } else {
+          // shared
+          console.log('shared');
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+        console.log('dis');
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.main}>
@@ -84,7 +107,7 @@ const DrawerScreen = () => {
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={onShare} style={styles.button}>
               <ShareIcon width={25} height={25} />
               <Text style={styles.buttonText}>Do’stlar bilan ulashing</Text>
             </TouchableOpacity>
