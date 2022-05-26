@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   sum: {
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: style.MoneyColor,
   },
   title: {
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

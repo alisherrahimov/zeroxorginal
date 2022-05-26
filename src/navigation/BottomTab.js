@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ToastAndroid,
+  Pressable,
 } from 'react-native';
 import React from 'react';
 import {style} from '../theme/style';
@@ -48,41 +49,51 @@ const BottomTabBarCustom = ({state, descriptors, navigation}) => {
         };
 
         return (
-          <TouchableOpacity
-            activeOpacity={0.8}
-            key={route.key}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={[styles.button]}>
-            <View
-              style={{
-                height: 3,
-                width: 50,
-                backgroundColor: isFocused ? style.blue : '#fff',
-                alignSelf: 'center',
+          <>
+            <Pressable
+              android_ripple={{
+                borderless: true,
+                color: style.blue,
+                radius: 50,
+                foreground: true,
               }}
-            />
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginTop: 5,
-              }}>
-              {isFocused ? <route.params.HomeBlue /> : <route.params.Home />}
-              <Text
+              activeOpacity={0.2}
+              key={route.key}
+              accessibilityRole="button"
+              accessibilityState={isFocused ? {selected: true} : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              style={[styles.button]}>
+              <View
                 style={{
-                  color: isFocused ? style.blue : style.textColor,
-                  fontFamily: style.fontFamilyMedium,
-                  fontSize: style.fontSize.xa + 2,
+                  height: 3,
+                  width: '60%',
+                  backgroundColor: isFocused ? style.blue : '#fff',
+                  alignSelf: 'center',
+                }}
+              />
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: 5,
+                  flex: 1,
                 }}>
-                {label}
-              </Text>
-            </View>
-          </TouchableOpacity>
+                {isFocused ? <route.params.HomeBlue /> : <route.params.Home />}
+                <Text
+                  style={{
+                    color: isFocused ? style.blue : style.textColor,
+                    fontFamily: style.fontFamilyMedium,
+                    fontSize: style.fontSize.xa + 2,
+                    paddingTop: 5,
+                  }}>
+                  {label}
+                </Text>
+              </View>
+            </Pressable>
+          </>
         );
       })}
     </View>
@@ -94,7 +105,6 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     alignItems: 'center',
-    maxHeight: 55,
-    height: style.height / 8,
+    height: style.height / 12,
   },
 });

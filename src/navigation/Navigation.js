@@ -75,6 +75,7 @@ import {
 } from './Index';
 import App from '../../App';
 import {AppState} from 'react-native';
+import PdfView from '../screens/home/statisticScreens/PdfView';
 
 const Stack = createNativeStackNavigator();
 const BottomTabStack = createMaterialTopTabNavigator();
@@ -223,6 +224,7 @@ const AllNavigators = [
   {name: 'ChangePasswordRetry', component: ChangePasswordRetry},
   {name: 'Test', component: Test},
   {name: 'UseTerm', component: UseTerm},
+  {name: 'PdfView', component: PdfView},
 ];
 const StackNavigator = () => {
   return (

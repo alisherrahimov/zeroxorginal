@@ -137,7 +137,7 @@ const UserInformationOfDebt = () => {
                   <Card
                     width={style.width / 2.5}
                     disabled={true}
-                    title={'Berilgan qarz'}
+                    title={'Berilgan\nqarz'}
                     Icon={OlinganQarz}
                     type={0}
                     color={style.blue}
@@ -147,7 +147,7 @@ const UserInformationOfDebt = () => {
                   <Card
                     width={style.width / 2.5}
                     disabled={true}
-                    title={'Olingan qarz'}
+                    title={'Olingan\nqarz'}
                     Icon={BerilganQarzIcon}
                     type={0}
                     color={'red'}
@@ -159,7 +159,7 @@ const UserInformationOfDebt = () => {
                   <Card
                     width={style.width / 2.5}
                     disabled={true}
-                    title={'Muddati o’tgan'}
+                    title={'Muddati\no’tgan'}
                     Icon={MuddatUtganPlus}
                     type={2}
                     color={style.blue}
@@ -169,7 +169,7 @@ const UserInformationOfDebt = () => {
                   <Card
                     width={style.width / 2.5}
                     disabled={true}
-                    title={'Muddati o’tgan'}
+                    title={'Muddati\no’tgan'}
                     Icon={MuddatUtganMinus}
                     type={2}
                     color={'red'}
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     borderRadius: style.width / 6,
   },
   time: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
   },
   phoneText: {
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     color: style.textColor,
   },
   inputTitle: {
@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
     color: style.MoneyColor,
   },
   title: {
-    fontSize: style.fontSize.s,
+    fontSize: style.fontSize.xs,
     fontFamily: style.fontFamilyBold,
     color: style.textColor,
   },

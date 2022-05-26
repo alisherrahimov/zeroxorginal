@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   languageText: {
-    fontSize: style.fontSize.small + 2,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: '#fff',
     marginLeft: 3,

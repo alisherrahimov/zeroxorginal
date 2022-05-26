@@ -1,4 +1,12 @@
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect} from 'react';
 import {style} from '../../theme/style';
 import {BackGroundIcon} from '../../helper/homeIcon';
@@ -19,7 +27,6 @@ const Home = () => {
   const navigation = useNavigation();
   const {loading, error, home, user} = useSelector(state => state.HomeReducer);
   const dispatch = useDispatch();
-  console.log(loading, error);
   useEffect(() => {
     dispatch(HomeApi());
   }, []);
@@ -39,7 +46,6 @@ const Home = () => {
       </View>
     );
   }
-  console.log(home);
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -54,7 +60,7 @@ const Home = () => {
         <Header user={user.data} />
         <ScrollView
           nestedScrollEnabled
-          contentContainerStyle={{paddingBottom: 20}}
+          contentContainerStyle={{paddingBottom: 20, paddingHorizontal: 10}}
           showsVerticalScrollIndicator={false}>
           <View>
             <View>
@@ -67,7 +73,7 @@ const Home = () => {
                 <View>
                   <Card
                     width={style.width / 2.3}
-                    title={'Berilgan qarz'}
+                    title={'Berilgan\nqarz'}
                     Icon={OlinganQarz}
                     type={0}
                     color={style.blue}
@@ -76,19 +82,28 @@ const Home = () => {
                 <View>
                   <Card
                     width={style.width / 2.3}
-                    title={'Olingan qarz'}
+                    title={'Olingan\nqarz'}
                     Icon={BerilganQarzIcon}
                     type={0}
                     color={'red'}
                   />
                 </View>
               </View>
-
+              <View style={{alignSelf: 'center', marginTop: 20}}>
+                <Text
+                  style={{
+                    fontFamily: style.fontFamilyMedium,
+                    color: style.textColor,
+                    fontSize: style.fontSize.xx,
+                  }}>
+                  Shundan
+                </Text>
+              </View>
               <View style={styles.cardViewContainer}>
                 <View>
                   <Card
                     width={style.width / 2.3}
-                    title={'Muddati o’tgan'}
+                    title={'Muddati\no’tgan'}
                     Icon={MuddatUtganPlus}
                     type={2}
                     color={style.blue}
@@ -97,7 +112,7 @@ const Home = () => {
                 <View>
                   <Card
                     width={style.width / 2.3}
-                    title={'Muddati o’tgan'}
+                    title={'Muddati\no’tgan'}
                     Icon={MuddatUtganMinus}
                     type={2}
                     color={'red'}
@@ -105,8 +120,13 @@ const Home = () => {
                 </View>
               </View>
               <View style={styles.cardViewContainer}>
-                <View>
+                <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+                  <Text style={styles.btnText}>Muddati oz qolgan</Text>
+                </TouchableOpacity>
+                {/* <View>
                   <ListCard
+                    type={2}
+                    color={style.blue}
                     uzs={home?.data?.debitorUsz}
                     usd={home?.data?.debitorUsd}
                     title={'Muddati oz qolgan\n(debitor)'}
@@ -114,11 +134,13 @@ const Home = () => {
                 </View>
                 <View>
                   <ListCard
+                    type={2}
+                    color={'red'}
                     uzs={home?.data?.debitorUsz}
                     usd={home?.data?.debitorUsd}
                     title={'Muddati oz qolgan\n(kreditor)'}
                   />
-                </View>
+                </View> */}
               </View>
             </View>
           </View>
@@ -131,6 +153,20 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
+  btn: {
+    backgroundColor: style.blue,
+    width: '100%',
+    height: 50,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  btnText: {
+    color: '#fff',
+    fontSize: style.fontSize.xx,
+    fontFamily: style.fontFamilyMedium,
+    marginLeft: 15,
+  },
   container: {
     flex: 1,
     backgroundColor: '#F7FAFC',
@@ -171,7 +207,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   appInfoMainContainer: {
-    height: style.height / 4,
+    height: style.height / 4.8,
     backgroundColor: '#fff',
     borderRadius: 15,
     flexDirection: 'row',
@@ -188,8 +224,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-
-    width: '90%',
+    width: '95%',
     alignSelf: 'center',
   },
   appInfoText: {

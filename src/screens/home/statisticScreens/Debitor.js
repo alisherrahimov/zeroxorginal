@@ -33,7 +33,7 @@ const Debitor = () => {
         </View>
         <View style={styles.aboutUsContainer}>
           <View style={styles.header}>
-            <View style={[styles.item, {left: 60}]}>
+            <View style={[styles.item, {left: 40}]}>
               <Text style={styles.info}>Qarzdor nomi</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
@@ -48,7 +48,7 @@ const Debitor = () => {
             }}
           />
           <View style={styles.header}>
-            <View style={[styles.item, {left: 60}]}>
+            <View style={[styles.item, {left: 40}]}>
               <Text style={styles.info}>Qarz summasi</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
@@ -63,7 +63,7 @@ const Debitor = () => {
             }}
           />
           <View style={styles.header}>
-            <View style={[styles.item, {left: 60}]}>
+            <View style={[styles.item, {left: 40}]}>
               <Text style={styles.info}>Qarz olingan sana </Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
@@ -78,7 +78,7 @@ const Debitor = () => {
             }}
           />
           <View style={styles.header}>
-            <View style={[styles.item, {left: 60}]}>
+            <View style={[styles.item, {left: 40}]}>
               <Text style={styles.info}>Qarz qaytarilgan sana</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
@@ -93,7 +93,7 @@ const Debitor = () => {
             }}
           />
           <View style={styles.header}>
-            <View style={[styles.item, {left: 60}]}>
+            <View style={[styles.item, {left: 40}]}>
               <Text style={styles.info}>Qaytarilgan summa </Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
@@ -108,7 +108,7 @@ const Debitor = () => {
             }}
           />
           <View style={styles.header}>
-            <View style={[styles.item, {left: 60}]}>
+            <View style={[styles.item, {left: 40}]}>
               <Text style={styles.info}>Hujjatla</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   info: {
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.small,
+    fontSize: style.fontSize.small - 1,
     textAlign: 'left',
   },
   header: {

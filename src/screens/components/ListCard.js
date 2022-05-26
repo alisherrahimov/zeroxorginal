@@ -2,15 +2,26 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {style} from '../../theme/style';
 import PropTypes from 'prop-types';
+import {useNavigation} from '@react-navigation/native';
 
-const ListCard = ({title, uzs = [], usd = []}) => {
-  const [color, setColor] = React.useState(false);
+const ListCard = ({title, uzs = [], usd = [], type, color}) => {
+  const navigation = useNavigation();
+  const [blue, setBlue] = React.useState(false);
   const onChangeColor = bool => {
-    setColor(bool);
+    setBlue(bool);
   };
 
   return (
-    <TouchableOpacity activeOpacity={0.9} style={styles.containerrr}>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('SearchDebitor', {
+          title: title,
+          type: type,
+          color: color,
+        });
+      }}
+      activeOpacity={0.9}
+      style={styles.containerrr}>
       <View>
         <View style={{marginHorizontal: 10, marginVertical: 10}}>
           <Text style={styles.title}>{title}</Text>
@@ -22,12 +33,12 @@ const ListCard = ({title, uzs = [], usd = []}) => {
             }}
             style={[
               styles.valyut,
-              {backgroundColor: color ? style.blue : '#fff'},
+              {backgroundColor: blue ? style.blue : '#fff'},
             ]}>
             <Text
               style={[
                 styles.valyutText,
-                {color: color ? '#fff' : style.textColor},
+                {color: blue ? '#fff' : style.textColor},
               ]}>
               UZS
             </Text>
@@ -38,12 +49,12 @@ const ListCard = ({title, uzs = [], usd = []}) => {
             }}
             style={[
               styles.valyut,
-              {backgroundColor: color ? '#fff' : style.blue},
+              {backgroundColor: blue ? '#fff' : style.blue},
             ]}>
             <Text
               style={[
                 styles.valyutText,
-                {color: color ? style.textColor : '#fff'},
+                {color: blue ? style.textColor : '#fff'},
               ]}>
               USD
             </Text>
@@ -67,7 +78,7 @@ const ListCard = ({title, uzs = [], usd = []}) => {
           </View>
         </View>
         <View style={{marginHorizontal: 10, marginVertical: 10}}>
-          {color ? (
+          {blue ? (
             uzs.length == 0 ? (
               <Text
                 style={[
@@ -142,6 +153,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     flex: 1,
     height: 25,
+    borderRadius: 15,
   },
   text: {
     fontSize: style.fontSize.small - 3,

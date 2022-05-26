@@ -256,11 +256,10 @@ const styles = StyleSheet.create({
   },
   TextInput: {
     width: '100%',
-    height: style.textInputHeight,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     paddingLeft: 10,
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

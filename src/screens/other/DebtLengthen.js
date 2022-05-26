@@ -11,7 +11,6 @@ import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const DebtLengthen = () => {
   const navigation = useNavigation();

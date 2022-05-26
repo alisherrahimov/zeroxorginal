@@ -91,9 +91,18 @@ const DownloadStatistic = () => {
               20/11/2021/000001-sonli qarz shartnomasi va ilova hujjatlar
             </Text>
           </View>
-          <View style={styles.pdfView}>
-            <Text style={styles.userName}>PDF</Text>
-          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('PdfView', {
+                pdf: 'http://www.africau.edu/images/default/sample.pdf',
+              });
+            }}
+            activeOpacity={0.95}
+            style={{alignItems: 'center', justifyContent: 'center'}}>
+            <View style={styles.pdfView}>
+              <Text style={styles.userName}>PDF</Text>
+            </View>
+          </TouchableOpacity>
           <View
             style={{
               flexDirection: 'row',

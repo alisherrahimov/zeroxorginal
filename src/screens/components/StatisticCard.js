@@ -79,9 +79,9 @@ const StatisticCard = ({title, type, color}) => {
       <View>
         <FlatList
           style={{
-            height: style.height / 1.8,
-            maxHeight: style.height / 1.8,
-            minHeight: style.height / 1.8,
+            height: style.height / 1.6,
+            maxHeight: style.height / 1.6,
+            minHeight: style.height / 1.6,
             overflow: 'scroll',
             borderRadius: 10,
           }}
@@ -99,7 +99,7 @@ const StatisticCard = ({title, type, color}) => {
             return <ListRender item={item} index={index} />;
           }}
         />
-        <View>
+        {/* <View>
           <View style={styles.header}>
             <View
               style={{
@@ -141,7 +141,7 @@ const StatisticCard = ({title, type, color}) => {
               </View>
             </View>
           </View>
-        </View>
+        </View> */}
       </View>
     </View>
   );

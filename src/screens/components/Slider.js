@@ -1,6 +1,5 @@
 import {
   Animated,
-  FlatList,
   Image,
   Pressable,
   ScrollView,
@@ -34,14 +33,14 @@ const data = [
 const Slider = () => {
   const navigation = useNavigation();
   const scrollX = new Animated.Value(0);
-  let position = Animated.divide(scrollX, 200);
+  let position = Animated.divide(scrollX, 150);
   const RenderList = ({item, index}) => {
     return (
       <Pressable
         onPress={() => {
           navigation.navigate('AboutUs');
         }}
-        style={{width: '100%', height: style.height / 4}}>
+        style={{width: '100%', height: style.height / 4.8}}>
         <View style={{flexDirection: 'row'}}>
           <View style={{maxWidth: '70%'}}>
             <Text style={styles.title}>{item.title}</Text>
@@ -62,6 +61,7 @@ const Slider = () => {
     <View style={styles.container}>
       <ScrollView
         pagingEnabled
+        showsVerticalScrollIndicator={false}
         nestedScrollEnabled
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollX}}}],

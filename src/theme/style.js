@@ -1,10 +1,20 @@
 import {DarkTheme, DefaultTheme} from '@react-navigation/native';
-import {Dimensions} from 'react-native';
+import {Dimensions, PixelRatio, Platform} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const {width, height} = Dimensions.get('window');
+
+const scale = width / 320;
+const normalize = size => {
+  const newSize = size * scale;
+  if (Platform.OS === 'ios') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize));
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
+  }
+};
 const style = {
   backgroundColorLight: '#fff',
   backgroundColorDark: '#000',
@@ -17,10 +27,10 @@ const style = {
   fontFamilyMedium: 'Montserrat-Medium',
   fontFamilyLight: 'Montserrat-Light',
   fontSize: {
-    xa: wp('2.5%'),
-    small: wp('3%'),
-    xx: wp('3.5%'),
-    xs: wp('4%'),
+    xa: normalize(9),
+    small: normalize(12),
+    xx: normalize(13),
+    xs: normalize(14),
     s: wp('5%'),
     m: wp('6%'),
     l: wp('7%'),
@@ -49,4 +59,5 @@ const lightSchema = {
   backgroundColor: style.backgroundColorLight,
   textColor: style.textColorLight,
 };
+
 export {style, darkSchema, lightSchema};

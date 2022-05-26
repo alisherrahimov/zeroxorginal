@@ -1,20 +1,14 @@
-import {
-  Platform,
-  //   ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {BackGroundIcon, PurseIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
-import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const UserMoneyResult = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const {user} = route.params;
   return (
     <View style={styles.container}>
       <View style={{flex: 0.4}}>
@@ -33,7 +27,7 @@ const UserMoneyResult = () => {
             <View>
               <View style={styles.registerButton}>
                 <Text style={styles.textButton}>
-                  “000001AA” raqamli mobil hisob{' '}
+                  “{user?.uid}” raqamli mobil hisob
                 </Text>
               </View>
             </View>
@@ -47,7 +41,7 @@ const UserMoneyResult = () => {
                   }}>
                   <View style={styles.insideMoney}>
                     <Text style={styles.hisob}>Mobil hisob</Text>
-                    <Text style={styles.money}>$53,897</Text>
+                    <Text style={styles.money}>{`${user?.balance}`} so'm</Text>
                   </View>
                   <View>
                     <PurseIcon width={35} height={35} />
@@ -64,7 +58,7 @@ const UserMoneyResult = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('SendMoney');
+                  navigation.navigate('SendMoney', {user: user});
                 }}
                 activeOpacity={0.8}
                 style={[styles.registerButton, {marginTop: 20}]}>

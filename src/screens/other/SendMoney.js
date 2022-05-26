@@ -11,10 +11,12 @@ import React from 'react';
 import {BackGroundIcon, PurseIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const SendMoney = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const {user} = route.params;
   return (
     <View style={styles.container}>
       <View
@@ -62,7 +64,7 @@ const SendMoney = () => {
                     fontSize: style.fontSize.small,
                     color: style.MoneyColor,
                   }}>
-                  1000000 so'm
+                  {`${user?.balance}`} so'm
                 </Text>
               </View>
               <View
@@ -91,7 +93,7 @@ const SendMoney = () => {
                 ]}>
                 <View style={styles.insideMoney}>
                   <Text style={[styles.hisob, {fontSize: style.fontSize.xa}]}>
-                    "000001AA" raqamli mobile hisob
+                    "{user.uid}" raqamli mobile hisob
                   </Text>
                 </View>
               </View>

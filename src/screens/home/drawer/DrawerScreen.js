@@ -1,4 +1,11 @@
-import {Share, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Share,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 
 import {style} from '../../../theme/style';
@@ -13,7 +20,11 @@ import {
 } from '../../../helper/drawerIcon';
 import {useNavigation} from '@react-navigation/native';
 import {PurseIcon} from '../../../helper/homeIcon';
+import {useSelector} from 'react-redux';
+
 const DrawerScreen = () => {
+  const {user} = useSelector(state => state.HomeReducer);
+
   const navigation = useNavigation();
   const onShare = async () => {
     try {
@@ -64,7 +75,7 @@ const DrawerScreen = () => {
         <View style={{marginTop: 10}}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('UserMoneyResult');
+              navigation.navigate('UserMoneyResult', {user: user.data});
             }}
             activeOpacity={0.8}>
             <View style={styles.MobileInfoContainer}>
@@ -76,7 +87,9 @@ const DrawerScreen = () => {
                 }}>
                 <View>
                   <Text style={styles.moneyTitle}>Mobil hisob: </Text>
-                  <Text style={styles.money}>1000000000 so'm </Text>
+                  <Text style={styles.money}>
+                    {`${user?.data?.balance}`} so'm
+                  </Text>
                 </View>
               </View>
               <View style={{marginLeft: 5}}>

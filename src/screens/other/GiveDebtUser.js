@@ -1,6 +1,7 @@
 import {
   Image,
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,7 +14,7 @@ import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import {Checkbox} from 'react-native-paper';
+import {Checkbox, RadioButton} from 'react-native-paper';
 import {Picker as SelectPicker} from '@react-native-picker/picker';
 const GiveDebtUser = () => {
   const navigation = useNavigation();
@@ -93,7 +94,62 @@ const GiveDebtUser = () => {
               </View>
             </View>
             <View>
-              <View style={styles.TextInputLabelContainer}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  alignSelf: 'center',
+                  width: '60%',
+                  justifyContent: 'space-between',
+                  marginTop: 20,
+                }}>
+                <Pressable
+                  android_ripple={{
+                    borderless: true,
+                    color: style.blue,
+                    radius: 25,
+                  }}>
+                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text
+                      style={{
+                        color: style.textColor,
+                        fontSize: style.fontSize.small,
+                        fontFamily: style.fontFamilyMedium,
+                      }}>
+                      UZS
+                    </Text>
+                    <RadioButton
+                      value="first"
+                      color={style.blue}
+                      status="checked"
+                    />
+                  </View>
+                </Pressable>
+                <Pressable
+                  android_ripple={{
+                    borderless: true,
+                    color: style.blue,
+                    radius: 25,
+                  }}>
+                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text
+                      style={{
+                        color: style.textColor,
+                        fontSize: style.fontSize.small,
+                        fontFamily: style.fontFamilyMedium,
+                      }}>
+                      USD
+                    </Text>
+                    <RadioButton
+                      value="second"
+                      color={style.blue}
+                      status="unchecked"
+                    />
+                  </View>
+                </Pressable>
+              </View>
+
+              {/* <View style={styles.TextInputLabelContainer}>
                 <View style={styles.inputTitle}>
                   <Text style={styles.phoneText}>Valyutani tanlang</Text>
                 </View>
@@ -103,7 +159,7 @@ const GiveDebtUser = () => {
                     dropdownIconColor={style.textColor}
                     itemStyle={{
                       fontFamily: style.fontFamilyMedium,
-                      fontSize: style.fontSize.xx,
+                      fontSize: style.fontSize.small,
                       color: style.textColor,
                     }}
                     mode="dialog"
@@ -131,7 +187,7 @@ const GiveDebtUser = () => {
                     />
                   </SelectPicker>
                 </View>
-              </View>
+              </View> */}
 
               <View style={styles.TextInputLabelContainer}>
                 <View style={styles.inputTitle}>
