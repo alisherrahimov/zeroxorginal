@@ -215,6 +215,16 @@ const UserScreen = () => {
                     </Text>
                   </TouchableOpacity>
                 </View>
+                <View style={{marginTop: 20}}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('ChangePassword');
+                    }}
+                    activeOpacity={0.8}
+                    style={styles.languageButton}>
+                    <Text style={styles.selectLanguageText}>Log out</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>

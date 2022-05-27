@@ -63,9 +63,10 @@ import UserInformationOfDebt from '../screens/other/UserInformationOfDebt';
 import GiveDebtUser from '../screens/other/GiveDebtUser';
 import Test from '../screens/Test';
 import SearchJuridicUser from '../screens/other/SearchJuridicUser';
-
+import MuddatOzQolgan from '../screens/other/MuddatOzQolgan';
 export {
   TakeIcon,
+  MuddatOzQolgan,
   FingerScanner,
   BottomTabBarCustom,
   PartDebtBack,

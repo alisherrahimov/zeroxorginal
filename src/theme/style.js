@@ -28,7 +28,7 @@ const style = {
   fontFamilyLight: 'Montserrat-Light',
   fontSize: {
     xa: normalize(9),
-    small: normalize(12),
+    small: normalize(11),
     xx: normalize(13),
     xs: normalize(14),
     s: wp('5%'),

@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   buttonText: {
-    fontSize: style.fontSize.small,
+    fontSize: style.fontSize.small - 1,
     fontFamily: style.fontFamilyBold,
     color: '#A0AEC0',
     marginLeft: 15,

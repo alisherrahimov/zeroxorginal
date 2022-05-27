@@ -18,13 +18,14 @@ const PdfView = () => {
   const {pdf} = route.params;
   const navigation = useNavigation();
   React.useEffect(() => {
-    if (loading == false) {
-      setTutorial(true);
+    if (tutorial) {
+      setTimeout(() => {
+        setTutorial(false);
+      }, 4000);
     }
-    setTimeout(() => {
-      setTutorial(false);
-    }, 4000);
-  }, [loading]);
+  }, [tutorial]);
+  console.log(tutorial, 'tut');
+  console.log(loading, 'lod');
   return (
     <>
       <View
@@ -73,6 +74,7 @@ const PdfView = () => {
               source={require('../../../images/tutorial.json')}
               autoPlay
               autoSize
+              resizeMode="cover"
               style={{width: style.width / 4, height: style.width / 4}}
             />
           </View>
@@ -90,9 +92,9 @@ const PdfView = () => {
           }}
           onLoadProgress={number => {
             console.log(number);
-            if (number > 0.92) {
-              setLoading(false);
-            }
+          }}
+          onLoadComplete={() => {
+            setTutorial(true);
           }}
           style={styles.pdf}
         />

@@ -67,7 +67,7 @@ const SetLocalPassword = () => {
           type: 'error',
           position: 'top',
           text1: 'Password is wrong',
-          visibilityTime: 5000,
+          visibilityTime: 3000,
           autoHide: true,
         });
       }
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   text: {
-    fontSize: style.fontSize.xs,
+    fontSize: style.fontSize.xx,
     color: '#fff',
     fontFamily: style.fontFamilyBold,
   },

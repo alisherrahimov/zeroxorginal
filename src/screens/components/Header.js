@@ -76,6 +76,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     height: style.height / 8,
+    width: '95%',
+    alignSelf: 'center',
   },
 
   money: {

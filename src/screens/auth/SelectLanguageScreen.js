@@ -37,6 +37,12 @@ const SelectLanguageScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            navigation.navigate('SetLocalPassword');
+          }}>
+          <Text style={{color: 'red'}}>Lock SCREEN</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
             Linking.canOpenURL('https://my.soliq.uz/dl')
               .then(() => {
                 Linking.openURL('https://my.soliq.uz/dl');
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   languageText: {
-    fontSize: style.fontSize.small,
+    fontSize: style.fontSize.small + 1,
     fontFamily: style.fontFamilyMedium,
     color: '#fff',
     marginLeft: 3,

@@ -5,9 +5,11 @@ import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 import {ShareIcon} from '../../helper/drawerIcon';
 import Header from '../components/Header';
+import {useSelector} from 'react-redux';
 
 const GiveDebt = () => {
   const navigation = useNavigation();
+  const {user} = useSelector(state => state.HomeReducer);
   return (
     <View style={styles.container}>
       <View
@@ -18,8 +20,8 @@ const GiveDebt = () => {
         }}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
+      <Header user={user.data} />
       <View style={styles.header}>
-        <Header />
         <View style={styles.aboutUsContainer}>
           <View>
             <Text style={styles.title}>Qidiruv</Text>
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: 20,
     borderRadius: 15,
-    flex: 1,
+
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -89,9 +91,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   header: {
+    width: '95%',
     flex: 1,
-    position: 'absolute',
-    width: '90%',
     alignSelf: 'center',
   },
   userNameText: {

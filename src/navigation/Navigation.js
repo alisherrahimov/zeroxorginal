@@ -72,10 +72,11 @@ import {
   UserInformationOfDebt,
   UserMoneyResult,
   UserScreen,
+  MuddatOzQolgan,
 } from './Index';
-import App from '../../App';
-import {AppState} from 'react-native';
+
 import PdfView from '../screens/home/statisticScreens/PdfView';
+import {style} from '../theme/style';
 
 const Stack = createNativeStackNavigator();
 const BottomTabStack = createMaterialTopTabNavigator();
@@ -91,8 +92,11 @@ const DrawerNavigator = () => {
         headerShown: false,
         drawerType: 'front',
         swipeEdgeWidth: 30,
+
+        drawerAllowFontScaling: true,
         drawerStyle: {
           borderRadius: 20,
+          width: style.width / 1.2,
         },
       }}
       drawerContent={props => <DrawerScreen {...props} />}>
@@ -225,6 +229,7 @@ const AllNavigators = [
   {name: 'Test', component: Test},
   {name: 'UseTerm', component: UseTerm},
   {name: 'PdfView', component: PdfView},
+  {name: 'MuddatOzQolgan', component: MuddatOzQolgan},
 ];
 const StackNavigator = () => {
   return (

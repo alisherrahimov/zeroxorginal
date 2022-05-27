@@ -88,7 +88,6 @@ const LoginWithPhone = () => {
                     placeholder="00 000 00 00"
                     mask="{[00] [000] [00] [00]}"
                     placeholderTextColor={style.placeHolderColor}
-                    value={phone}
                     onChangeText={(formated, extracted) => {
                       setPhone(extracted);
                     }}

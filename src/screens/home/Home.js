@@ -23,6 +23,7 @@ import Slider from '../components/Slider';
 import {useDispatch, useSelector} from 'react-redux';
 import {HomeApi} from '../../store/api/home';
 import Loading from '../components/Loading';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 const Home = () => {
   const navigation = useNavigation();
   const {loading, error, home, user} = useSelector(state => state.HomeReducer);
@@ -56,8 +57,8 @@ const Home = () => {
         }}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
+      <Header user={user.data} />
       <View style={styles.header}>
-        <Header user={user.data} />
         <ScrollView
           nestedScrollEnabled
           contentContainerStyle={{paddingBottom: 20, paddingHorizontal: 10}}
@@ -120,8 +121,29 @@ const Home = () => {
                 </View>
               </View>
               <View style={styles.cardViewContainer}>
-                <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
-                  <Text style={styles.btnText}>Muddati oz qolgan</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('MuddatOzQolgan', {
+                      uzs: home.data.debitorUsz,
+                      usd: home.data.debitorUsd,
+                    });
+                  }}
+                  activeOpacity={0.8}
+                  style={styles.btn}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      width: '100%',
+                    }}>
+                    <View>
+                      <Text style={styles.btnText}>Muddati oz qolgan</Text>
+                    </View>
+                    <View style={{marginRight: 15}}>
+                      <Icon name="hourglass" color={'#fff'} size={22} />
+                    </View>
+                  </View>
                 </TouchableOpacity>
                 {/* <View>
                   <ListCard
@@ -224,7 +246,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    width: '95%',
+    width: '100%',
     alignSelf: 'center',
   },
   appInfoText: {

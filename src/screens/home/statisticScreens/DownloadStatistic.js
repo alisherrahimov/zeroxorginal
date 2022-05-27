@@ -94,7 +94,7 @@ const DownloadStatistic = () => {
           <TouchableOpacity
             onPress={() => {
               navigation.navigate('PdfView', {
-                pdf: 'http://www.africau.edu/images/default/sample.pdf',
+                pdf: 'https://www.researchgate.net/profile/Susana-Addo-Ntim/publication/294900462_15_MB_PDF/data/56c7254808ae408dfe52cfe3/ehp1306561s001.pdf',
               });
             }}
             activeOpacity={0.95}
