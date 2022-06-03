@@ -15,7 +15,7 @@ import Navigation from './src/navigation/Navigation';
 import {Store} from './src/store/store/Store';
 import {style} from './src/theme/style';
 import './src/store/api/token/getToken';
-StatusBar.setBackgroundColor('rgba(0,0,0,0)');
+StatusBar.setBackgroundColor('rgba(0,0,0,0)', true);
 StatusBar.setBarStyle('dark-content');
 StatusBar.setTranslucent(true);
 

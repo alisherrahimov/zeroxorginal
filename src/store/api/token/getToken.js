@@ -5,17 +5,16 @@ const setItem = (key, value) => {
   try {
     mmkv.setItem(key, value);
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
 const getItem = async key => {
   try {
     const a = await mmkv.getItem(key);
-    console.log(a);
     return a;
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 

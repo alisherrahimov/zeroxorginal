@@ -1,7 +1,6 @@
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,7 +11,6 @@ import {style} from '../../theme/style';
 import {BackGroundIcon} from '../../helper/homeIcon';
 import {useNavigation} from '@react-navigation/native';
 import Card from '../components/Card';
-import ListCard from '../components/ListCard';
 import BerilganQarzIcon from '../../images/home/QarzOlganIcon.svg';
 import MuddatUtganPlus from '../../images/home/MuddatUtgan+.svg';
 import MuddatUtganMinus from '../../images/home/MuddatUtgan-.svg';

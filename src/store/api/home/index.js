@@ -20,7 +20,6 @@ const HomeApi = createAsyncThunk(
           },
         }),
       ]);
-      console.log(user_data.data, home_data.data);
       if (
         user_data.status === successStatus &&
         home_data.status === successStatus

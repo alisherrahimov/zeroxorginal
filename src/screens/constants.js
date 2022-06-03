@@ -1,4 +1,4 @@
-const URL = 'http://45.80.70.116:5000/api/v1';
+const URL = 'https://app.zerox.uz/api/v1';
 
 const createStatus = 201;
 const errorStatus = 400;

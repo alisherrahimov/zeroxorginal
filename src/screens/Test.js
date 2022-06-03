@@ -12,7 +12,6 @@ import {URL} from './constants';
 import axios from 'axios';
 const Test = () => {
   const navigation = useNavigation();
-
   const route = useRoute();
   const {token} = route.params;
   const [code, setCode] = useState({code: '', comp_id: ''});
@@ -35,6 +34,7 @@ const Test = () => {
         if (response.data.success) {
           setData(response.data);
           setLoading(false);
+          navigation.navigate('BottomTabNavigator');
         }
       } catch (error) {
         setError(true);

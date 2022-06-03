@@ -36,7 +36,10 @@ const LoginWithPhone = () => {
       ).unwrap();
       if (response.success) {
         setItem('token', response.token);
-        navigation.reset({routes: [{name: 'BottomTabNavigator'}], index: 0});
+        navigation.reset({
+          routes: [{name: 'Test', params: {token: response.token}}],
+          index: 0,
+        });
       }
     } catch (error) {
       Alert.alert('ERROR', JSON.stringify(error));
