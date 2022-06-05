@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 const data = [
@@ -31,16 +31,18 @@ const data = [
   },
 ];
 const Slider = () => {
+  const scrollRef = useRef(null);
   const navigation = useNavigation();
   const scrollX = new Animated.Value(0);
   let position = Animated.divide(scrollX, 150);
+
   const RenderList = ({item, index}) => {
     return (
       <Pressable
         onPress={() => {
           navigation.navigate('AboutUs');
         }}
-        style={{width: '100%', height: style.height / 4.8}}>
+        style={{width: '100%', height: style.height / 4.2}}>
         <View style={{flexDirection: 'row'}}>
           <View style={{maxWidth: '70%'}}>
             <Text style={styles.title}>{item.title}</Text>
@@ -60,6 +62,7 @@ const Slider = () => {
   return (
     <View style={styles.container}>
       <ScrollView
+        ref={scrollRef}
         pagingEnabled
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled

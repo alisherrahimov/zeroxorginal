@@ -4,7 +4,15 @@ import {style} from '../../theme/style';
 import PropTypes from 'prop-types';
 import {useNavigation} from '@react-navigation/native';
 
-const ListCard = ({title, uzs = [], usd = [], type, color}) => {
+const ListCard = ({
+  title,
+  uzs = [],
+  usd = [],
+  type,
+  color,
+  width,
+  disabled,
+}) => {
   const navigation = useNavigation();
   const [blue, setBlue] = React.useState(false);
   const onChangeColor = bool => {
@@ -13,6 +21,7 @@ const ListCard = ({title, uzs = [], usd = [], type, color}) => {
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       onPress={() => {
         navigation.navigate('SearchDebitor', {
           title: title,
@@ -21,10 +30,10 @@ const ListCard = ({title, uzs = [], usd = [], type, color}) => {
         });
       }}
       activeOpacity={0.9}
-      style={styles.containerrr}>
+      style={[styles.containerrr, {width: width}]}>
       <View>
         <View style={{marginHorizontal: 10, marginVertical: 10}}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={[styles.title, {color: color}]}>{title}</Text>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <TouchableOpacity
@@ -130,7 +139,7 @@ export default ListCard;
 const styles = StyleSheet.create({
   containerrr: {
     flex: 1,
-    width: style.width / 2.3,
+
     backgroundColor: '#fff',
     borderRadius: 8,
     shadowColor: '#000',
@@ -161,7 +170,7 @@ const styles = StyleSheet.create({
     color: style.textColor,
   },
   title: {
-    fontSize: style.fontSize.xx,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
     color: style.textColor,
   },

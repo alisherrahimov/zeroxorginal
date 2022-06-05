@@ -22,7 +22,7 @@ const Statistic = () => {
       <Header user={user.data} />
       <View style={styles.header}>
         <View style={styles.aboutUsContainer}>
-          <View style={{marginTop: 20, marginBottom: 20}}>
+          <View style={{marginTop: 30, marginBottom: 30}}>
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => {

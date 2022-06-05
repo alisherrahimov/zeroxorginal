@@ -19,6 +19,7 @@ import MuddatUtganPlus from '../../images/home/MuddatUtgan+.svg';
 import MuddatUtganMinus from '../../images/home/MuddatUtgan-.svg';
 import OlinganQarz from '../../images/home/OlingaQarz.svg';
 import GiveDebtIcon from '../../images/tab/GiveDebtIconBlue.svg';
+import ListCard from '../components/ListCard';
 const UserInformationOfDebt = () => {
   const navigation = useNavigation();
   return (
@@ -171,6 +172,26 @@ const UserInformationOfDebt = () => {
                     disabled={true}
                     title={'Muddati\no’tgan'}
                     Icon={MuddatUtganMinus}
+                    type={2}
+                    color={'red'}
+                  />
+                </View>
+              </View>
+              <View style={styles.cardViewContainer}>
+                <View>
+                  <ListCard
+                    disabled={true}
+                    width={style.width / 2.5}
+                    title={'Muddati oz qolgan\n(debitor)'}
+                    type={2}
+                    color={style.blue}
+                  />
+                </View>
+                <View>
+                  <ListCard
+                    disabled={true}
+                    width={style.width / 2.5}
+                    title={'Muddati oz qolgan\n(kreditor'}
                     type={2}
                     color={'red'}
                   />

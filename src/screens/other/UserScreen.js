@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   phoneText: {
-    fontFamily: style.fontFamilyMedium,
+    fontFamily: style.fontFamilyBold,
     fontSize: style.fontSize.small,
     color: style.textColor,
   },

@@ -18,7 +18,9 @@ import {Checkbox, RadioButton} from 'react-native-paper';
 import {Picker as SelectPicker} from '@react-native-picker/picker';
 const GiveDebtUser = () => {
   const navigation = useNavigation();
-  const [isChecked, setIsChecked] = React.useState();
+  const [isUzs, setUzs] = React.useState(true);
+  const [isUsd, setUsd] = React.useState(false);
+  const [checked, setChecked] = React.useState(false);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -61,7 +63,7 @@ const GiveDebtUser = () => {
                   }}
                   style={styles.userImage}
                 />
-                <View style={{marginLeft: 5}}>
+                <View style={{marginLeft: 10}}>
                   <Text style={styles.titleGiveDebt}>Qarz oluvchi :</Text>
                   <Text style={styles.username}>
                     Shavkatov Shahzod Alisherovich
@@ -82,7 +84,7 @@ const GiveDebtUser = () => {
                   }}
                   style={styles.userImage}
                 />
-                <View style={{marginLeft: 5}}>
+                <View style={{marginLeft: 10}}>
                   <Text
                     style={[styles.titleGiveDebt, {color: style.MoneyColor}]}>
                     Qarz beruvchi :
@@ -104,6 +106,10 @@ const GiveDebtUser = () => {
                   marginTop: 20,
                 }}>
                 <Pressable
+                  onPress={() => {
+                    setUzs(true);
+                    setUsd(false);
+                  }}
                   android_ripple={{
                     borderless: true,
                     color: style.blue,
@@ -120,12 +126,20 @@ const GiveDebtUser = () => {
                     </Text>
                     <RadioButton
                       value="first"
+                      onPress={() => {
+                        setUzs(true);
+                        setUsd(false);
+                      }}
                       color={style.blue}
-                      status="checked"
+                      status={isUzs ? 'checked' : 'unchecked'}
                     />
                   </View>
                 </Pressable>
                 <Pressable
+                  onPress={() => {
+                    setUzs(false);
+                    setUsd(true);
+                  }}
                   android_ripple={{
                     borderless: true,
                     color: style.blue,
@@ -142,52 +156,16 @@ const GiveDebtUser = () => {
                     </Text>
                     <RadioButton
                       value="second"
+                      onPress={() => {
+                        setUzs(false);
+                        setUsd(true);
+                      }}
                       color={style.blue}
-                      status="unchecked"
+                      status={isUsd ? 'checked' : 'unchecked'}
                     />
                   </View>
                 </Pressable>
               </View>
-
-              {/* <View style={styles.TextInputLabelContainer}>
-                <View style={styles.inputTitle}>
-                  <Text style={styles.phoneText}>Valyutani tanlang</Text>
-                </View>
-
-                <View style={{flex: 1}}>
-                  <SelectPicker
-                    dropdownIconColor={style.textColor}
-                    itemStyle={{
-                      fontFamily: style.fontFamilyMedium,
-                      fontSize: style.fontSize.small,
-                      color: style.textColor,
-                    }}
-                    mode="dialog"
-                    selectedValue={isChecked}
-                    onValueChange={(itemValue, itemIndex) =>
-                      setIsChecked(itemValue)
-                    }>
-                    <SelectPicker.Item
-                      label="Dollar"
-                      value="Dollar"
-                      style={{
-                        fontSize: style.fontSize.xx,
-                        color: style.textColor,
-                        fontFamily: style.fontFamilyMedium,
-                      }}
-                    />
-                    <SelectPicker.Item
-                      label="So'm"
-                      value="So'm"
-                      style={{
-                        fontSize: style.fontSize.xx,
-                        color: style.textColor,
-                        fontFamily: style.fontFamilyMedium,
-                      }}
-                    />
-                  </SelectPicker>
-                </View>
-              </View> */}
 
               <View style={styles.TextInputLabelContainer}>
                 <View style={styles.inputTitle}>
@@ -196,7 +174,7 @@ const GiveDebtUser = () => {
 
                 <View style={{flex: 1}}>
                   <TextInput
-                    placeholder="100 000 so'm"
+                    placeholder={isUsd ? '10 USD' : '100 000 UZS'}
                     placeholderTextColor={style.placeHolderColor}
                     keyboardType="number-pad"
                     style={styles.TextInput}
@@ -226,9 +204,22 @@ const GiveDebtUser = () => {
                   flexDirection: 'row',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  marginTop: 10,
+                  marginBottom: 10,
                 }}>
-                <Checkbox status="checked" color={style.blue} />
-                <Text style={styles.phoneText}>
+                <Checkbox
+                  onPress={() => setChecked(!checked)}
+                  status={checked ? 'checked' : 'unchecked'}
+                  color={style.blue}
+                />
+                <Text
+                  style={[
+                    styles.phoneText,
+                    {
+                      textDecorationLine: 'underline',
+                      color: style.blue,
+                    },
+                  ]}>
                   Qarz shartnomasi bilan tanishdim
                 </Text>
               </View>

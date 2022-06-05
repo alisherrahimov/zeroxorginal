@@ -100,7 +100,7 @@ const DownloadStatistic = () => {
             activeOpacity={0.95}
             style={{alignItems: 'center', justifyContent: 'center'}}>
             <View style={styles.pdfView}>
-              <Text style={styles.userName}>PDF</Text>
+              <Text style={styles.userName}>Ko'rish</Text>
             </View>
           </TouchableOpacity>
           <View

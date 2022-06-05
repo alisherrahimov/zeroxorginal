@@ -33,6 +33,7 @@ const MuddatOzQolgan = () => {
           <View>
             <ListCard
               type={2}
+              width={style.width / 2.5}
               color={style.blue}
               uzs={uzs}
               usd={usd}
@@ -42,6 +43,7 @@ const MuddatOzQolgan = () => {
           <View>
             <ListCard
               type={2}
+              width={style.width / 2.5}
               color={'red'}
               uzs={uzs}
               usd={usd}

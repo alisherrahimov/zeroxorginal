@@ -32,7 +32,7 @@ const Card = ({title, type, Icon, color, disabled, width, height}) => {
             styles.title,
             {
               color: color,
-              maxWidth: 80,
+              maxWidth: type == 1 ? '80%' : '100%',
             },
           ]}>
           {title}

@@ -15,7 +15,6 @@ import BerilganQarzIcon from '../../images/home/QarzOlganIcon.svg';
 import MuddatUtganPlus from '../../images/home/MuddatUtgan+.svg';
 import MuddatUtganMinus from '../../images/home/MuddatUtgan-.svg';
 import OlinganQarz from '../../images/home/OlingaQarz.svg';
-
 import Header from '../components/Header';
 import Slider from '../components/Slider';
 import {useDispatch, useSelector} from 'react-redux';
@@ -67,12 +66,12 @@ const Home = () => {
                 <Slider />
               </View>
             </View>
-            <View style={{flex: 1, marginTop: 20}}>
+            <View style={{flex: 1, marginTop: 40}}>
               <View style={[styles.cardViewContainer, {marginTop: 0}]}>
                 <View>
                   <Card
                     width={style.width / 2.3}
-                    title={'Berilgan\nqarz'}
+                    title={'Berilgan qarz\n(debitor)'}
                     Icon={OlinganQarz}
                     type={0}
                     color={style.blue}
@@ -81,28 +80,19 @@ const Home = () => {
                 <View>
                   <Card
                     width={style.width / 2.3}
-                    title={'Olingan\nqarz'}
+                    title={'Olingan qarz\n(kreditor)'}
                     Icon={BerilganQarzIcon}
                     type={0}
                     color={'red'}
                   />
                 </View>
               </View>
-              <View style={{alignSelf: 'center', marginTop: 20}}>
-                <Text
-                  style={{
-                    fontFamily: style.fontFamilyMedium,
-                    color: style.textColor,
-                    fontSize: style.fontSize.xx,
-                  }}>
-                  Shundan
-                </Text>
-              </View>
-              <View style={styles.cardViewContainer}>
+
+              <View style={[styles.cardViewContainer, {marginTop: 30}]}>
                 <View>
                   <Card
                     width={style.width / 2.3}
-                    title={'Muddati\no’tgan'}
+                    title={'Muddati o’tgan\n(debitor)'}
                     Icon={MuddatUtganPlus}
                     type={2}
                     color={style.blue}
@@ -111,14 +101,14 @@ const Home = () => {
                 <View>
                   <Card
                     width={style.width / 2.3}
-                    title={'Muddati\no’tgan'}
+                    title={'Muddati o’tgan\n(kreditor)'}
                     Icon={MuddatUtganMinus}
                     type={2}
                     color={'red'}
                   />
                 </View>
               </View>
-              <View style={styles.cardViewContainer}>
+              <View style={[styles.cardViewContainer, {marginTop: 30}]}>
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('MuddatOzQolgan', {
@@ -136,31 +126,15 @@ const Home = () => {
                       width: '100%',
                     }}>
                     <View>
-                      <Text style={styles.btnText}>Muddati oz qolgan</Text>
+                      <Text style={styles.btnText}>
+                        Muddati oz qolgan qarzdorliklar
+                      </Text>
                     </View>
                     <View style={{marginRight: 15}}>
                       <Icon name="hourglass" color={'#fff'} size={22} />
                     </View>
                   </View>
                 </TouchableOpacity>
-                {/* <View>
-                  <ListCard
-                    type={2}
-                    color={style.blue}
-                    uzs={home?.data?.debitorUsz}
-                    usd={home?.data?.debitorUsd}
-                    title={'Muddati oz qolgan\n(debitor)'}
-                  />
-                </View>
-                <View>
-                  <ListCard
-                    type={2}
-                    color={'red'}
-                    uzs={home?.data?.debitorUsz}
-                    usd={home?.data?.debitorUsd}
-                    title={'Muddati oz qolgan\n(kreditor)'}
-                  />
-                </View> */}
               </View>
             </View>
           </View>
@@ -176,7 +150,7 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: style.blue,
     width: '100%',
-    height: 50,
+    height: style.buttonHeight,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -227,7 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   appInfoMainContainer: {
-    height: style.height / 4.8,
+    height: style.height / 4.2,
     backgroundColor: '#fff',
     borderRadius: 15,
     flexDirection: 'row',
