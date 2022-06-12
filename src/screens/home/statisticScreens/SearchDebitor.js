@@ -6,11 +6,23 @@ import BackButton from '../../components/BackButton';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import StatisticCard from '../../components/StatisticCard';
+import {useFetch} from '../../../hooks/useFetch';
+import Loading from '../../components/Loading';
+import {URL} from '../../constants';
 
 const SearchDebitor = () => {
   const route = useRoute();
-  const {title, type, color} = route.params;
+  const {title, color, type, url, person} = route.params;
+  const {data, error, loading} = useFetch({
+    method: 'GET',
+    url: URL + url,
+  });
+
   const navigation = useNavigation();
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <View style={styles.container}>
       <View style={{width: style.width, height: style.height}}>
@@ -62,7 +74,13 @@ const SearchDebitor = () => {
             </View>
           </View>
           <View style={styles.aboutUsContainer}>
-            <StatisticCard title={title} type={type} color={color} />
+            <StatisticCard
+              title={title}
+              type={type}
+              color={color}
+              data={data?.data}
+              person={person}
+            />
           </View>
         </View>
       </View>

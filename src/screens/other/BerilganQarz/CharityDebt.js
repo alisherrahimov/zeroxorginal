@@ -46,7 +46,7 @@ const CharityDebt = () => {
                 }}
                 activeOpacity={0.8}
                 style={[styles.registerButton, {marginTop: 20}]}>
-                <Text style={[styles.textButton]}>Qarzni to'liq qaytarish</Text>
+                <Text style={[styles.textButton]}>To'liq voz kechish</Text>
               </TouchableOpacity>
             </View>
             <View>

@@ -6,7 +6,6 @@ const HomeApi = createAsyncThunk(
   'get/home/user',
   async (state, {rejectWithValue}) => {
     const token = await getItem('token');
-    console.log(token);
     try {
       const [user_data, home_data] = await axios.all([
         axios.get(URL + '/user/me', {

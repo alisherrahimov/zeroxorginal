@@ -9,10 +9,9 @@ const setItem = (key, value) => {
   }
 };
 
-const getItem = async key => {
+const getItem = key => {
   try {
-    const a = await mmkv.getItem(key);
-    return a;
+    return mmkv.getItem(key);
   } catch (error) {
     return error;
   }

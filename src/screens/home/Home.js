@@ -70,11 +70,14 @@ const Home = () => {
               <View style={[styles.cardViewContainer, {marginTop: 0}]}>
                 <View>
                   <Card
+                    // amount={home.data.creditorUsd}
                     width={style.width / 2.3}
                     title={'Berilgan qarz\n(debitor)'}
                     Icon={OlinganQarz}
                     type={0}
                     color={style.blue}
+                    person="debitor"
+                    url={'/arrearage/my/debitor?page=1&limit=10'}
                   />
                 </View>
                 <View>
@@ -83,7 +86,9 @@ const Home = () => {
                     title={'Olingan qarz\n(kreditor)'}
                     Icon={BerilganQarzIcon}
                     type={0}
+                    person="creditor"
                     color={'red'}
+                    url={'/arrearage/my/creditor?page=1&limit=10'}
                   />
                 </View>
               </View>
@@ -95,7 +100,9 @@ const Home = () => {
                     title={'Muddati o’tgan\n(debitor)'}
                     Icon={MuddatUtganPlus}
                     type={2}
+                    person="debitor"
                     color={style.blue}
+                    url={'/arrearage/expired/debitor?page=1&limit=10'}
                   />
                 </View>
                 <View>
@@ -104,7 +111,9 @@ const Home = () => {
                     title={'Muddati o’tgan\n(kreditor)'}
                     Icon={MuddatUtganMinus}
                     type={2}
+                    person="creditor"
                     color={'red'}
+                    url={'/arrearage/expired/creditor?page=1&limit=10'}
                   />
                 </View>
               </View>

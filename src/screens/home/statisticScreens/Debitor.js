@@ -16,7 +16,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const Debitor = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const {type} = route.params;
+  const {type, item} = route.params;
+  console.log(item);
   return (
     <View style={styles.container}>
       <View
@@ -37,7 +38,9 @@ const Debitor = () => {
               <Text style={styles.info}>Qarzdor nomi</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>Abdullayev Abdulla</Text>
+              <Text style={styles.info}>
+                {item?.creditor?.first_name + ' ' + item?.creditor?.last_name}
+              </Text>
             </View>
           </View>
           <View
@@ -52,7 +55,9 @@ const Debitor = () => {
               <Text style={styles.info}>Qarz summasi</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>1,0 mln so’m</Text>
+              <Text style={styles.info}>
+                {item?.amount + ' ' + item?.currency}
+              </Text>
             </View>
           </View>
           <View

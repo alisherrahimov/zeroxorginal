@@ -9,18 +9,20 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
 import {Checkbox, RadioButton} from 'react-native-paper';
-import {Picker as SelectPicker} from '@react-native-picker/picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 const GiveDebtUser = () => {
   const navigation = useNavigation();
-  const [isUzs, setUzs] = React.useState(true);
-  const [isUsd, setUsd] = React.useState(false);
-  const [checked, setChecked] = React.useState(false);
+  const [isUzs, setUzs] = useState(true);
+  const [isUsd, setUsd] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -187,14 +189,22 @@ const GiveDebtUser = () => {
                 </View>
 
                 <View style={{flex: 1}}>
-                  <TouchableOpacity style={styles.buttontime}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setOpen(!open);
+                    }}
+                    style={styles.buttontime}>
                     <Text
                       style={{
                         fontFamily: style.fontFamilyMedium,
                         color: style.textColor,
                         fontSize: style.fontSize.xx,
                       }}>
-                      22/11/1997
+                      {date.getDate() +
+                        '/' +
+                        (date.getMonth() + 1) +
+                        '/' +
+                        date.getFullYear()}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -231,6 +241,26 @@ const GiveDebtUser = () => {
             </View>
           </View>
         </View>
+        {open && (
+          <DateTimePicker
+            value={date}
+            accentColor={style.blue}
+            locale="uz"
+            textColor={style.textColor}
+            style={{backgroundColor: 'red'}}
+            date={date}
+            dateFormat="day month year"
+            display="spinner"
+            mode={'datetime'}
+            onChange={(event, selectedDate) => {
+              const currentDate = selectedDate;
+              setOpen(!open);
+              setDate(currentDate);
+            }}
+            onTouchCancel={() => setOpen(!open)}
+            maximumDate={new Date()}
+          />
+        )}
       </ScrollView>
     </View>
   );

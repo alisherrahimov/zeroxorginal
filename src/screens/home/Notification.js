@@ -10,13 +10,23 @@ import React from 'react';
 import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import TopTabBar from '../../navigation/TopTabBar';
 import NotificationCard from '../components/NotificationCard';
 import NewsNotificationCard from '../components/NewsNotification';
+import {useFetch} from '../../hooks/useFetch';
+import {URL} from '../constants';
+import Loading from '../components/Loading';
 const TopTab = createMaterialTopTabNavigator();
 const Notification = () => {
+  const {data, error, loading} = useFetch({
+    url: URL + '/notification/me',
+    method: 'GET',
+  });
+  if (loading) {
+    return <Loading />;
+  }
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
@@ -45,11 +55,13 @@ const Notification = () => {
                 options={{tabBarLabel: 'Bildirishnomalar'}}
                 name="Bildrishnoma"
                 component={Bildrishnoma}
+                initialParams={{data: data.data}}
               />
               <TopTab.Screen
                 options={{tabBarLabel: 'Yangiliklar'}}
                 name="News"
                 component={News}
+                initialParams={{data: data.data}}
               />
             </TopTab.Navigator>
           </View>
@@ -60,30 +72,31 @@ const Notification = () => {
 };
 
 const News = () => {
+  const route = useRoute();
+  const {data} = route.params;
   return (
     <View style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 5}}>
-        <NewsNotificationCard />
-        <NewsNotificationCard />
-        <NewsNotificationCard />
-        <NewsNotificationCard />
+        contentContainerStyle={{paddingBottom: 10}}>
+        {data?.map((item, index) => {
+          return <NewsNotificationCard data={data} />;
+        })}
       </ScrollView>
     </View>
   );
 };
 const Bildrishnoma = () => {
+  const route = useRoute();
+  const {data} = route.params;
   return (
     <View style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 5}}>
-        <NotificationCard />
-        <NotificationCard />
-        <NotificationCard />
-        <NotificationCard />
-        <NotificationCard />
+        contentContainerStyle={{paddingBottom: 10}}>
+        {data?.map((item, index) => {
+          return <NotificationCard data={data} />;
+        })}
       </ScrollView>
     </View>
   );

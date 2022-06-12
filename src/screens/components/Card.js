@@ -4,7 +4,17 @@ import {PurseIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 
-const Card = ({title, type, Icon, color, disabled, width, height}) => {
+const Card = ({
+  title,
+  type,
+  Icon,
+  color,
+  disabled,
+  width,
+  height,
+  url,
+  person,
+}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -14,6 +24,8 @@ const Card = ({title, type, Icon, color, disabled, width, height}) => {
           title: title,
           type: type,
           color: color,
+          url,
+          person,
         });
       }}
       activeOpacity={0.9}

@@ -36,7 +36,9 @@ const NotificationCard = () => {
               justifyContent: 'space-between',
               alignItems: 'center',
             }}>
-            <Text style={styles.notification}>Bugun soat 22:30</Text>
+            <Text style={styles.notification}>
+              Bugun soat {new Date().toLocaleString()}
+            </Text>
             <TouchableOpacity activeOpacity={0.8} style={styles.button}>
               <Text style={[styles.notification, {color: '#fff'}]}>Ok</Text>
             </TouchableOpacity>

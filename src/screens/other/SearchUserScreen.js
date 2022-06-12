@@ -12,11 +12,51 @@ import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, {
+  DateTimePickerAndroid,
+} from '@react-native-community/datetimepicker';
+import {useDispatch, useSelector} from 'react-redux';
+import {UserSearch} from '../../store/api/user';
+import Loading from '../components/Loading';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../components/ToastConfig';
+import {defaultValue} from '../../store/reducers/UserSearchReducer';
+import {useFetch} from '../../hooks/useFetch';
+import {URL} from '../constants';
+import axios from 'axios';
 const SearchUserScreen = () => {
   const navigation = useNavigation();
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
+  const [userID, setUserID] = useState('');
+  const SearchUser = async () => {
+    const day = date.getDate().toString();
+    const month = Number(date.getMonth().toString()) + 1;
+    const year = date.getFullYear().toString();
+    const userDate = `${day}.${month}.${year}`;
+    try {
+      setLoading(true);
+      setError(false);
+      const {data, status} = await axios.post(URL + '/user/search', {
+        id: userID,
+        birthday: userDate,
+        type: 1,
+      });
+      if (status == 200) {
+        setData(data);
+      }
+    } catch (error) {
+      setError(true);
+    }
+    setLoading(false);
+  };
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <View style={styles.container}>
       <View
@@ -61,7 +101,11 @@ const SearchUserScreen = () => {
                     </View>
                     <View style={{flex: 1}}>
                       <TextInput
-                        placeholder="AA000000"
+                        value={userID}
+                        placeholder="100005AA"
+                        onChangeText={text => {
+                          setUserID(text);
+                        }}
                         placeholderTextColor={style.placeHolderColor}
                         keyboardType="default"
                         style={[styles.TextInput, {paddingLeft: 15}]}
@@ -111,6 +155,18 @@ const SearchUserScreen = () => {
                     </View>
                   </View>
                 </View>
+                {error && (
+                  <Text
+                    style={{
+                      color: 'red',
+                      fontFamily: style.fontFamilyMedium,
+                      fontSize: style.fontSize.small,
+                      alignSelf: 'center',
+                      marginTop: 8,
+                    }}>
+                    Bunday foydalanuvchi topilmadi!
+                  </Text>
+                )}
                 <View
                   style={{
                     alignItems: 'center',
@@ -118,6 +174,7 @@ const SearchUserScreen = () => {
                     marginTop: 20,
                   }}>
                   <TouchableOpacity
+                    onPress={SearchUser}
                     activeOpacity={0.8}
                     style={styles.registerButton}>
                     <Text style={styles.textButton}>Izlash</Text>
@@ -126,14 +183,16 @@ const SearchUserScreen = () => {
               </View>
             </View>
           </View>
-          <UserInfo />
+          {error == false && loading == false && data?.success && (
+            <UserInfo user={data?.user} navigation={navigation} />
+          )}
         </View>
       </ScrollView>
     </View>
   );
 };
 
-const UserInfo = () => {
+const UserInfo = ({user, navigation}) => {
   return (
     <View style={styles.main}>
       <View style={styles.aboutUsContainer}>
@@ -146,6 +205,9 @@ const UserInfo = () => {
           }}>
           <View>
             <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('UserInformationOfDebt');
+              }}
               activeOpacity={0.8}
               style={styles.getUserInfoButton}>
               <Text
@@ -157,11 +219,14 @@ const UserInfo = () => {
           <View>
             <View style={[styles.TextInputLabelContainer, {width: '100%'}]}>
               <View style={styles.inputTitle}>
-                <Text style={styles.phoneText}>FISH :</Text>
+                <Text style={styles.phoneText}>FISH : </Text>
               </View>
               <View style={{flex: 1}}>
                 <TextInput
-                  value="Shavkatov Shahzod Alisherovich"
+                  value={
+                    `${user?.last_name} ${user?.first_name} ${user?.middle_name}` ||
+                    null
+                  }
                   placeholderTextColor={style.placeHolderColor}
                   editable={false}
                   keyboardType="default"
@@ -177,7 +242,7 @@ const UserInfo = () => {
                 <TextInput
                   editable={false}
                   placeholderTextColor={style.placeHolderColor}
-                  value="13.07.2022"
+                  value={user?.createdAt.slice(0, 10)}
                   keyboardType="default"
                   style={[styles.TextInput, {paddingLeft: 15}]}
                 />
@@ -190,7 +255,7 @@ const UserInfo = () => {
               <View style={{flex: 1}}>
                 <TextInput
                   placeholderTextColor={style.placeHolderColor}
-                  value="00001AA"
+                  value={user?.uid}
                   editable={false}
                   keyboardType="default"
                   style={[styles.TextInput, {paddingLeft: 15}]}

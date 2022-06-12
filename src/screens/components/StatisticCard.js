@@ -10,7 +10,7 @@ import React from 'react';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 
-const StatisticCard = ({title, type, color}) => {
+const StatisticCard = ({title, type, color, data, person}) => {
   const navigation = useNavigation();
   const ListRender = ({item, index}) => {
     return (
@@ -18,7 +18,7 @@ const StatisticCard = ({title, type, color}) => {
         key={index}
         onPress={() => {
           if (color == style.blue) {
-            navigation.navigate('Debitor', {type: type});
+            navigation.navigate('Debitor', {type: type, item});
           } else {
             navigation.navigate('CreditorDebitor', {type: type});
           }
@@ -38,19 +38,20 @@ const StatisticCard = ({title, type, color}) => {
                 fontFamily: style.fontFamilyMedium,
                 fontSize: style.fontSize.small,
               }}>
-              {item}
+              {index + 1}
             </Text>
           </View>
           <View
             style={{
               justifyContent: 'center',
               maxWidth: style.width / 2.2,
-              height: 20,
               flex: 1,
               marginLeft: 10,
             }}>
             <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
-              Abdullayev Abdulla
+              {person == 'debitor'
+                ? item?.creditor?.first_name + ' ' + item?.creditor?.last_name
+                : item?.debitor?.first_name + ' ' + item?.debitor?.last_name}
             </Text>
           </View>
 
@@ -63,7 +64,7 @@ const StatisticCard = ({title, type, color}) => {
               flex: 1,
             }}>
             <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
-              1,0 mln
+              {item?.amount} {item?.currency}
             </Text>
           </View>
         </View>
@@ -85,7 +86,7 @@ const StatisticCard = ({title, type, color}) => {
             overflow: 'scroll',
             borderRadius: 10,
           }}
-          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          data={data}
           ItemSeparatorComponent={() => (
             <View
               style={{
@@ -95,53 +96,11 @@ const StatisticCard = ({title, type, color}) => {
               }}
             />
           )}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={({item, index}) => {
             return <ListRender item={item} index={index} />;
           }}
         />
-        {/* <View>
-          <View style={styles.header}>
-            <View
-              style={{
-                paddingLeft: 10,
-                flexDirection: 'row',
-              }}>
-              <View
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 35,
-                  height: 20,
-                }}>
-                <Text style={styles.info}>№</Text>
-              </View>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  maxWidth: style.width / 2.7,
-                  height: 20,
-                  flex: 1,
-                  marginLeft: 10,
-                }}>
-                <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
-                  Qarzdor nomi
-                </Text>
-              </View>
-              <View
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  maxWidth: style.width / 2.7,
-                  height: 20,
-                  flex: 1,
-                }}>
-                <Text style={[styles.info, {fontSize: style.fontSize.small}]}>
-                  Qarz summasi
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View> */}
       </View>
     </View>
   );

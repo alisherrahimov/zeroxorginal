@@ -1,21 +1,51 @@
 import {
   Platform,
   ScrollView,
-  //   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {UserSearch} from '../../store/api/user';
+import Loading from '../components/Loading';
+import Toast from 'react-native-toast-message';
+import {toastConfig} from '../components/ToastConfig';
 const SearchJuridicUser = () => {
   const navigation = useNavigation();
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [stir, setStir] = useState('');
+  const [userID, setUserID] = useState('');
+  const SearchUser = async () => {
+    try {
+      setLoading(true);
+      setError(false);
+      const {data, status} = await axios.post(URL + '/user/search', {
+        id: userID,
+        stir: stir,
+        type: 2,
+      });
+      if (status == 200) {
+        setData(data);
+      }
+    } catch (error) {
+      setError(true);
+    }
+    setLoading(false);
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <View style={styles.container}>
       <View
@@ -59,7 +89,9 @@ const SearchJuridicUser = () => {
                     </View>
                     <View style={{flex: 1}}>
                       <TextInput
-                        placeholder="AA000000"
+                        value={stir}
+                        placeholder="STIRni kiriting"
+                        onChangeText={text => setStir(text)}
                         placeholderTextColor={style.placeHolderColor}
                         keyboardType="default"
                         style={[styles.TextInput, {paddingLeft: 15}]}
@@ -72,7 +104,9 @@ const SearchJuridicUser = () => {
                     </View>
                     <View style={{flex: 1}}>
                       <TextInput
-                        placeholder="AA000000"
+                        placeholder="100005AA"
+                        value={userID}
+                        onChangeText={text => setUserID(text)}
                         placeholderTextColor={style.placeHolderColor}
                         keyboardType="default"
                         style={[styles.TextInput, {paddingLeft: 15}]}
@@ -80,6 +114,18 @@ const SearchJuridicUser = () => {
                     </View>
                   </View>
                 </View>
+                {error && (
+                  <Text
+                    style={{
+                      color: 'red',
+                      fontFamily: style.fontFamilyMedium,
+                      fontSize: style.fontSize.small,
+                      alignSelf: 'center',
+                      marginTop: 8,
+                    }}>
+                    Bunday foydalanuvchi topilmadi!
+                  </Text>
+                )}
                 <View
                   style={{
                     alignItems: 'center',
@@ -87,6 +133,7 @@ const SearchJuridicUser = () => {
                     marginTop: 20,
                   }}>
                   <TouchableOpacity
+                    onPress={SearchUser}
                     activeOpacity={0.8}
                     style={styles.registerButton}>
                     <Text style={styles.textButton}>Izlash</Text>
@@ -95,14 +142,17 @@ const SearchJuridicUser = () => {
               </View>
             </View>
           </View>
-          <UserInfo />
+          {error == false && loading == false && data?.success && (
+            <UserInfo user={data?.user} navigation={navigation} />
+          )}
         </View>
       </ScrollView>
+      <Toast config={toastConfig} />
     </View>
   );
 };
 
-const UserInfo = () => {
+const UserInfo = ({user, navigation}) => {
   return (
     <View style={styles.main}>
       <View style={styles.aboutUsContainer}>
@@ -115,6 +165,9 @@ const UserInfo = () => {
           }}>
           <View>
             <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('UserInformationOfDebt');
+              }}
               activeOpacity={0.8}
               style={styles.getUserInfoButton}>
               <Text
@@ -126,11 +179,15 @@ const UserInfo = () => {
           <View>
             <View style={[styles.TextInputLabelContainer, {width: '100%'}]}>
               <View style={styles.inputTitle}>
-                <Text style={styles.phoneText}>FISH :</Text>
+                <Text style={styles.phoneText}>FISH : </Text>
               </View>
               <View style={{flex: 1}}>
                 <TextInput
-                  value="Shavkatov Shahzod Alisherovich"
+                  value={
+                    `${user?.last_name} ${user?.first_name} ${user?.middle_name}` ||
+                    null
+                  }
+                  placeholderTextColor={style.placeHolderColor}
                   editable={false}
                   keyboardType="default"
                   style={[styles.TextInput, {paddingLeft: 15}]}
@@ -144,7 +201,8 @@ const UserInfo = () => {
               <View style={{flex: 1}}>
                 <TextInput
                   editable={false}
-                  value="13.07.2022"
+                  placeholderTextColor={style.placeHolderColor}
+                  value={user?.createdAt.slice(0, 10)}
                   keyboardType="default"
                   style={[styles.TextInput, {paddingLeft: 15}]}
                 />
@@ -156,7 +214,8 @@ const UserInfo = () => {
               </View>
               <View style={{flex: 1}}>
                 <TextInput
-                  value="00001AA"
+                  placeholderTextColor={style.placeHolderColor}
+                  value={user?.uid}
                   editable={false}
                   keyboardType="default"
                   style={[styles.TextInput, {paddingLeft: 15}]}

@@ -6,15 +6,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {BackGroundIcon, PurseIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
 import {Checkbox} from 'react-native-paper';
-
+import DateTimePicker from '@react-native-community/datetimepicker';
 const DebtDateLength = () => {
   const navigation = useNavigation();
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
   return (
     <View style={styles.container}>
       <View
@@ -54,14 +56,22 @@ const DebtDateLength = () => {
                   <Text style={styles.phoneText}>Yangi muddatni kiriting</Text>
                 </View>
                 <View style={{flex: 1}}>
-                  <TouchableOpacity style={styles.buttontime}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setOpen(!open);
+                    }}
+                    style={styles.buttontime}>
                     <Text
                       style={{
                         fontFamily: style.fontFamilyMedium,
                         color: style.textColor,
                         fontSize: style.fontSize.xx,
                       }}>
-                      22/11/1997
+                      {date.getDate() +
+                        '/' +
+                        (date.getMonth() + 1) +
+                        '/' +
+                        date.getFullYear()}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -89,6 +99,26 @@ const DebtDateLength = () => {
           </View>
         </View>
       </View>
+      {open && (
+        <DateTimePicker
+          value={date}
+          accentColor={style.blue}
+          locale="uz"
+          textColor={style.textColor}
+          style={{backgroundColor: 'red'}}
+          date={date}
+          dateFormat="day month year"
+          display="spinner"
+          mode={'datetime'}
+          onChange={(event, selectedDate) => {
+            const currentDate = selectedDate;
+            setOpen(!open);
+            setDate(currentDate);
+          }}
+          onTouchCancel={() => setOpen(!open)}
+          maximumDate={new Date()}
+        />
+      )}
     </View>
   );
 };

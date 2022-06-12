@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {style} from '../../theme/style';
-const NewsNotificationCard = () => {
+const NewsNotificationCard = ({data}) => {
   return (
     <View style={styles.container}>
       <View style={{marginVertical: 15, marginHorizontal: 15}}>
