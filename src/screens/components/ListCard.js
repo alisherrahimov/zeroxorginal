@@ -1,7 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {style} from '../../theme/style';
-import PropTypes from 'prop-types';
 import {useNavigation} from '@react-navigation/native';
 
 const ListCard = ({
@@ -129,12 +128,8 @@ const ListCard = ({
     </TouchableOpacity>
   );
 };
-ListCard.propTypes = {
-  title: PropTypes.string,
-  uzs: PropTypes.array,
-  usd: PropTypes.array,
-};
-export default ListCard;
+
+export default memo(ListCard);
 
 const styles = StyleSheet.create({
   containerrr: {

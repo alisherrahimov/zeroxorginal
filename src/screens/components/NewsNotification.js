@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {style} from '../../theme/style';
 const NewsNotificationCard = ({data}) => {
   return (
@@ -25,7 +25,7 @@ const NewsNotificationCard = ({data}) => {
   );
 };
 
-export default NewsNotificationCard;
+export default memo(NewsNotificationCard);
 
 const styles = StyleSheet.create({
   container: {

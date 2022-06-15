@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {style} from '../../theme/style';
 import CloseIcon from '../../images/components/CloseIcon.svg';
 const NotificationCard = () => {
@@ -49,7 +49,7 @@ const NotificationCard = () => {
   );
 };
 
-export default NotificationCard;
+export default memo(NotificationCard);
 
 const styles = StyleSheet.create({
   container: {

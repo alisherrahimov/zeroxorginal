@@ -1,12 +1,5 @@
-import {
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import React from 'react';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {memo} from 'react';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
 
@@ -71,6 +64,7 @@ const StatisticCard = ({title, type, color, data, person}) => {
       </TouchableOpacity>
     );
   };
+  console.log(data);
   return (
     <View style={styles.container}>
       <View style={{marginHorizontal: 20, marginTop: 20}}>
@@ -78,29 +72,50 @@ const StatisticCard = ({title, type, color, data, person}) => {
       </View>
       <View style={{marginTop: 10}}>{HeaderComponent()}</View>
       <View>
-        <FlatList
-          style={{
-            height: style.height / 1.6,
-            maxHeight: style.height / 1.6,
-            minHeight: style.height / 1.6,
-            overflow: 'scroll',
-            borderRadius: 10,
-          }}
-          data={data}
-          ItemSeparatorComponent={() => (
-            <View
+        {data?.length == 0 || data == undefined ? (
+          <View
+            style={{
+              marginTop: 10,
+              alignSelf: 'center',
+              marginBottom: 10,
+              height: style.height / 1.6,
+              maxHeight: style.height / 1.6,
+              minHeight: style.height / 1.6,
+            }}>
+            <Text
               style={{
-                backgroundColor: style.backgroundColor,
-                width: '100%',
-                height: 2,
-              }}
-            />
-          )}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item, index}) => {
-            return <ListRender item={item} index={index} />;
-          }}
-        />
+                fontSize: style.fontSize.small,
+                fontFamily: style.fontFamilyMedium,
+                color: style.textColor,
+              }}>
+              Mavjud emas
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            style={{
+              height: style.height / 1.6,
+              maxHeight: style.height / 1.6,
+              minHeight: style.height / 1.6,
+              overflow: 'scroll',
+              borderRadius: 10,
+            }}
+            data={data}
+            ItemSeparatorComponent={() => (
+              <View
+                style={{
+                  backgroundColor: style.backgroundColor,
+                  width: '100%',
+                  height: 2,
+                }}
+              />
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item, index}) => {
+              return <ListRender item={item} index={index} />;
+            }}
+          />
+        )}
       </View>
     </View>
   );
@@ -151,7 +166,7 @@ export const HeaderComponent = () => {
   );
 };
 
-export default StatisticCard;
+export default memo(StatisticCard);
 
 const styles = StyleSheet.create({
   title: {

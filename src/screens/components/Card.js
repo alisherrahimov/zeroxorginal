@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {PurseIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import {useNavigation} from '@react-navigation/native';
@@ -59,7 +59,7 @@ const Card = ({
   );
 };
 
-export default Card;
+export default memo(Card);
 
 const styles = StyleSheet.create({
   container: {

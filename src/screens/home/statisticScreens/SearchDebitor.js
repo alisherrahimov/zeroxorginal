@@ -17,7 +17,6 @@ const SearchDebitor = () => {
     method: 'GET',
     url: URL + url,
   });
-
   const navigation = useNavigation();
   if (loading) {
     return <Loading />;

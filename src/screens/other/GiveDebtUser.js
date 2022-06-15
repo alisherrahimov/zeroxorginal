@@ -9,13 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import {Checkbox, RadioButton} from 'react-native-paper';
+import {Checkbox, Provider, RadioButton} from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import MeetInfoGiveDebtModal from '../../modal/MeetInfoGiveDebtModal';
 const GiveDebtUser = () => {
   const navigation = useNavigation();
   const [isUzs, setUzs] = useState(true);
@@ -23,6 +24,10 @@ const GiveDebtUser = () => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const toggleModal = useCallback(() => {
+    setVisible(!visible);
+  }, [visible]);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -223,6 +228,7 @@ const GiveDebtUser = () => {
                   color={style.blue}
                 />
                 <Text
+                  onPress={toggleModal}
                   style={[
                     styles.phoneText,
                     {
@@ -262,6 +268,9 @@ const GiveDebtUser = () => {
           />
         )}
       </ScrollView>
+      <Provider>
+        <MeetInfoGiveDebtModal toggleModal={toggleModal} visible={visible} />
+      </Provider>
     </View>
   );
 };

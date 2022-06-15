@@ -76,13 +76,19 @@ const News = () => {
   const {data} = route.params;
   return (
     <View style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 10}}>
-        {data?.map((item, index) => {
-          return <NewsNotificationCard data={data} />;
-        })}
-      </ScrollView>
+      {data.length == 0 ? (
+        <View style={{alignItems: 'center', marginTop: 20}}>
+          <Text style={styles.downloadText}>Yangiliklar mavjud emas</Text>
+        </View>
+      ) : (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{paddingBottom: 10}}>
+          {data?.map((item, index) => {
+            return <NewsNotificationCard data={data} />;
+          })}
+        </ScrollView>
+      )}
     </View>
   );
 };
@@ -91,13 +97,19 @@ const Bildrishnoma = () => {
   const {data} = route.params;
   return (
     <View style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 10}}>
-        {data?.map((item, index) => {
-          return <NotificationCard data={data} />;
-        })}
-      </ScrollView>
+      {data.length == 0 ? (
+        <View style={{alignItems: 'center', marginTop: 20}}>
+          <Text style={styles.downloadText}>Bildirishnomalar mavjud emas</Text>
+        </View>
+      ) : (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{paddingBottom: 10}}>
+          {data?.map((item, index) => {
+            return <NotificationCard data={data} />;
+          })}
+        </ScrollView>
+      )}
     </View>
   );
 };
@@ -143,8 +155,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   downloadText: {
-    color: '#fff',
-    fontSize: style.fontSize.xx,
+    color: style.textColor,
+    fontSize: style.fontSize.small,
     fontFamily: style.fontFamilyMedium,
   },
   main: {

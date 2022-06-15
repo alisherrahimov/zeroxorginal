@@ -237,7 +237,9 @@ const StackNavigator = () => {
       screenOptions={{headerShown: false}}
       initialRouteName={'SelectLanguageScreen'}>
       {AllNavigators.map((val, index) => {
-        return <Stack.Screen name={val.name} component={val.component} />;
+        return (
+          <Stack.Screen name={val.name} component={val.component} key={index} />
+        );
       })}
     </Stack.Navigator>
   );

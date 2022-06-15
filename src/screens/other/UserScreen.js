@@ -17,6 +17,7 @@ const UserScreen = () => {
   const route = useRoute();
   const {user} = route.params;
   const navigation = useNavigation();
+  console.log(user);
   return (
     <View style={styles.container}>
       <View
@@ -84,7 +85,7 @@ const UserScreen = () => {
                 <View style={{flex: 1}}>
                   <TextInput
                     editable={false}
-                    value={user.birthday}
+                    value={user?.birthday}
                     keyboardType="default"
                     style={styles.TextInput}
                   />
@@ -100,7 +101,7 @@ const UserScreen = () => {
                   <TextInput
                     multiline={true}
                     editable={false}
-                    value="Urganch sh. Istiqlol pr4 2-uy"
+                    value={user?.address}
                     keyboardType="default"
                     style={styles.TextInput}
                   />

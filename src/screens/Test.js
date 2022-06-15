@@ -38,7 +38,7 @@ const Test = () => {
         }
       } catch (error) {
         setError(true);
-        setData(error);
+        setData(error.response.data);
         setLoading(false);
       }
     });
