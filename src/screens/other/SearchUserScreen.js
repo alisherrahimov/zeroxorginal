@@ -24,6 +24,7 @@ import {defaultValue} from '../../store/reducers/UserSearchReducer';
 import {useFetch} from '../../hooks/useFetch';
 import {URL} from '../constants';
 import axios from 'axios';
+import TextInputMask from 'react-native-text-input-mask';
 const SearchUserScreen = () => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
@@ -100,12 +101,13 @@ const SearchUserScreen = () => {
                       <Text style={styles.phoneText}>ID raqamini kiriting</Text>
                     </View>
                     <View style={{flex: 1}}>
-                      <TextInput
+                      <TextInputMask
                         value={userID}
-                        placeholder="100005AA"
-                        onChangeText={text => {
+                        placeholder="1000005/AA"
+                        onChangeText={(formatted, text) => {
                           setUserID(text);
                         }}
+                        mask="[000000]{/}[AA]"
                         placeholderTextColor={style.placeHolderColor}
                         keyboardType="default"
                         style={[styles.TextInput, {paddingLeft: 15}]}

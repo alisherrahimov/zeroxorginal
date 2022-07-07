@@ -13,7 +13,7 @@ const StatisticCard = ({title, type, color, data, person}) => {
           if (color == style.blue) {
             navigation.navigate('Debitor', {type: type, item});
           } else {
-            navigation.navigate('CreditorDebitor', {type: type});
+            navigation.navigate('CreditorDebitor', {type: type, item});
           }
         }}
         style={styles.listContainer}>

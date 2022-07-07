@@ -17,6 +17,7 @@ import {UserSearch} from '../../store/api/user';
 import Loading from '../components/Loading';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../components/ToastConfig';
+import TextInputMask from 'react-native-text-input-mask';
 const SearchJuridicUser = () => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
@@ -90,10 +91,11 @@ const SearchJuridicUser = () => {
                     <View style={{flex: 1}}>
                       <TextInput
                         value={stir}
+                        maxLength={9}
                         placeholder="STIRni kiriting"
                         onChangeText={text => setStir(text)}
                         placeholderTextColor={style.placeHolderColor}
-                        keyboardType="default"
+                        keyboardType="numeric"
                         style={[styles.TextInput, {paddingLeft: 15}]}
                       />
                     </View>
@@ -103,10 +105,11 @@ const SearchJuridicUser = () => {
                       <Text style={styles.phoneText}>ID raqamini kiriting</Text>
                     </View>
                     <View style={{flex: 1}}>
-                      <TextInput
-                        placeholder="100005AA"
+                      <TextInputMask
+                        placeholder="1000005/AA"
                         value={userID}
-                        onChangeText={text => setUserID(text)}
+                        onChangeText={(formatted, text) => setUserID(text)}
+                        mask="[000000]{/}[AA]"
                         placeholderTextColor={style.placeHolderColor}
                         keyboardType="default"
                         style={[styles.TextInput, {paddingLeft: 15}]}

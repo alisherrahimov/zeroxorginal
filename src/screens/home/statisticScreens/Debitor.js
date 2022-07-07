@@ -17,7 +17,6 @@ const Debitor = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const {type, item} = route.params;
-  console.log(item);
   return (
     <View style={styles.container}>
       <View
@@ -69,10 +68,12 @@ const Debitor = () => {
           />
           <View style={styles.header}>
             <View style={[styles.item, {left: 40}]}>
-              <Text style={styles.info}>Qarz olingan sana </Text>
+              <Text style={styles.info}>Qarz berilgan sana </Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>22.10.2021</Text>
+              <Text style={styles.info}>
+                {item?.act?.createdAt.slice(0, 10)}
+              </Text>
             </View>
           </View>
           <View
@@ -87,7 +88,7 @@ const Debitor = () => {
               <Text style={styles.info}>Qarz qaytarilgan sana</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>22.10.2022</Text>
+              <Text style={styles.info}>{item?.end_date.slice(0, 10)}</Text>
             </View>
           </View>
           <View
@@ -102,7 +103,9 @@ const Debitor = () => {
               <Text style={styles.info}>Qaytarilgan summa </Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>1.0 mln so’m</Text>
+              <Text style={styles.info}>
+                {item?.act?.inc} {item?.currency}
+              </Text>
             </View>
           </View>
           <View
@@ -205,7 +208,7 @@ const styles = StyleSheet.create({
   info: {
     color: style.textColor,
     fontFamily: style.fontFamilyMedium,
-    fontSize: style.fontSize.small - 1,
+    fontSize: style.fontSize.small,
     textAlign: 'left',
   },
   header: {

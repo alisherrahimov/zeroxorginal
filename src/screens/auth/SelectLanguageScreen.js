@@ -37,6 +37,12 @@ const SelectLanguageScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            navigation.navigate('TestTextInput');
+          }}>
+          <Text style={{color: 'red'}}>TextInput Test for Date</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
             navigation.navigate('SetLocalPassword');
           }}>
           <Text style={{color: 'red'}}>Lock SCREEN</Text>

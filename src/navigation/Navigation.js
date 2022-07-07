@@ -77,6 +77,7 @@ import {
 
 import PdfView from '../screens/home/statisticScreens/PdfView';
 import {style} from '../theme/style';
+import TestTextInput from '../screens/TestTextInput';
 
 const Stack = createNativeStackNavigator();
 const BottomTabStack = createMaterialTopTabNavigator();
@@ -230,6 +231,7 @@ const AllNavigators = [
   {name: 'UseTerm', component: UseTerm},
   {name: 'PdfView', component: PdfView},
   {name: 'MuddatOzQolgan', component: MuddatOzQolgan},
+  {name: 'TestTextInput', component: TestTextInput},
 ];
 const StackNavigator = () => {
   return (

@@ -102,7 +102,6 @@ const RegisterWithPeople = () => {
                 <TextInputMask
                   placeholder="00 000 00 00"
                   placeholderTextColor={style.placeHolderColor}
-                  value={phone}
                   mask={'[00] [000] [00] [00]'}
                   onChangeText={(formatted, extracted) => {
                     setPhone(extracted);

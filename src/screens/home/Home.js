@@ -77,7 +77,7 @@ const Home = () => {
                     type={0}
                     color={style.blue}
                     person="debitor"
-                    url={'/arrearage/my/debitor?page=1&limit=10'}
+                    url={'/contract/return?status=1&user_type=1&all=1'}
                   />
                 </View>
                 <View>
@@ -88,7 +88,7 @@ const Home = () => {
                     type={0}
                     person="creditor"
                     color={'red'}
-                    url={'/arrearage/my/creditor?page=1&limit=10'}
+                    url={'/contract/return?status=1&user_type=2&all=1'}
                   />
                 </View>
               </View>
@@ -102,7 +102,7 @@ const Home = () => {
                     type={2}
                     person="debitor"
                     color={style.blue}
-                    url={'/arrearage/expired/debitor?page=1&limit=10'}
+                    url={'/contract/return?status=1&user_type=1&expired=1'}
                   />
                 </View>
                 <View>

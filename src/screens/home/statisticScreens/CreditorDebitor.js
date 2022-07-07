@@ -11,12 +11,12 @@ import {BackGroundIcon} from '../../../helper/homeIcon';
 import {style} from '../../../theme/style';
 import BackButton from '../../components/BackButton';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const CreditorDebitor = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const {type} = route.params;
+  const {type, item} = route.params;
+  console.log(item);
   return (
     <View style={styles.container}>
       <View
@@ -34,10 +34,12 @@ const CreditorDebitor = () => {
         <View style={styles.aboutUsContainer}>
           <View style={styles.header}>
             <View style={[styles.item, {left: 40}]}>
-              <Text style={styles.info}>Qarzdor nomi</Text>
+              <Text style={styles.info}>Qarz bergan shaxs</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>Abdullayev Abdulla</Text>
+              <Text style={styles.info}>
+                {item?.debitor.first_name} {item?.debitor.last_name}
+              </Text>
             </View>
           </View>
           <View
@@ -52,7 +54,9 @@ const CreditorDebitor = () => {
               <Text style={styles.info}>Qarz summasi</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>1,0 mln so’m</Text>
+              <Text style={styles.info}>
+                {item?.amount} {item?.currency}
+              </Text>
             </View>
           </View>
           <View
@@ -64,10 +68,12 @@ const CreditorDebitor = () => {
           />
           <View style={styles.header}>
             <View style={[styles.item, {left: 40}]}>
-              <Text style={styles.info}>Qarz olingan sana </Text>
+              <Text style={styles.info}>Qarz berilgan sana </Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>22.10.2021</Text>
+              <Text style={styles.info}>
+                {item?.act?.createdAt.slice(0, 10)}
+              </Text>
             </View>
           </View>
           <View
@@ -79,10 +85,12 @@ const CreditorDebitor = () => {
           />
           <View style={styles.header}>
             <View style={[styles.item, {left: 40}]}>
-              <Text style={styles.info}>Qarz qaytarilgan sana</Text>
+              <Text style={styles.info}>Qarzning qaytarilish sanasi</Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>22.10.2022</Text>
+              <Text style={styles.info}>
+                {item?.act?.end_date.slice(0, 10)}
+              </Text>
             </View>
           </View>
           <View
@@ -97,7 +105,9 @@ const CreditorDebitor = () => {
               <Text style={styles.info}>Qaytarilgan summa </Text>
             </View>
             <View style={[styles.item, {alignItems: 'center'}]}>
-              <Text style={styles.info}>1.0 mln so’m</Text>
+              <Text style={styles.info}>
+                {item?.act?.inc} {item?.currency}
+              </Text>
             </View>
           </View>
           <View
@@ -120,7 +130,7 @@ const CreditorDebitor = () => {
                   styles.info,
                   {color: style.blue, textDecorationLine: 'underline'},
                 ]}>
-                22/10/2021/000001
+                {item?.contract?.number}
               </Text>
             </View>
           </View>

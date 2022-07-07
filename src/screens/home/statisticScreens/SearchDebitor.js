@@ -21,7 +21,7 @@ const SearchDebitor = () => {
   if (loading) {
     return <Loading />;
   }
-
+  
   return (
     <View style={styles.container}>
       <View style={{width: style.width, height: style.height}}>

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Zerox</string>
+    <string name="app_name">ZeroX</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">PGtvhnO0WqTDpOvaXT62qgKLR7fKDgQFAP7fF</string>
 </resources>
