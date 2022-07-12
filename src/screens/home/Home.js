@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {style} from '../../theme/style';
 import {BackGroundIcon} from '../../helper/homeIcon';
 import {useNavigation} from '@react-navigation/native';
@@ -21,9 +21,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {HomeApi} from '../../store/api/home';
 import Loading from '../components/Loading';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import NotificationModalForRegister from './modal/NotificationModalForRegister';
+import {Portal, Provider} from 'react-native-paper';
 const Home = () => {
   const navigation = useNavigation();
   const {loading, error, home, user} = useSelector(state => state.HomeReducer);
+  const [notificationModal, setNotificationModal] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(HomeApi());
@@ -46,111 +49,134 @@ const Home = () => {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          position: 'absolute',
-          height: style.height / 2.5,
-          width: '100%',
-        }}>
-        <BackGroundIcon width="100%" height="100%" />
-      </View>
-      <Header user={user.data} />
-      <View style={styles.header}>
-        <ScrollView
-          nestedScrollEnabled
-          contentContainerStyle={{paddingBottom: 20, paddingHorizontal: 10}}
-          showsVerticalScrollIndicator={false}>
-          <View>
-            <View>
-              <View style={styles.appInfoMainContainer}>
-                <Slider />
-              </View>
-            </View>
-            <View style={{flex: 1, marginTop: 40}}>
-              <View style={[styles.cardViewContainer, {marginTop: 0}]}>
+      <Provider>
+        <Portal>
+          <View
+            style={{
+              position: 'absolute',
+              height: style.height / 2.5,
+              width: '100%',
+            }}>
+            <BackGroundIcon width="100%" height="100%" />
+          </View>
+          <Header user={user.data} />
+          <View style={styles.header}>
+            <ScrollView
+              nestedScrollEnabled
+              contentContainerStyle={{paddingBottom: 20, paddingHorizontal: 10}}
+              showsVerticalScrollIndicator={false}>
+              <View>
                 <View>
-                  <Card
-                    // amount={home.data.creditorUsd}
-                    width={style.width / 2.3}
-                    title={'Berilgan qarz\n(debitor)'}
-                    Icon={OlinganQarz}
-                    type={0}
-                    color={style.blue}
-                    person="debitor"
-                    url={'/contract/return?status=1&user_type=1&all=1'}
-                  />
+                  <View style={styles.appInfoMainContainer}>
+                    <Slider />
+                  </View>
                 </View>
-                <View>
-                  <Card
-                    width={style.width / 2.3}
-                    title={'Olingan qarz\n(kreditor)'}
-                    Icon={BerilganQarzIcon}
-                    type={0}
-                    person="creditor"
-                    color={'red'}
-                    url={'/contract/return?status=1&user_type=2&all=1'}
-                  />
-                </View>
-              </View>
-
-              <View style={[styles.cardViewContainer, {marginTop: 30}]}>
-                <View>
-                  <Card
-                    width={style.width / 2.3}
-                    title={'Muddati o’tgan\n(debitor)'}
-                    Icon={MuddatUtganPlus}
-                    type={2}
-                    person="debitor"
-                    color={style.blue}
-                    url={'/contract/return?status=1&user_type=1&expired=1'}
-                  />
-                </View>
-                <View>
-                  <Card
-                    width={style.width / 2.3}
-                    title={'Muddati o’tgan\n(kreditor)'}
-                    Icon={MuddatUtganMinus}
-                    type={2}
-                    person="creditor"
-                    color={'red'}
-                    url={'/arrearage/expired/creditor?page=1&limit=10'}
-                  />
-                </View>
-              </View>
-              <View style={[styles.cardViewContainer, {marginTop: 30}]}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('MuddatOzQolgan', {
-                      uzs: home.data.debitorUsz,
-                      usd: home.data.debitorUsd,
-                    });
-                  }}
-                  activeOpacity={0.8}
-                  style={styles.btn}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      width: '100%',
-                    }}>
+                <View style={{flex: 1, marginTop: 40}}>
+                  <View style={[styles.cardViewContainer, {marginTop: 0}]}>
                     <View>
-                      <Text style={styles.btnText}>
-                        Muddati oz qolgan qarzdorliklar
-                      </Text>
+                      <Card
+                        uzs={sum(home?.data?.debitorUsz)}
+                        usd={sum(home?.data?.debitorUsd)}
+                        width={style.width / 2.3}
+                        title={'Berilgan qarz\n(debitor)'}
+                        Icon={OlinganQarz}
+                        type={0}
+                        color={style.blue}
+                        person="debitor"
+                        url={'/contract/return?status=1&user_type=1&all=1'}
+                      />
                     </View>
-                    <View style={{marginRight: 15}}>
-                      <Icon name="hourglass" color={'#fff'} size={22} />
+                    <View>
+                      <Card
+                        uzs={sum(home?.data?.creditroUsz)}
+                        usd={sum(home?.data?.creditorUsd)}
+                        width={style.width / 2.3}
+                        title={'Olingan qarz\n(kreditor)'}
+                        Icon={BerilganQarzIcon}
+                        type={0}
+                        person="creditor"
+                        color={'red'}
+                        url={'/contract/return?status=1&user_type=2&all=1'}
+                      />
                     </View>
                   </View>
-                </TouchableOpacity>
+
+                  <View style={[styles.cardViewContainer, {marginTop: 30}]}>
+                    <View>
+                      <Card
+                        uzs={sum(home?.data?.debitorUsz)}
+                        usd={sum(home?.data?.debitorUsd)}
+                        width={style.width / 2.3}
+                        title={'Muddati o’tgan\n(debitor)'}
+                        Icon={MuddatUtganPlus}
+                        type={2}
+                        person="debitor"
+                        color={style.blue}
+                        url={'/contract/return?status=1&user_type=1&expired=1'}
+                      />
+                    </View>
+                    <View>
+                      <Card
+                        uzs={sum(home?.data?.creditroUsz)}
+                        usd={sum(home?.data?.creditorUsd)}
+                        width={style.width / 2.3}
+                        title={'Muddati o’tgan\n(kreditor)'}
+                        Icon={MuddatUtganMinus}
+                        type={2}
+                        person="creditor"
+                        color={'red'}
+                        url={'/arrearage/expired/creditor?page=1&limit=10'}
+                      />
+                    </View>
+                  </View>
+                  <View style={[styles.cardViewContainer, {marginTop: 30}]}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        navigation.navigate('MuddatOzQolgan', {
+                          uzs: home.data.debitorUsz,
+                          usd: home.data.debitorUsd,
+                        });
+                      }}
+                      activeOpacity={0.8}
+                      style={styles.btn}>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          width: '100%',
+                        }}>
+                        <View>
+                          <Text style={styles.btnText}>
+                            Muddati oz qolgan qarzdorliklar
+                          </Text>
+                        </View>
+                        <View style={{marginRight: 15}}>
+                          <Icon name="hourglass" color={'#fff'} size={22} />
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               </View>
-            </View>
+            </ScrollView>
           </View>
-        </ScrollView>
-      </View>
+          <NotificationModalForRegister
+            hide={notificationModal}
+            onHide={setNotificationModal}
+          />
+        </Portal>
+      </Provider>
     </SafeAreaView>
   );
+};
+
+const sum = (x = []) => {
+  let a = 0;
+  x.forEach((val, index) => {
+    a += val.amount;
+  });
+  return a;
 };
 
 export default Home;

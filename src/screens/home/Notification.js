@@ -55,13 +55,13 @@ const Notification = () => {
                 options={{tabBarLabel: 'Bildirishnomalar'}}
                 name="Bildrishnoma"
                 component={Bildrishnoma}
-                initialParams={{data: data.data}}
+                initialParams={{data: data?.data}}
               />
               <TopTab.Screen
                 options={{tabBarLabel: 'Yangiliklar'}}
                 name="News"
                 component={News}
-                initialParams={{data: data.data}}
+                initialParams={{data: data?.data}}
               />
             </TopTab.Navigator>
           </View>
@@ -73,10 +73,10 @@ const Notification = () => {
 
 const News = () => {
   const route = useRoute();
-  const {data} = route.params;
+  const {data = []} = route.params;
   return (
     <View style={styles.container}>
-      {data.length == 0 ? (
+      {data?.length == 0 ? (
         <View style={{alignItems: 'center', marginTop: 20}}>
           <Text style={styles.downloadText}>Yangiliklar mavjud emas</Text>
         </View>
@@ -94,10 +94,10 @@ const News = () => {
 };
 const Bildrishnoma = () => {
   const route = useRoute();
-  const {data} = route.params;
+  const {data = []} = route.params;
   return (
     <View style={styles.container}>
-      {data.length == 0 ? (
+      {data?.length == 0 ? (
         <View style={{alignItems: 'center', marginTop: 20}}>
           <Text style={styles.downloadText}>Bildirishnomalar mavjud emas</Text>
         </View>

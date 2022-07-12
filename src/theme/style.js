@@ -7,7 +7,7 @@ import {
 const {width, height} = Dimensions.get('window');
 
 const scale = width / 320;
-const normalize = size => {
+export const normalize = size => {
   const newSize = size * scale;
   if (Platform.OS === 'ios') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize));

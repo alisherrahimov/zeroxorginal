@@ -24,8 +24,6 @@ const PdfView = () => {
       }, 4000);
     }
   }, [tutorial]);
-  console.log(tutorial, 'tut');
-  console.log(loading, 'lod');
   return (
     <>
       <View
@@ -87,7 +85,7 @@ const PdfView = () => {
             <ActivityIndicator size={'large'} color={style.blue} />
           )}
           source={{
-            uri: pdf,
+            uri: 'https://www.researchgate.net/profile/Susana-Addo-Ntim/publication/294900462_15_MB_PDF/data/56c7254808ae408dfe52cfe3/ehp1306561s001.pdf',
             method: 'GET',
           }}
           onLoadProgress={number => {

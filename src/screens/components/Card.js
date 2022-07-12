@@ -14,8 +14,11 @@ const Card = ({
   height,
   url,
   person,
+  usd,
+  uzs,
 }) => {
   const navigation = useNavigation();
+  console.log(uzs);
   return (
     <TouchableOpacity
       disabled={disabled ? true : false}
@@ -52,8 +55,8 @@ const Card = ({
         <Icon width={30} height={30} />
       </View>
       <View style={{marginTop: 20}}>
-        <Text style={styles.sum}>$53,897</Text>
-        <Text style={styles.sum}>500000 so’m</Text>
+        <Text style={styles.sum}>{uzs} so'm</Text>
+        <Text style={styles.sum}>{usd} $</Text>
       </View>
     </TouchableOpacity>
   );

@@ -31,6 +31,7 @@ const TestTextInput = () => {
         <View style={{flex: 1}}>
           <TextInputMask
             value={mask}
+            keyboardType="numeric"
             placeholder="kun.oy.yil"
             mask="[00]{.}[00]{.}[0000]"
             onChangeText={(formated, text) => {
@@ -45,7 +46,6 @@ const TestTextInput = () => {
                 setMask(`${day}.${month}.${text.slice(6)}`);
               }
               setMask(formated);
-              console.log(formated, text);
             }}
             style={styles.TextInput}
           />

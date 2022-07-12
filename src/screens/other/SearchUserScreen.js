@@ -12,19 +12,12 @@ import {BackGroundIcon} from '../../helper/homeIcon';
 import {style} from '../../theme/style';
 import BackButton from '../components/BackButton';
 import {useNavigation} from '@react-navigation/native';
-import DateTimePicker, {
-  DateTimePickerAndroid,
-} from '@react-native-community/datetimepicker';
-import {useDispatch, useSelector} from 'react-redux';
-import {UserSearch} from '../../store/api/user';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import Loading from '../components/Loading';
-import Toast from 'react-native-toast-message';
-import {toastConfig} from '../components/ToastConfig';
-import {defaultValue} from '../../store/reducers/UserSearchReducer';
-import {useFetch} from '../../hooks/useFetch';
 import {URL} from '../constants';
 import axios from 'axios';
 import TextInputMask from 'react-native-text-input-mask';
+import {getItem} from '../../store/api/token/getToken';
 const SearchUserScreen = () => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
@@ -37,19 +30,25 @@ const SearchUserScreen = () => {
     const day = date.getDate().toString();
     const month = Number(date.getMonth().toString()) + 1;
     const year = date.getFullYear().toString();
-    const userDate = `${day}.${month}.${year}`;
+
+    const userDate = `${day}.${month >= 10 ? month : '0' + month}.${year}`;
     try {
       setLoading(true);
       setError(false);
-      const {data, status} = await axios.post(URL + '/user/search', {
-        id: userID,
-        birthday: userDate,
-        type: 1,
-      });
+      const {data, status} = await axios.post(
+        URL + '/user/search',
+        {
+          id: userID.replace('/', ''),
+          birthday: userDate,
+          type: 1,
+        },
+        {headers: {Authorization: `Bearer ${await getItem('token')}`}},
+      );
       if (status == 200) {
         setData(data);
       }
     } catch (error) {
+      console.log(error);
       setError(true);
     }
     setLoading(false);
@@ -57,7 +56,6 @@ const SearchUserScreen = () => {
   if (loading) {
     return <Loading />;
   }
-
   return (
     <View style={styles.container}>
       <View
@@ -104,8 +102,9 @@ const SearchUserScreen = () => {
                       <TextInputMask
                         value={userID}
                         placeholder="1000005/AA"
-                        onChangeText={(formatted, text) => {
-                          setUserID(text);
+                        autoCapitalize="characters"
+                        onChangeText={(formatted, extracted) => {
+                          setUserID(extracted);
                         }}
                         mask="[000000]{/}[AA]"
                         placeholderTextColor={style.placeHolderColor}
@@ -176,9 +175,17 @@ const SearchUserScreen = () => {
                     marginTop: 20,
                   }}>
                   <TouchableOpacity
+                    disabled={userID.length == 9 ? false : true}
                     onPress={SearchUser}
                     activeOpacity={0.8}
-                    style={styles.registerButton}>
+                    style={[
+                      styles.registerButton,
+                      {
+                        backgroundColor: (userID.length == 9 ? false : true)
+                          ? style.disabledButtonColor
+                          : style.blue,
+                      },
+                    ]}>
                     <Text style={styles.textButton}>Izlash</Text>
                   </TouchableOpacity>
                 </View>
