@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Platform,
   Share,
   StyleSheet,
@@ -14,9 +15,14 @@ import {useNavigation} from '@react-navigation/native';
 import ShareIcon from '../../../images/home/share.svg';
 import DownloadIcon from '../../../images/home/download.svg';
 import RNFetchBlob from 'rn-fetch-blob';
+import LottieView from 'lottie-react-native';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from '../../components/ToastConfig';
+import Pdf from 'react-native-pdf';
+import WebView from 'react-native-webview';
 const DownloadStatistic = () => {
+  const [loading, setLoading] = React.useState(true);
+  const [tutorial, setTutorial] = React.useState(false);
   const navigation = useNavigation();
 
   const onShare = async () => {
@@ -77,43 +83,39 @@ const DownloadStatistic = () => {
         style={{position: 'absolute', height: style.height / 3, width: '100%'}}>
         <BackGroundIcon width="100%" height="100%" />
       </View>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' ? 40 : null,
+          position: 'absolute',
+          marginLeft: 15,
+          zIndex: 1,
+        }}>
+        <BackButton
+          navigation={navigation}
+          backgroundColor={'#fff'}
+          IconColor={style.blue}
+        />
+      </View>
       <View style={styles.main}>
-        <View style={{marginTop: Platform.OS === 'android' ? 40 : null}}>
-          <BackButton
-            navigation={navigation}
-            backgroundColor={'#fff'}
-            IconColor={style.blue}
-          />
-        </View>
         <View style={styles.aboutUsContainer}>
           <View style={{marginTop: 20}}>
             <Text style={styles.title}>
               20/11/2021/000001-sonli qarz shartnomasi va ilova hujjatlar
             </Text>
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('PdfView', {
-                pdf: 'https://www.researchgate.net/profile/Susana-Addo-Ntim/publication/294900462_15_MB_PDF/data/56c7254808ae408dfe52cfe3/ehp1306561s001.pdf',
-              });
-            }}
-            activeOpacity={0.95}
-            style={{alignItems: 'center', justifyContent: 'center'}}>
-            <View style={styles.pdfView}>
-              <Text style={styles.userName}>Ko'rish</Text>
-            </View>
-          </TouchableOpacity>
           <View
             style={{
               flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              marginBottom: 20,
+              alignItems: 'center',
+              justifyContent: 'space-around',
+              marginTop: 10,
+              marginBottom: 10,
             }}>
             <TouchableOpacity
               onPress={onDownload}
               activeOpacity={0.8}
               style={styles.download}>
-              <DownloadIcon width="20%" height="100%" />
+              <DownloadIcon width="20%" height="100%" />  
               <Text style={styles.downloadText}>Yuklab olish</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -123,6 +125,41 @@ const DownloadStatistic = () => {
               <ShareIcon width="20%" height="100%" />
               <Text style={styles.downloadText}>Ulashish</Text>
             </TouchableOpacity>
+          </View>
+          <View style={{flex: 1, backgroundColor: '#fff'}}>
+            {loading && (
+              <View
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <ActivityIndicator size={'large'} color={style.blue} />
+              </View>
+            )}
+
+            <Pdf
+              trustAllCerts={true}
+              enablePaging={true}
+              activityIndicator={() => (
+                <ActivityIndicator size={'large'} color={style.blue} />
+              )}
+              source={{
+                uri: 'https://www.researchgate.net/profile/Susana-Addo-Ntim/publication/294900462_15_MB_PDF/data/56c7254808ae408dfe52cfe3/ehp1306561s001.pdf',
+                method: 'GET',
+              }}
+              onLoadProgress={number => {
+                console.log(number);
+              }}
+              onLoadComplete={() => {
+                setLoading(false);
+              }}
+              style={styles.pdf}
+            />
           </View>
         </View>
       </View>
@@ -137,6 +174,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: style.backgroundColor,
     flex: 1,
+  },
+  pdf: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
   pdfView: {
     alignSelf: 'center',
@@ -177,9 +219,10 @@ const styles = StyleSheet.create({
     fontFamily: style.fontFamilyMedium,
   },
   main: {
-    position: 'absolute',
-    width: '90%',
+    flex: 1,
+    width: '100%',
     alignSelf: 'center',
+    marginTop: style.height / 8,
   },
   aboutUsContainer: {
     backgroundColor: '#fff',
